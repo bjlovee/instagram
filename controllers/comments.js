@@ -64,20 +64,20 @@ const dataController = {
           output: 'Could not find a comment with that ID'
         })
       } else {
-        res.locals.data.omment = foundComment
+        res.locals.data.comment = foundComment
         next()
       }
     })
   }
 }
 
-// const apiController = {
-//     index (req, res, next) {
-//       res.json(res.locals.data.comments)
-//     },
-//     show (req, res, next) {
-//       res.json(res.locals.data.comment)
-//     }
-//   }
+const apiController = {
+    index (req, res, next) {
+      res.json(res.locals.data.comments)
+    },
+    show (req, res, next) {
+      res.json(res.locals.data.comment)
+    }
+  }
 
-module.exports = { dataController}
+module.exports = { dataController, apiController}
