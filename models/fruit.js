@@ -8,4 +8,4 @@ const fruitSchema  = new Schema({
     timdysmpd:true
 })
 
-const Fruiit = model
+const Fruit = model
