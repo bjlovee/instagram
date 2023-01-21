@@ -1,57 +1,56 @@
-const Fruit = require('../../models/fruit')
+const Post = require('../../models/posts')
 
 const dataController = {
   // Index,
   index (req, res, next) {
-    Fruit.find({}, (err, foundFruits) => {
+    Post.find({}, (err, foundPosts) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruits = foundFruits
+        res.locals.data.posts = foundPosts
         next()
       }
     })
   },
   // Destroy
   destroy (req, res, next) {
-    Fruit.findByIdAndDelete(req.params.id, (err, deletedFruit) => {
+    Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruit = deletedFruit
+        res.locals.data.post = deletedPost
         next()
       }
     })
   },
   // Update
   update (req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === 'on'
-    Fruit.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedFruit) => {
+
+    Post.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedPost) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruit = updatedFruit
+        res.locals.data.post = updatedPost
         next()
       }
     })
   },
   // Create
   create (req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === 'on'
    
-    Fruit.create(req.body, (err, createdFruit) => {
+    Post.create(req.body, (err, createdPost) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruit = createdFruit
+        res.locals.data.post = createdPost
         next()
       }
     })
@@ -59,14 +58,14 @@ const dataController = {
   // Edit
   // Show
   show (req, res, next) {
-    Fruit.findById(req.params.id, (err, foundFruit) => {
+    Post.findById(req.params.id, (err, foundPost) => {
       if (err) {
         res.status(404).send({
           msg: err.message,
-          output: 'Could not find a fruit with that ID'
+          output: 'Could not find a post with that ID'
         })
       } else {
-        res.locals.data.fruit = foundFruit
+        res.locals.data.post = foundPost
         next()
       }
     })
@@ -75,10 +74,10 @@ const dataController = {
 
 const apiController = {
     index (req, res, next) {
-      res.json(res.locals.data.fruits)
+      res.json(res.locals.data.posts)
     },
     show (req, res, next) {
-      res.json(res.locals.data.fruit)
+      res.json(res.locals.data.post)
     }
   }
 
