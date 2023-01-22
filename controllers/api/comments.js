@@ -9,6 +9,7 @@ const dataController = {
           msg: err.message
         })
       } else {
+        console.log(foundComments)
         res.locals.data.comments = foundComments
         next()
       }
