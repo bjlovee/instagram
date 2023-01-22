@@ -3,7 +3,7 @@ const router = express.Router()
 const { dataController, apiController} = require('../../controllers/api/comments')
 
 // GET /api/comments
-router.get('/', dataController.index)
+router.get('/', dataController.index, apiController.index)
 // DELETE /api/comments/:id
 router.delete('/:id', dataController.destroy, apiController.show)
 // UPDATE /api/comments/:id
