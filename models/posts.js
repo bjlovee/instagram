@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const commentSchema = new Schema({
+const postSchema = new Schema({
     image:{ data: Buffer, contentType: String },
     tags: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     location: { type: String },
@@ -9,6 +9,6 @@ const commentSchema = new Schema({
   timestamps: true
 })
 
-const Comment = model('Comment', commentSchema)
+const Post = model('Post', postSchema)
 
-module.exports = Comment
+module.exports = Post
