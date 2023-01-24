@@ -1,10 +1,12 @@
 const { Schema, model } = require('mongoose')
 
 const postSchema = new Schema({
+  //INITIAL POST CREATION
     image:{ data: Buffer, contentType: String },
-    tags: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     location: { type: String },
-    music: { type: String }
+    music: { type: String },
+    //AFTER POST CREATION
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 }, {
   timestamps: true
 })
