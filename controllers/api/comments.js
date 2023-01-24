@@ -1,4 +1,5 @@
 const Comment = require('../../models/comments')
+const Post = require('../../models/posts')
 
 const dataController = {
   // Index,
@@ -16,17 +17,36 @@ const dataController = {
     })
   },
   // Destroy
-  destroy (req, res, next) {
-    Comment.findByIdAndDelete(req.params.id, (err, deletedComment) => {
-      if (err) {
-        res.status(400).send({
-          msg: err.message
-        })
-      } else {
-        res.locals.data.comment = deletedComment
-        next()
-      }
-    })
+  // destroy (req, res, next) {
+  //   Comment.findByIdAndDelete(req.params.id, (err, deletedComment) => {
+  //     if (err) {
+  //       res.status(400).send({
+  //         msg: err.message
+  //       })
+  //     } else {
+  //       res.locals.data.comment = deletedComment
+  //       next()
+  //     }
+  //   })
+  // },
+  async destroy (req, res, next){
+    try{
+      //find the comment passed in
+      const comment = await Comment.findById(req.params.id)
+      //getting the comment stored in the post 
+      await Post.findByIdAndUpdate(comment.post, {
+        $pull: {
+          //pulling the object stored in the array matching the comment id
+          comments: { $in: [req.params.id]}
+        }
+      })
+      //deleting the post
+      await Comment.deleteOne(comment)
+      res.locals.data.comment = comment
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
   },
   // Update
   update (req, res, next) {
@@ -42,18 +62,32 @@ const dataController = {
     })
   },
   // Create
-  create (req, res, next) {
+  // create (req, res, next) {
    
-    Comment.create(req.body, (err, createdComment) => {
-      if (err) {
-        res.status(400).send({
-          msg: err.message
-        })
-      } else {
-        res.locals.data.comment = createdComment
-        next()
-      }
-    })
+  //   Comment.create(req.body, (err, createdComment) => {
+  //     if (err) {
+  //       res.status(400).send({
+  //         msg: err.message
+  //       })
+  //     } else {
+  //       res.locals.data.comment = createdComment
+  //       next()
+  //     }
+  //   })
+  // },
+  async create (req, res, next){
+    try{
+      const comment = await Comment.create(req.body)
+      await Post.findByIdAndUpdate(req.params.id, {
+        $push: {
+          comments: comment
+        }
+      })
+      res.locals.data.comment = comment
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
   },
   // Edit
   // Show
