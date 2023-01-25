@@ -25,8 +25,8 @@ export default function LandingPage(props){
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Terms</a></li>
           </ul>
-          <p>	&#169; 2022 Instafake</p>
-          </footer>
+          <p>	&#169; 2023 Instafake</p>
+        </footer>
         </main>
     )
 }
