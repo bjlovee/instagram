@@ -1,4 +1,5 @@
 const Follower = require('../../models/followers')
+const user = require('../../models/user')
 const User = require('../../models/user')
 
 const dataController = {
@@ -36,11 +37,17 @@ const dataController = {
     try{
       //find the follower passed in by its object id
       const follower = await Follower.findById(req.params.id)
+      // console.log(follower)
       //getting the follower object stored in the followingUser
-      await Post.findByIdAndUpdate(follower.followingId, {
+      const followedUser = await User.findByIdAndUpdate(follower.userFollowed, {
         $pull: {
           //pulling the object stored in the array matching the objectid of the follower object
           followers: { $in: [req.params.id] }
+        }
+      })
+      await user.findByIdAndUpdate(follower.followerUser, {
+        $pull: {
+          following: { $in: [followedUser._id] }
         }
       })
       //deleting the follower
