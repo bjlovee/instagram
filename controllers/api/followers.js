@@ -21,6 +21,17 @@ const dataController = {
       res.status(400).json(e)
     }
   },
+  async getUserFollowing (req, res, next){
+    try{
+      console.log(req)
+      const userFollowing = await Follower.find({followerUser: req.params.id})
+      console.log(userFollowing)
+      res.locals.data.followers = userFollowing
+      next()
+    } catch (e){
+      res.status(400).json(e)
+    }
+  },
   async create (req, res, next){
     try{
       const follower = await Follower.create(req.body)
