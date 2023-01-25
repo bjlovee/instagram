@@ -27,6 +27,7 @@ app.use('/api/users', require('./routes/api/users'))
 app.use('/api/comments', require('./routes/api/comments'))
 app.use('/api/posts', require('./routes/api/posts'))
 app.use('/api/likes', require('./routes/api/likes'))
+app.use('/api/followers', require('./routes/api/followers'))
 
 app.get('/api/test', (req, res) => {
     res.json({eureka: 'you have found it'})
