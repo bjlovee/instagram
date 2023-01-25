@@ -2,12 +2,19 @@
 
 import SignUpForm from "../../components/SignUpForm/SignUpForm"
 import LoginForm from "../../components/LoginForm/LoginForm"
+import { Routes, Route } from 'react-router-dom'
 
 export default function LandingPage(props){
     return(
         <main>
-            <SignUpForm setUser={props.setUser}/>
-            <LoginForm setUser={props.setUser}/>
+            <Routes>
+                <Route path="/signup" element={
+                  <SignUpForm setUser={props.setUser}/>
+                }/>
+                <Route path="/" element={
+                  <LoginForm setUser={props.setUser}/>
+                }/>
+            </Routes>
         </main>
     )
 }

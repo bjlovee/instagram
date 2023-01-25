@@ -1,11 +1,3 @@
-:root {
-    --blue: #18aef9;
-    --button-highlight: #98dcfe;
-    --button-text: #e2ebfc;
-    --info-text: #858383;
-    --outlines: #c5c5c5;
-  }
-
 
 .formContainer {
     border: .1vmin solid var(--outlines);
@@ -15,7 +7,7 @@
   }
   
 .errorMessage {
-    color: black;
+    color: rgb(255, 76, 76);
     text-align: center;
   }
 
@@ -30,7 +22,7 @@
 form{
     align-items: center;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
     max-width: 20rem;
     max-height: 15rem;
 }

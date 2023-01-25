@@ -1,15 +1,19 @@
 import { Component } from 'react'
 import { signUp } from '../../utilities/users-service'
 import styles from '../SignUpForm/SignUpForm.module.scss'
+import { useNavigate, Link } from 'react-router-dom'
 
 export default class SignUpForm extends Component {
     state = {
         name: '',
+        handle: '',
         email: '',
         password: '',
         confirm: '',
         error: ''
     }
+    
+    // navigate = useNavigate()
 
     handleSubmit = async (evt) => {
       evt.preventDefault()
@@ -50,8 +54,10 @@ export default class SignUpForm extends Component {
                 <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} placeholder='confirm password'  required />
                 <button type="submit" disabled={disable}>SIGN UP</button>
               </form>
+              <p className={styles.errorMessage}>&nbsp;{this.state.error}</p>
+              <div>Already have an account?<Link to='/'>login</Link></div>
             </div>
-            <p className={styles.errorMessage}>&nbsp;{this.state.error}</p>
+           
           </div>
         );
       }
