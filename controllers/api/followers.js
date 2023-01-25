@@ -12,6 +12,15 @@ const dataController = {
       res.status(400).json(e)
     }
   },
+  async getUserFollowers (req, res, next){
+    try{
+      const userFollowers = await Follower.find({userFollowed: req.params.id})
+      res.locals.data.followers = userFollowers
+      next()
+    } catch (e){
+      res.status(400).json(e)
+    }
+  },
   async create (req, res, next){
     try{
       const follower = await Follower.create(req.body)
@@ -24,7 +33,7 @@ const dataController = {
       //update the followerUsers following array with the userFollowed user object
       await User.findByIdAndUpdate(follower.followerUser, {
         $push: {
-          following: userFollowed
+          following: follower
         }
       })
       res.locals.data.follower = follower
@@ -47,7 +56,7 @@ const dataController = {
       })
       await user.findByIdAndUpdate(follower.followerUser, {
         $pull: {
-          following: { $in: [followedUser._id] }
+          following: { $in: [req.params.id] }
         }
       })
       //deleting the follower
