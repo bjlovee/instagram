@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AuthPage from '../AuthPage/AuthPage';
+import LandingPage from '../LandingPage/LandingPage';
 import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -36,7 +36,7 @@ function App() {
           </Routes>
         </>
          :
-        <AuthPage setUser={setUser}/>
+        <LandingPage setUser={setUser}/>
       }
     </main>
   );
