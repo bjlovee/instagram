@@ -78,7 +78,7 @@ const dataController = {
   async create (req, res, next){
     try{
       const comment = await Comment.create(req.body)
-      await Post.findByIdAndUpdate(req.params.id, {
+      await Post.findByIdAndUpdate(comment.post, {
         $push: {
           comments: comment
         }

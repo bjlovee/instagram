@@ -6,7 +6,8 @@ const postSchema = new Schema({
     location: { type: String },
     music: { type: String },
     //AFTER POST CREATION
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    likes: [{type: Schema.Types.ObjectId, ref: 'Like'}]
 }, {
   timestamps: true
 })
