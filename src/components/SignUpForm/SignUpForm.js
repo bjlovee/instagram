@@ -40,7 +40,7 @@ export default class SignUpForm extends Component {
         return (
           <div>
             <div className={styles.formContainer}>
-              <h1>Instagram</h1>
+              <h1>Instafake</h1>
               <p>Sign up to see photos and videos from tour friends</p>
               <form autoComplete="off" onSubmit={this.handleSubmit}>
                 {/* <label>Name</label> */}
