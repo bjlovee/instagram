@@ -8,6 +8,12 @@ router.post('/', dataController.create, apiController.show)
 // GET all followers
 router.get('/', dataController.index, apiController.index)
 
+// GET followers by user
+router.get('/follower/:id', dataController.getUserFollowers, apiController.index)
+
+// GET following by user
+router.get('/following/:id', dataController.getUserFollowing, apiController.index)
+
 // DELETE /api/followers/:id
 router.delete('/:id', dataController.destroy, apiController.show)
 
