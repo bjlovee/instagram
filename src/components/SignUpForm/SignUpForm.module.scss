@@ -1,0 +1,59 @@
+:root {
+    --blue: #46bbf6;
+    --button-highlight: #98dcfe;
+    --button-text: #e2ebfc;
+    --info-text: #858383;
+    --outlines: #d6d6d6;
+  }
+
+
+.formContainer {
+    border: .1vmin solid var(--outlines);
+    // display: grid;
+    // grid-template-rows: 1fr 1fr;
+    // gap: 1.25vmin;
+    max-width: 15rem;
+    padding: 4rem;
+    // align-items: center;
+    justify-content: center;
+  }
+  
+.errorMessage {
+    color: black;
+    text-align: center;
+  }
+
+  input, button {
+    padding:0.5rem;
+    // font-size: 2vmin;
+    border: .05rem solid var(--outlines);
+    margin: 0.2rem;
+    background-image: none !important; //prevent lastpass
+    // outline: none;
+    max-width: 15rem;
+    // max-height: 1rem;
+  }
+
+form{
+    align-items: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    max-width: 20rem;
+    max-height: 15rem;
+}
+
+button{
+    background-color: var(--blue);
+    color: var(--button-text);
+    border-radius: 0.4rem;
+    border: none;
+}
+
+button:hover{
+    background-color: var(--button-highlight);
+    cursor: pointer;
+}
+
+p{
+    color: var(--info-text);
+}
