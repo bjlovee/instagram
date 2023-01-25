@@ -1,12 +1,11 @@
-// AuthPage.js
-
 import SignUpForm from "../../components/SignUpForm/SignUpForm"
 import LoginForm from "../../components/LoginForm/LoginForm"
 import { Routes, Route } from 'react-router-dom'
+import styles from '../LandingPage/LandingPage.module.scss'
 
 export default function LandingPage(props){
     return(
-        <main>
+        <main className={styles.LandingPage}>
             <Routes>
                 <Route path="/signup" element={
                   <SignUpForm setUser={props.setUser}/>

@@ -9,9 +9,11 @@
 
 .formContainer {
     border: .1vmin solid var(--outlines);
-    max-width: 15rem;
+    width: 15rem;
     padding: 4rem;
     justify-content: center;
+    margin: 0 auto;
+    margin-top: 10rem;
   }
   
 .errorMessage {

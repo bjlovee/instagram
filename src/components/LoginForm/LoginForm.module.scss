@@ -1,9 +1,10 @@
-
 .formContainer {
     border: .1vmin solid var(--outlines);
-    max-width: 15rem;
+    width: 15rem;
     padding: 4rem;
     justify-content: center;
+    margin: 0 auto;
+    margin-top: 10rem;
   }
   
 .errorMessage {
@@ -17,6 +18,7 @@
     margin: 0.2rem;
     background-image: none !important; //prevent lastpass
     max-width: 15rem;
+    
   }
 
 form{
