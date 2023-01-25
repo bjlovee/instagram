@@ -52,7 +52,7 @@ const dataController = {
   },
     async index (req, res, next) {
       try{
-        const users = User.find({})
+        const users = await User.find({})
         // res.status(200).json(users)
         res.locals.data.users = users
         next()
@@ -66,6 +66,9 @@ const dataController = {
 const apiController = {
   auth (req, res) {
     res.json(res.locals.data.token)
+  },
+  index (req, res) {
+    res.json(res.locals.data.users)
   }
 }
 

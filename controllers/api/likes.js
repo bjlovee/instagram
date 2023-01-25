@@ -33,7 +33,7 @@ const dataController = {
       await Post.findByIdAndUpdate(like.post, {
         $pull: {
           //pulling the object stored in the array matching the comment id
-          likes: { $in: [req.params.id]}
+          likes: { $in: [req.params.id] }
         }
       })
       //deleting the like
@@ -48,7 +48,7 @@ const dataController = {
     try{
       const like = await Like.create(req.body)
       //pass in the id of the post so it can be found
-      await Post.findByIdAndUpdate(req.params.id, {
+      await Post.findByIdAndUpdate(like.post, {
         $push: {
           likes: like
         }
