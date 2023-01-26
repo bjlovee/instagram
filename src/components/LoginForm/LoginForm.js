@@ -2,7 +2,7 @@ import { useState } from 'react'
 import * as userService from '../../utilities/users-service'
 import styles from '../LoginForm/LoginForm.module.scss'
 // import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function LoginForm ({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -17,12 +17,14 @@ export default function LoginForm ({ setUser }) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value })
     setError('')
   }
-
+  const navigate = useNavigate()
+  
   const handleSubmit = async (evt) => {
     evt.preventDefault()
     try {
       const user = await userService.login(credentials)
       setUser(user)
+      navigate('/home')
     } catch (error) {
       setError(error.message)
     }
