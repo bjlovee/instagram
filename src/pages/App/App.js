@@ -10,20 +10,42 @@ function App() {
   const [state, setState] = useState(null)
   const [user, setUser ] = useState(null)
 
-  const fetchState = async () => {
+
+
+const [followersEvents, setFollowersEvents] = useState([])
+
+
+  // Index Restaurants
+  const getFollowers = async (id) => {
     try {
-      const response = await fetch('/api/test')
+      const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
-      setState(data)
-    } catch (error) {
-      console.error(error)
+      setFollowersEvents(data)
+    //   getPosts()
+    } catch (err) {
+      console.log(err)
     }
   }
 
-  useEffect(() => {
-    fetchState()
-  }, [])
+
+
+
+
+  // const fetchState = async () => {
+  //   try {
+  //     const response = await fetch('/api/test')
+  //     const data = await response.json()
+  //     setState(data)
+  //   } catch (error) {
+  //     console.error(error) 
+  //   }
+  // }
+
+
   
+
+// console.log(followersPosts)
+
   return (
     <main className={styles.App}>
       {
@@ -33,12 +55,25 @@ function App() {
           <Routes>
             <Route path="/home" element={<HomePage 
               user={user}
+
+              getFollowers={getFollowers}
+
+              setFollowersEvents={setFollowersEvents}
+              followersEvents={followersEvents}
             />} />
             <Route path="/orders" element={<OrderHistoryPage/>} />
           </Routes>
         </>
          :
-        <LandingPage setUser={setUser}/>
+        <LandingPage 
+          setUser={setUser}
+          user={user}
+
+          getFollowers={getFollowers}
+
+          setFollowersEvents={setFollowersEvents}
+          followersEvents={followersEvents}
+          />
       }
     </main>
   );

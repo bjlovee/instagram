@@ -4,7 +4,11 @@ import styles from '../LoginForm/LoginForm.module.scss'
 // import { useNavigate } from 'react-router-dom'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function LoginForm ({ setUser }) {
+export default function LoginForm ({ 
+  setUser, 
+  user,
+  getFollowers
+}) {
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -25,6 +29,7 @@ export default function LoginForm ({ setUser }) {
       const user = await userService.login(credentials)
       setUser(user)
       navigate('/home')
+      getFollowers(user._id)
     } catch (error) {
       setError(error.message)
     }
