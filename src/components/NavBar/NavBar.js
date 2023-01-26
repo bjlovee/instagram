@@ -1,4 +1,3 @@
-
 import React from 'react'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import HomeIcon from '@mui/icons-material/Home'
@@ -9,10 +8,14 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 export default function NavBar() {
   return (
-    <nav>
-      <Link to="/orders">Order History</Link>
-      &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
-    </nav>
+    <div>
+      <InstagramIcon />
+      <HomeIcon />
+      <SearchIcon />
+      <ExploreIcon />
+      <SendIcon />
+      <FavoriteBorderIcon />
+      <ControlPointIcon />
+    </div>
   );
 }
