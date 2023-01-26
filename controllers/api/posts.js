@@ -14,6 +14,16 @@ const dataController = {
       }
     })
   },
+  //Get post by user
+  async getPostByUser (req, res, next){
+    try{
+      const post = await Post.findOne({poster: req.params.id})
+      res.locals.data.post = post
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
   // Destroy
   destroy (req, res, next) {
     Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
