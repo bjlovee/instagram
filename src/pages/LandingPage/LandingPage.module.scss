@@ -1,0 +1,27 @@
+.landingPage{
+    background-color: black;
+}
+
+a, button, ul{
+    text-decoration: none;
+    list-style-type: none;
+  }
+.navigtaionList{
+    margin-top: 15rem;
+    display: flex;
+    justify-content: space-around; 
+    padding: 0.5rem;
+    // max-width: 40rem;
+    // border: solid black;
+}
+
+li > a{
+    text-decoration: none;
+    color: gray;
+    font-size: 0.9rem;
+}
+
+footer > p{
+    // border: solid blue;
+    padding-left: 1rem;
+}

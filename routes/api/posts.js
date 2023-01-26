@@ -1,18 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const { dataController, apiController } = require('../../controllers/api/fruits')
+const { dataController, apiController } = require('../../controllers/api/posts')
 
-// add routes
-// Index /api/fruits
+// GET /api/posts
 router.get('/', dataController.index, apiController.index)
-// Delete /api/fruits/:id
+// DELETE /api/posts/:id
 router.delete('/:id', dataController.destroy, apiController.show)
-// Update /api/fruits/:id
+// UPDATE /api/posts/:id
 router.put('/:id', dataController.update, apiController.show)
-// Create /api/fruits
+// CREATE /api/posts
 router.post('/', dataController.create, apiController.show)
-// Show /api/fruits/:id
+// SHOW /api/posts/:id
 router.get('/:id', dataController.show, apiController.show)
-
 
 module.exports = router
