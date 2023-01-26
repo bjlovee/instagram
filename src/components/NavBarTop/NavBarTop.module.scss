@@ -1,8 +1,27 @@
+$monte-carlo: 'MonteCarlo', cursive;
+$rochester: 'Rochester', cursive;
+
 .navBar{
-    border: solid red ;
+    // border: solid red ;
     position: fixed;
     top: 0;
     display: flex;
+    justify-content: space-around;
     width: 100vw;
     background-color: white;
+    border-bottom: solid var(--outlines);
+    border-width: 0.7px;
+    // padding: 0.3rem 0 0.3rem 0;
+    font-family: $rochester;
+    font-size: 1.2rem;
+}
+.search{
+    padding: 0.4rem;
+}
+
+.logo{
+    padding: 0.5rem;
+}
+.logo > h3{
+    margin: 0 auto;   
 }

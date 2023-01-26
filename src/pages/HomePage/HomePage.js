@@ -56,22 +56,18 @@ export default function HomePage({
                 <div className={styles.postsIndex}>
                 <Post />
                     {/* component placeholder */}
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
-                    <div className={styles.post}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+
                 </div>
             </section>
             <footer>
@@ -80,3 +76,37 @@ export default function HomePage({
         </>
     )
 }
+
+
+
+
+                    {/* <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div> */}

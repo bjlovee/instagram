@@ -7,7 +7,10 @@ import styles from '../NavBarTop/NavBarTop.module.scss'
 export default function NavBarBottom() {
     return (
         <div className={styles.navBar}>
-            <SearchOutlined />
+            {/* <div> */}
+            <div className={styles.logo}><h3>Instafake</h3></div>
+            <IconButton><SearchOutlined className={styles.search}/></IconButton>
+            {/* </div> */}
             <IconButton><FavoriteBorderIcon /></IconButton>
         </div>
     );
