@@ -7,6 +7,7 @@ const postSchema = new Schema({
     //FIGURE OUT IMAGE UPLOADS IF THERES TIME
     // image:{ data: Buffer, contentType: String },
     location: { type: String },
+    caption: {type: String},
     music: { type: String },
     //AFTER POST CREATION
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
