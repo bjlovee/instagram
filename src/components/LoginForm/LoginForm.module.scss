@@ -1,3 +1,6 @@
+$monte-carlo: 'MonteCarlo', cursive;
+$rochester: 'Rochester', cursive;
+
 .formContainer {
     border: .1vmin solid var(--outlines);
     width: 15rem;
@@ -43,4 +46,7 @@ button:hover{
 
 p{
     color: var(--info-text);
+}
+h1{
+  font-family: $rochester;
 }

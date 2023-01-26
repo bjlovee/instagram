@@ -4,6 +4,7 @@ import HomePage from '../HomePage/HomePage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 // import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route} from 'react-router-dom'
+import styles from '../App/App.module.scss'
 
 function App() {
   const [state, setState] = useState(null)
@@ -24,7 +25,7 @@ function App() {
   }, [])
   
   return (
-    <main className="App">
+    <main className={styles.App}>
       {
         user ?
         <>
