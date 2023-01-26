@@ -1,4 +1,5 @@
 import React from 'react'
+import IconButton from '@mui/material/IconButton'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import HomeIcon from '@mui/icons-material/Home'
 import SearchIcon from '@mui/icons-material/Search'
@@ -11,13 +12,14 @@ import styles from '../NavBar/NavBar.module.scss'
 export default function NavBar() {
   return (
     <div className={styles.navBar}>
-      <InstagramIcon />
-      <HomeIcon />
-      <SearchIcon />
-      <ExploreIcon />
-      <SendIcon />
-      <FavoriteBorderIcon />
-      <ControlPointIcon />
+      <IconButton><InstagramIcon /></IconButton>
+      <IconButton><HomeIcon /></IconButton>
+      <IconButton><SearchIcon /></IconButton>
+      <IconButton><ExploreIcon /></IconButton>
+      <IconButton><SendIcon /></IconButton>
+      <IconButton><FavoriteBorderIcon /></IconButton>
+      <IconButton><ControlPointIcon /></IconButton>
+      <IconButton><InstagramIcon /></IconButton>
     </div>
   );
 }
