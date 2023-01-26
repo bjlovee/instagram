@@ -1,11 +1,14 @@
 import styles from '../HomePage/HomePage.module.scss'
 import NavBar from '../../components/NavBar/NavBar';
+
+
 import { useState, useEffect } from 'react'
-import Post from '../../components/Post';
+import Post from '../../components/Post/Post';
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import { ResetTvRounded } from '@mui/icons-material';
 // import { ConnectingAirportsOutlined } from '@mui/icons-material';
+
 
 export default function HomePage({
     user,
@@ -60,8 +63,10 @@ useEffect(() => {
 
 console.log(followersPosts)
     return (
-        <>
+        <>{/* {user.email} */}
             <header>
+                {/* component placeholder */}
+                {/* <div className={styles.navBarTop}></div> */}
                 {/* <NavBar /> */}
                 <NavBarTop />
                 
