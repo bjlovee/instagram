@@ -10,6 +10,7 @@ function App() {
   const [state, setState] = useState(null)
   const [user, setUser ] = useState(null)
 
+
   const fetchState = async () => {
     try {
       const response = await fetch('/api/test')
