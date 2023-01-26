@@ -1,15 +1,12 @@
 import styles from '../HomePage/HomePage.module.scss'
 import NavBar from '../../components/NavBar/NavBar';
-<<<<<<< HEAD
-import { useState, useEffect } from 'react';
-import Post from '../../components/Post/Post';
 
-=======
+
 import { useState, useEffect } from 'react'
-import Post from '../../components/Post';
+import Post from '../../components/Post/Post';
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
->>>>>>> dev
+
 
 export default function HomePage({
     user
@@ -42,28 +39,9 @@ export default function HomePage({
 //
 
     return (
-        <>
-<<<<<<< HEAD
-        {user.email}
-        <header>
-            {/* component placeholder */}
-            {/* <div className={styles.navBarTop}></div> */}
-            <NavBar />
-            <div className={styles.navBarSide}></div>
-        </header>
-        <section>
-            {/* component placeholder */}
-            <div className={styles.profileCarousel}>
-            </div>
-        </section>
-        <section>
-            {/* component placeholder */}
-            <div className={styles.postsIndex}>
-                  <Post />
-=======
-            {/* {user.email} */}
+        <>{/* {user.email} */}
             <header>
->>>>>>> dev
+
                 {/* component placeholder */}
                 {/* <div className={styles.navBarTop}></div> */}
                 {/* <NavBar /> */}
