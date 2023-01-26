@@ -1,3 +1,10 @@
 .navBarBottom{
     display: flex;
+    justify-content: space-around;
+    border: solid purple;
+    position: fixed;
+    width: 100vw;
+    // margin-right: 5rem;
+    bottom: 0;
+    background-color: white;
 }

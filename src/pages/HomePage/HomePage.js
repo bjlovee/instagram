@@ -37,14 +37,14 @@ export default function HomePage({
 
     return (
         <>
-            {user.email}
+            {/* {user.email} */}
             <header>
                 {/* component placeholder */}
                 {/* <div className={styles.navBarTop}></div> */}
                 {/* <NavBar /> */}
                 <NavBarTop />
-                <NavBarBottom />
-                <div className={styles.navBarSide}></div>
+                
+                {/* <div className={styles.navBarSide}></div> */}
             </header>
             <section>
                 {/* component placeholder */}
@@ -60,8 +60,23 @@ export default function HomePage({
                     <div className={styles.post}></div>
                     <div className={styles.post}></div>
                     <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
+                    <div className={styles.post}></div>
                 </div>
             </section>
+            <footer>
+            <NavBarBottom />
+            </footer>
         </>
     )
 }
