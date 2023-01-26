@@ -1,0 +1,21 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=MonteCarlo&family=Rochester&display=swap');
+    $monte-carlo: 'MonteCarlo', cursive;
+    $rochester: 'Rochester', cursive;
+
+:root {
+    --blue: #18aef9;
+    --button-highlight: #98dcfe;
+    --button-text: #e2ebfc;
+    --info-text: #858383;
+    --outlines: #c5c5c5;
+  }
+.App{
+    margin-top: 4.4rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+body{
+    margin: 0.1rem;
+}

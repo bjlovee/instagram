@@ -37,31 +37,76 @@ export default function HomePage({
 
     return (
         <>
-        {user.email}
-        <header>
-            {/* component placeholder */}
-            {/* <div className={styles.navBarTop}></div> */}
-            <NavBar />
-            <NavBarTop />
-            <NavBarBottom />
-            <div className={styles.navBarSide}></div>
-        </header>
-        <section>
-            {/* component placeholder */}
-            <div className={styles.profileCarousel}>
-            </div>
-        </section>
-        <section>
-            {/* component placeholder */}
-            <div className={styles.postsIndex}>
-            <Post />
+            {/* {user.email} */}
+            <header>
                 {/* component placeholder */}
-                <div className={styles.post}></div>
-                <div className={styles.post}></div>
-                <div className={styles.post}></div>
-                <div className={styles.post}></div>
-            </div>
-        </section>
+                {/* <div className={styles.navBarTop}></div> */}
+                {/* <NavBar /> */}
+                <NavBarTop />
+                
+                {/* <div className={styles.navBarSide}></div> */}
+            </header>
+            <section>
+                {/* component placeholder */}
+                <div className={styles.profileCarousel}>
+                </div>
+            </section>
+            <section>
+                {/* component placeholder */}
+                <div className={styles.postsIndex}>
+                <Post />
+                    {/* component placeholder */}
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
+
+                </div>
+            </section>
+            <footer>
+            <NavBarBottom />
+            </footer>
         </>
     )
 }
+
+
+
+
+                    {/* <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div>
+                    <div className={styles.postContainer}>
+                        <div className={styles.post}></div>
+                    </div> */}

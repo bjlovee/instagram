@@ -1,4 +1,11 @@
 .navBar{
     display: flex;
     flex-direction: column;
+    width: 3rem; 
+    position: fixed; 
+    padding: 0.5rem; 
+    background-color: white; 
+    height: 100vh; 
+    border-right: solid var(--outlines);
+    border-width: 0.5px;
 }
