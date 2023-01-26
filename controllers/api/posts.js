@@ -14,6 +14,18 @@ const dataController = {
       }
     })
   },
+  //Get post by user
+    async getPostByUser (req, res, next){
+    try{
+      //finds the post by the poster ID and then sorts by the latest
+      const post = await Post.find({poster:req.params.id}).sort({createdAt: 'desc'})
+      //sending back only the latest post for the page index
+      res.locals.data.post = post[0]
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
   // Destroy
   destroy (req, res, next) {
     Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {

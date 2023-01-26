@@ -19,6 +19,22 @@ export default function HomePage({
 
 // setArray(oldArray => [newValue,...oldArray] );
 
+//Get one post by follower
+
+
+// Followers in jims profile
+//Followers
+// "63d16996f11057f2263c9ca5",
+    //followerUser 
+    // "63d05696f24703987800a352" --> match to poster in post
+
+//Followers
+// "63d17a5e4500f61ebc60c114"
+    // followerUser
+    // "63d0563a41be762fc7220c7a" --> match to poster in post
+
+//
+
     return (
         <>
         {user.email}
