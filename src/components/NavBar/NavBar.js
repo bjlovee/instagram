@@ -19,7 +19,7 @@ export default function NavBar() {
       <IconButton><SendIcon /></IconButton>
       <IconButton><FavoriteBorderIcon /></IconButton>
       <IconButton><ControlPointIcon /></IconButton>
-      <IconButton><InstagramIcon /></IconButton>
+      {/* <IconButton><InstagramIcon /></IconButton> */}
     </div>
   );
 }
