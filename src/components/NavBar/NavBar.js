@@ -6,7 +6,7 @@ export default function NavBar() {
     <nav>
       <Link to="/orders">Order History</Link>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
+      <Link to="/home">Instafake</Link>
     </nav>
   );
 }
