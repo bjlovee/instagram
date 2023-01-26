@@ -4,70 +4,67 @@ import { useState, useEffect } from 'react'
 import Post from '../../components/Post';
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
+import { ResetTvRounded } from '@mui/icons-material';
 // import { ConnectingAirportsOutlined } from '@mui/icons-material';
 
 export default function HomePage({
-    user
+    user,
+    getFollowers,
+
+    setFollowersEvents,
+    followersEvents,
 }){
 
 
-const [followersEvents, setFollowersEvents] = useState([])
+
 const [followersPosts, setFollowersPosts] = useState([])
 
 
-  // Index Restaurants
-  const getFollowers = async (id) => {
-    try {
-      const response = await fetch(`api/followers/follower/${id}`)
-      const data = await response.json()
-      setFollowersEvents(data)
-      getFollowersLatestPost(followersEvents.followerUser)
-    //   getPosts()
-    } catch (err) {
-      console.log(err)
+//settings posts data in loop
+const handleSetPosts = (data) => {
+    if(followersPosts.length < 1){
+        setFollowersPosts(followersPosts => [...followersPosts, data])
     }
-  }
+    else{
+        return;
+    }
+}
 
-  const getFollowersLatestPost = async (id) => {
+// getting the users followers posts by the latest post
+const getFollowersLatestPost = async (id) => {
     try{
       const response = await fetch(`api/posts/poster/${id}`)
       const data = await response.json()
       console.log(data)
-    //   setFollowersPosts([...followersPosts, data])
-
+      handleSetPosts(data)
     } catch (e) {
 
     }
   }
 
+//mapping through the array of followers and 
+ const getPosts = () => {
+    if(followersEvents.length > 0){
+        followersEvents.map(event => {
+            getFollowersLatestPost(event.followerUser)
+        })
+    }
+
+ } 
+
+//gets posts on page load
 useEffect(() => {
-    getFollowers(user._id)
-  }, [])
-
-
-//number of followers
-console.log(followersEvents.length)
-
-//showing each follower event
-followersEvents.map(event => console.log(event))
-
-
-//getting one followers latest post
-followersEvents.map(event => {
-    getFollowersLatestPost(event.followerUser)
+    getPosts()
 })
 
 
+console.log(followersPosts)
     return (
         <>
-            {/* {user.email} */}
             <header>
-                {/* component placeholder */}
-                {/* <div className={styles.navBarTop}></div> */}
                 {/* <NavBar /> */}
                 <NavBarTop />
                 
-                {/* <div className={styles.navBarSide}></div> */}
             </header>
             <section>
                 {/* component placeholder */}
@@ -77,6 +74,7 @@ followersEvents.map(event => {
             <section>
                 {/* component placeholder */}
                 <div className={styles.postsIndex}>
+                    {/* {getPosts} */}
                 <Post />
                     {/* component placeholder */}
                     <div className={styles.postContainer}>
@@ -104,6 +102,76 @@ followersEvents.map(event => {
         </>
     )
 }
+
+
+
+
+// const [followersEvents, setFollowersEvents] = useState([])
+// const [followersPosts, setFollowersPosts] = useState([])
+
+
+//   // Index Restaurants
+//   const getFollowers = async (id) => {
+//     try {
+//       const response = await fetch(`api/followers/follower/${id}`)
+//       const data = await response.json()
+//       setFollowersEvents(data)
+//       getFollowersLatestPost(followersEvents.followerUser)
+//     //   getPosts()
+//     } catch (err) {
+//       console.log(err)
+//     }
+//   }
+
+//   const getFollowersLatestPost = async (id) => {
+//     try{
+//       const response = await fetch(`api/posts/poster/${id}`)
+//       const data = await response.json()
+//       console.log(data)
+//     //   setFollowersPosts([...followersPosts, data])
+
+//     } catch (e) {
+
+//     }
+//   }
+
+// useEffect(() => {
+//     getFollowers(user._id)
+//   }, [])
+
+
+// //number of followers
+// console.log(followersEvents.length)
+
+// //showing each follower event
+// followersEvents.map(event => console.log(event))
+
+
+// //getting one followers latest post
+// followersEvents.map(event => {
+//     getFollowersLatestPost(event.followerUser)
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
