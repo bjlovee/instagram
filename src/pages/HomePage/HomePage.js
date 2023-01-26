@@ -1,6 +1,8 @@
 import styles from '../HomePage/HomePage.module.scss'
 import NavBar from '../../components/NavBar/NavBar';
 import { useState, useEffect } from 'react'
+import Post from '../../components/Post';
+
 
 export default function HomePage({
     user
@@ -33,6 +35,7 @@ export default function HomePage({
         <section>
             {/* component placeholder */}
             <div className={styles.postsIndex}>
+            <Post />
                 {/* component placeholder */}
                 <div className={styles.post}></div>
                 <div className={styles.post}></div>
