@@ -2,7 +2,8 @@ import styles from '../HomePage/HomePage.module.scss'
 import NavBar from '../../components/NavBar/NavBar';
 import { useState, useEffect } from 'react'
 import Post from '../../components/Post';
-
+import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
+import NavBarTop from '../../components/NavBarTop/NavBarTop'
 
 export default function HomePage({
     user
@@ -25,6 +26,8 @@ export default function HomePage({
             {/* component placeholder */}
             {/* <div className={styles.navBarTop}></div> */}
             <NavBar />
+            <NavBarTop />
+            <NavBarBottom />
             <div className={styles.navBarSide}></div>
         </header>
         <section>
