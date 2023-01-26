@@ -1,7 +1,7 @@
 import styles from '../HomePage/HomePage.module.scss'
 import NavBar from '../../components/NavBar/NavBar';
-import { useState, useEffect } from 'react'
-import Post from '../../components/Post';
+import { useState, useEffect } from 'react';
+import Post from '../../components/Post/Post';
 
 
 export default function HomePage({
@@ -35,7 +35,7 @@ export default function HomePage({
         <section>
             {/* component placeholder */}
             <div className={styles.postsIndex}>
-            <Post />
+                  <Post />
                 {/* component placeholder */}
                 <div className={styles.post}></div>
                 <div className={styles.post}></div>
