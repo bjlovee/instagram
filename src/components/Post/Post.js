@@ -62,7 +62,7 @@ export default function ContainerResponsive() {
             <div>
               <Typography level="h2" sx={{ fontSize: 'md' }} mb={0.5}>
                 <Link
-                  href="#container-responsive"
+                  
                   overlay
                   underline="none"
                   sx={{
