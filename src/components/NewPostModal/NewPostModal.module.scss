@@ -21,6 +21,8 @@
     // max-height: 50rem;
     background-color: antiquewhite;
     border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
 }
 .closeButton{
     position: fixed;
@@ -34,4 +36,15 @@
 .closeButton:hover{
     cursor: pointer;
     background: none;
+}
+
+.postCreation > button{
+    margin: 0 auto;
+    // margin-top: 45vh;
+}
+
+.modalHeader{
+    border: solid black;
+    padding: 2rem;
+    margin-bottom: 1rem;
 }

@@ -10,7 +10,7 @@ export default function NewPostModal({
 console.log(showModal)
     return(
     <>
-        {showModal === true
+        {showModal 
             ?
             <>
             <button className={styles.closeButton} 
@@ -20,15 +20,14 @@ console.log(showModal)
                 }}
             
             >&#x2715;</button>
-                <div className={styles.modal}>
-                {/* <button
-                    onClick={(e)=>{
-                        e.preventDefault()
-                        setShowModal(false)
-                        // console.log(showModal)
-                    }}
-                >&#x2715;</button> */}
-                <div className={styles.postCreation}></div>
+            <div className={styles.modal}>
+              <div className={styles.postCreation}>
+                <div clasName={styles.modalHeader}>
+                </div>
+                <div>
+                  <button>Add Images</button>
+                </div>
+              </div>
             </div>
             </>
             :

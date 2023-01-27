@@ -1,13 +1,10 @@
 import styles from '../HomePage/HomePage.module.scss'
 import NavBar from '../../components/NavBar/NavBar';
-
-
 import { useState, useEffect } from 'react'
 import Post from '../../components/Post/Post';
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
-// import { ResetTvRounded } from '@mui/icons-material';
-// import { ConnectingAirportsOutlined } from '@mui/icons-material';
+
 import NewPostModal from '../../components/NewPostModal/NewPostModal';
 
 export default function HomePage({
@@ -20,7 +17,7 @@ export default function HomePage({
 
 
     
-const [showModal, setShowModal] = useState(true)
+const [showModal, setShowModal] = useState(false)
 const [followersPosts, setFollowersPosts] = useState([])
 
 
