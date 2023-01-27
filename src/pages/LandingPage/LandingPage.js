@@ -11,7 +11,11 @@ export default function LandingPage(props){
                   <SignUpForm setUser={props.setUser}/>
                 }/>
                 <Route path="/" element={
-                  <LoginForm setUser={props.setUser}/>
+                  <LoginForm 
+                  setUser={props.setUser}
+                  user={props.user}
+                  getFollowers={props.getFollowers}
+                  />
                 }/>
             </Routes>
         <footer>
