@@ -22,7 +22,8 @@ const [followersPosts, setFollowersPosts] = useState([])
 
 //settings posts data in loop
 const handleSetPosts = (data) => {
-    if(followersPosts.length < 1){
+    //adding to state via conditional to prevent infinite loop
+    if(followersPosts.length < followersEvents.length - 1){
         setFollowersPosts(followersPosts => [...followersPosts, data])
     }
     else{
@@ -35,7 +36,6 @@ const getFollowersLatestPost = async (id) => {
     try{
       const response = await fetch(`api/posts/poster/${id}`)
       const data = await response.json()
-      console.log(data)
       handleSetPosts(data)
     } catch (e) {
 
@@ -58,7 +58,8 @@ useEffect(() => {
 })
 
 
-console.log(followersPosts)
+// console.log(followersPosts)
+
     return (
         <>
             <header>
