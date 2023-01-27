@@ -8,7 +8,7 @@ import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
 // import { ResetTvRounded } from '@mui/icons-material';
 // import { ConnectingAirportsOutlined } from '@mui/icons-material';
-
+import NewPostModal from '../../components/NewPostModal/NewPostModal';
 
 export default function HomePage({
     user,
@@ -19,7 +19,8 @@ export default function HomePage({
 }){
 
 
-
+    
+const [showModal, setShowModal] = useState(true)
 const [followersPosts, setFollowersPosts] = useState([])
 
 
@@ -65,12 +66,16 @@ useEffect(() => {
 
     return (
         <>{/* {user.email} */}
+
             <header>
                 {/* component placeholder */}
                 {/* <div className={styles.navBarTop}></div> */}
                 {/* <NavBar /> */}
                 <NavBarTop />
-                
+                <NewPostModal
+                    setShowModal={setShowModal}
+                    showModal={showModal}
+                />
             </header>
             <section>
                 {/* component placeholder */}
@@ -103,7 +108,10 @@ useEffect(() => {
                 </div>
             </section>
             <footer>
-            <NavBarBottom />
+            <NavBarBottom 
+                setShowModal={setShowModal}
+                showModal={showModal}
+            />
             </footer>
         </>
     )

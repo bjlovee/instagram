@@ -6,14 +6,28 @@ import MovieIcon from '@mui/icons-material/Movie';
 import SendIcon from '@mui/icons-material/Send'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import styles from '../NavBarBottom/NavBarBottom.module.scss'
+import { trusted } from 'mongoose';
 
-export default function NavBarBottom() {
+export default function NavBarBottom({
+    showModal,
+    setShowModal
+}) {
+
+// const handleShowModal = (e) => {
+//     e.preventDefault()
+//     setShowModal(true)
+// }
     return (
         <div className={styles.navBarBottom}>
             <IconButton><HomeIcon /></IconButton>
             <IconButton><ExploreIcon /></IconButton>
             <IconButton><MovieIcon /></IconButton>
-            <IconButton><ControlPointIcon /></IconButton>
+            <div onClick={(e)=>{
+                e.preventDefault()
+                setShowModal(true)
+            }}>
+            <IconButton><ControlPointIcon/></IconButton>
+            </div>
             <IconButton><SendIcon /></IconButton>
         </div>
     );
