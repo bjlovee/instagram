@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import LandingPage from '../LandingPage/LandingPage';
 import HomePage from '../HomePage/HomePage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+import ProfilePage from '../ProfilePage/Profilepage';
 // import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route} from 'react-router-dom'
 import styles from '../App/App.module.scss'
@@ -62,6 +63,7 @@ const [followersEvents, setFollowersEvents] = useState([])
               followersEvents={followersEvents}
             />} />
             <Route path="/orders" element={<OrderHistoryPage/>} />
+            <Route path="/profile" element={<ProfilePage/>} />
           </Routes>
         </>
          :
