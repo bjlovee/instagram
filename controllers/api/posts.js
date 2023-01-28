@@ -1,4 +1,4 @@
-const Post = require('../../models/posts')
+const Post = require('../../models/post')
 
 const dataController = {
   // Index,
@@ -14,6 +14,7 @@ const dataController = {
       }
     })
   },
+
   //Get post by user
     async getPostByUser (req, res, next){
     try{
@@ -26,6 +27,7 @@ const dataController = {
       res.status(400).json(e)
     }
   },
+
   // Destroy
   destroy (req, res, next) {
     Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
@@ -41,7 +43,6 @@ const dataController = {
   },
   // Update
   update (req, res, next) {
-
     Post.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedPost) => {
       if (err) {
         res.status(400).send({
@@ -55,8 +56,8 @@ const dataController = {
   },
   // Create
   create (req, res, next) {
-   
     Post.create(req.body, (err, createdPost) => {
+
       if (err) {
         res.status(400).send({
           msg: err.message
@@ -78,6 +79,7 @@ const dataController = {
         })
       } else {
         res.locals.data.post = foundPost
+
         next()
       }
     })
