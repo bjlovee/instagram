@@ -14,6 +14,20 @@ const dataController = {
       }
     })
   },
+
+  //Get post by user
+    async getPostByUser (req, res, next){
+    try{
+      //finds the post by the poster ID and then sorts by the latest
+      const post = await Post.find({poster:req.params.id}).sort({createdAt: 'desc'})
+      //sending back only the latest post for the page index
+      res.locals.data.post = post[0]
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
+
   // Destroy
   destroy (req, res, next) {
     Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
@@ -29,7 +43,6 @@ const dataController = {
   },
   // Update
   update (req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === 'on'
     Post.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedPost) => {
       if (err) {
         res.status(400).send({
@@ -43,9 +56,8 @@ const dataController = {
   },
   // Create
   create (req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === 'on'
-   
-    Post.create(req.body, (err, createdPostt) => {
+    Post.create(req.body, (err, createdPost) => {
+
       if (err) {
         res.status(400).send({
           msg: err.message
@@ -59,14 +71,15 @@ const dataController = {
   // Edit
   // Show
   show (req, res, next) {
-    Postt.findById(req.params.id, (err, foundPost) => {
+    Post.findById(req.params.id, (err, foundPost) => {
       if (err) {
         res.status(404).send({
           msg: err.message,
-          output: 'Could not find a postt with that ID'
+          output: 'Could not find a post with that ID'
         })
       } else {
-        res.locals.data.fruit = foundPost
+        res.locals.data.post = foundPost
+
         next()
       }
     })

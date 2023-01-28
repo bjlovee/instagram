@@ -1,0 +1,52 @@
+$monte-carlo: 'MonteCarlo', cursive;
+$rochester: 'Rochester', cursive;
+
+.formContainer {
+    border: .1vmin solid var(--outlines);
+    width: 15rem;
+    padding: 4rem;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 10rem;
+  }
+  
+.errorMessage {
+    color: rgb(255, 76, 76);
+    text-align: center;
+  }
+
+  input, button {
+    padding:0.5rem;
+    border: .05rem solid var(--outlines);
+    margin: 0.2rem;
+    background-image: none !important; //prevent lastpass
+    max-width: 15rem;
+    
+  }
+
+form{
+    align-items: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr ;
+    max-width: 20rem;
+    max-height: 15rem;
+}
+
+button{
+    background-color: var(--blue);
+    color: var(--button-text);
+    border-radius: 0.4rem;
+    border: none;
+}
+
+button:hover{
+    background-color: var(--button-highlight);
+    cursor: pointer;
+}
+
+p{
+    color: var(--info-text);
+}
+h1{
+  font-family: $rochester;
+}
