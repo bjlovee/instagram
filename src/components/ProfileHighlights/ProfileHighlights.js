@@ -1,3 +1,14 @@
+import React from 'react'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+import styles from './ProfileHighlights.module.scss'
+
 export default function ProfileHighlights(){
-    return <h1>Profile Highlights</h1>
+    return (
+        <div className={styles.profileHighlights}>
+            <RadioButtonUncheckedIcon />
+            <RadioButtonUncheckedIcon />
+            <RadioButtonUncheckedIcon />
+            <RadioButtonUncheckedIcon />
+        </div>
+    )
 }
