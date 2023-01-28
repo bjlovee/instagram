@@ -1,3 +1,11 @@
-/* .postCard{
-    border-style: solid red;
-} */
+.box{
+display: flex;
+justify-content: center;
+}
+
+.icons{
+    position: absolute;
+    padding-left: 17rem;
+    margin-top: -2rem;
+    
+}
