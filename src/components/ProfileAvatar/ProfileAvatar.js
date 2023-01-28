@@ -1,3 +1,5 @@
+import Avatar from '@mui/material/Avatar'
+
 export default function ProfileAvatar(){
-    return <h1>Profile Avatar</h1>
+    return <Avatar />
 }

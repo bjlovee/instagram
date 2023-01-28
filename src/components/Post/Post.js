@@ -4,7 +4,7 @@ import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
+import { Typography } from '@mui/material';
 import Link from "@mui/joy/Link";
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import SmsIcon from '@mui/icons-material/Sms';
@@ -12,10 +12,11 @@ import {SlPaperPlane} from "react-icons/sl"
 import {TbMessageCircle2} from "react-icons/tb"
 import {AiOutlineHeart} from "react-icons/ai"
 import {FaRegBookmark} from "react-icons/fa"
-
+import "../Post/Post.css"
 
 export default function ContainerResponsive() {
   return (
+    <div className='box'>
     <Box sx={{ minHeight: 350 }}>
       <Card
         variant="outlined"
@@ -101,10 +102,12 @@ export default function ContainerResponsive() {
           <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
             
             <div>
-            <AiOutlineHeart size="30px" color="#ff1744" />&nbsp;
-              <SlPaperPlane size="30px"/>&nbsp;
+            <AiOutlineHeart size="30px" color="#ff1744" />&nbsp;&nbsp;&nbsp;
+              <SlPaperPlane size="30px"/>&nbsp;&nbsp;&nbsp;
               <TbMessageCircle2  size="30px"/>&nbsp;
+              <div className='icons'>
               <FaRegBookmark  size="30px"/>
+              </div>
               <br />
               <Typography level="body2">Designed by</Typography>
               <Typography fontWeight="lg" level="body2">
@@ -116,5 +119,6 @@ export default function ContainerResponsive() {
         </Box>
       </Card>
     </Box>
+    </div>
   );
 }
