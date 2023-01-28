@@ -23,8 +23,7 @@ const dataController = {
       next()
     } catch (e) {
       console.log('you got a database problem')
-      res.status(400).json({msg:e.message})
-
+      res.status(400).json(e)
     }
   },
   async login (req, res, next) {
@@ -82,7 +81,7 @@ module.exports = {
 // help function so we dont have to write token information over and over
 function createJWT (user) {
   // accept a user and return a token
-  return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h', allowInsecureKeySizes: true })
+  return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h' })
 }
 
 
