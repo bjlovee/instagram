@@ -1,5 +1,4 @@
 // /controllers/api/users.js
-
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
@@ -24,7 +23,8 @@ const dataController = {
       next()
     } catch (e) {
       console.log('you got a database problem')
-      res.status(400).json(e)
+      res.status(400).json({msg:e.message})
+
     }
   },
   async login (req, res, next) {
@@ -78,18 +78,12 @@ module.exports = {
   apiController
 }
 
-/* -- Helper Functions -- */
-
+// Helper Function //
+// help function so we dont have to write token information over and over
 function createJWT (user) {
-  // console.log(user)
-  return jwt.sign(
-    // data payload
-    { user },
-    process.env.SECRET,
-    { expiresIn: '24h' }
-  )
+  // accept a user and return a token
+  return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h', allowInsecureKeySizes: true })
 }
-
 
 
 
