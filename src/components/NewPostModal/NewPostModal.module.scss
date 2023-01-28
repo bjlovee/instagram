@@ -1,0 +1,50 @@
+.modal{
+    position: fixed;
+    z-index: +2;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background: rgba(62, 75, 77, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.postCreation{
+    // border: solid black;
+    position: absolute;
+    // padding: 5rem;
+    // width: ;
+    min-width: 23rem;
+    min-height: 28rem;
+    // max-width:40rem;
+    // max-height: 50rem;
+    background-color: antiquewhite;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.closeButton{
+    position: fixed;
+    z-index: +3;
+    background: none;
+    font-size: 1.7rem;
+    top: 0;
+    right: 0
+}
+
+.closeButton:hover{
+    cursor: pointer;
+    background: none;
+}
+
+.postCreation > button{
+    margin: 0 auto;
+    // margin-top: 45vh;
+}
+
+.modalHeader{
+    border: solid black;
+    padding: 2rem;
+    margin-bottom: 1rem;
+}

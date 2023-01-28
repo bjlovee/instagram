@@ -6,18 +6,35 @@
     border: solid red;
     padding: 1rem;
 }
-.navBarSide{
-    border: solid gold;
-    padding: 1rem;
-}
+
 .profileCarousel{
     border: solid green;
-    padding: 1rem;
+    padding: 1.5rem;
+    min-width: 20rem;
+    // max-width: 40rem;
 }
 .postsIndex{
     border: solid blue;
+    // padding: 2rem;
+    // margin: 0 6rem 0 6rem;
+    min-width: 20rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // max-width: 40rem;
 }
-.post{
+.postContainer{
     border: solid gray;
     padding: 5rem;
+    // max-width: fit-content;
+    // max-width: 40rem;
+}
+
+
+body{
+    // margin: 0 auto;
+    // padding: 2rem;
+    justify-content: center;
+    align-items: center;
 }
