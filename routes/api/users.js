@@ -1,11 +1,14 @@
-// /routes/api/users.js
 const express = require('express')
 const router = express.Router()
 const { checkToken, dataController, apiController } = require('../../controllers/api/users')
 const ensureLoggedIn = require('../../config/ensureLoggedin')
 
-// GET /api/users
+// GET all users /api/users
 router.get('/', dataController.index, apiController.index)
+// GET a user api/users/:id
+router.get('/:id', dataController.getUser, apiController.show)
+// PUT api/users/:id
+router.put('/:id', dataController.update, apiController.show)
 // POST /api/users
 router.post('/', dataController.create, apiController.auth)
 // POST /api/users/login

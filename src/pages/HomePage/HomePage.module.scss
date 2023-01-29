@@ -1,17 +1,8 @@
-
-// section{
-//     display: flex;
-// }
 .navBarTop{
     border: solid red;
     padding: 1rem;
 }
 
-// .profileCarousel{
-//     border: solid green;
-//     padding: 1.5rem;
-//     min-width: 20rem;
-// }
 .postsIndex{
     border: solid blue;
     min-width: 20rem;
@@ -55,8 +46,6 @@ body{
 @media only screen and (max-width: 700px){
     .suggestedContainer{
         display: none;
-        // position: fixed;
-        // top: 0;
     }
 }
 
