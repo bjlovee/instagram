@@ -2,6 +2,7 @@
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const { TbArrowAutofitContent } = require('react-icons/tb')
 
 const checkToken = (req, res) => {
   console.log('req.user', req.user)
@@ -43,9 +44,24 @@ const dataController = {
     try {
       const user = await User.findById(req.params.id)
       // console.log(user)
-      res.locals.data.driver = user
+      res.locals.data.user = user
       next()
     } catch (e) {
+      res.status(400).json(e)
+    }
+  },
+  async update (req, res, next) {
+    try{
+      console.log(req.body.profilePic)
+      const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+        profilePic: req.body.profilePic,
+        handle: req.body.handle
+      })
+      // const updatedUser = await User.findById(req.params.id)
+      
+      res.locals.data.user = updatedUser
+      next()
+    } catch(e) {
       res.status(400).json(e)
     }
   },
@@ -59,7 +75,6 @@ const dataController = {
         res.status(400).json(e)
       }
     }
-
 }
 
 const apiController = {
@@ -68,6 +83,9 @@ const apiController = {
   },
   index (req, res) {
     res.json(res.locals.data.users)
+  },
+  show (req, res) {
+    res.json(res.locals.data.user)
   }
 }
 
