@@ -6,7 +6,7 @@ const SALT_ROUNDS = 6
 
 const userSchema = new Schema({
   name: { type: String, required: true },
-  handle: { type: String, require: true }, 
+  handle: { type: String, require: true, unique: true }, 
   followers: [{type: Schema.Types.ObjectId, ref: 'Follower'}],
   following: [{type: Schema.Types.ObjectId, ref: 'User'}],
   email: {

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Post from '../../components/Post/Post';
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
-
+import HomePageCarousel from '../../components/HomePageCarousel/HomePageCarousel'
 import NewPostModal from '../../components/NewPostModal/NewPostModal';
 
 export default function HomePage({
@@ -62,11 +62,8 @@ useEffect(() => {
 // console.log(followersPosts)
 
     return (
-        <>{/* {user.email} */}
-
+        <>
             <header>
-                {/* component placeholder */}
-                {/* <div className={styles.navBarTop}></div> */}
                 {/* <NavBar /> */}
                 <NavBarTop />
                 <NewPostModal
@@ -76,8 +73,9 @@ useEffect(() => {
             </header>
             <section>
                 {/* component placeholder */}
-                <div className={styles.profileCarousel}>
-                </div>
+                {/* <div className={styles.profileCarousel}>
+                </div> */}
+                <HomePageCarousel/>
             </section>
             <section>
                 {/* component placeholder */}
