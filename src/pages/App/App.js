@@ -10,6 +10,8 @@ import NavBarBottom from '../../components/NavBarBottom/NavBarBottom';
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal';
 import NavBar from '../../components/NavBar/NavBar';
+import ShowPostModal from '../../components/ShowPostModal/ShowPostModal';
+
 
 function App() {
   const [state, setState] = useState(null)
@@ -33,24 +35,35 @@ const [post, setPost] = useState({})
     }
   }
 
+  const fetchState = async () => {
+    try {
+      const response = await fetch('/api/test')
+      const data = await response.json()
+      setState(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
+  useEffect(() => {
+    fetchState()
+  }, [])
 // console.log(followersPosts)
 
+console.log(user)
   return (
     <main className={styles.App}>
       {
         user ?
         <>
-        {/* <NavBar/> */}
-          <NavBarTop/>
-          <NewPostModal
+          <Routes>
+            <Route path='/' element={<NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
               post={post}
               setPost={setPost}
               user={user}
-          />
-          <Routes>
+          />}/>
             <Route path="/home" element={<HomePage 
               user={user}
 
@@ -61,15 +74,31 @@ const [post, setPost] = useState({})
             />} />
             {/* <Route path="/orders" element={<OrderHistoryPage/>} /> */}
             <Route path="/profile" element={<ProfilePage/>} />
-          </Routes>
 
-          <NavBarBottom/>
+            <Route path="/post" element={<ShowPostModal 
+              user={user}
+              post={post}
+              setPost={setPost}
+
+            />} />
+            {/* <Route path="/orders" element={<OrderHistoryPage/>} /> */}
+            <Route path="/profile" element={<ProfilePage/>} />
+          </Routes>
           <NewPostModal/>
           <NavBarBottom 
                 setShowModal={setShowModal}
                 showModal={showModal}
+                user={user}
             />
-          
+        <NavBarTop/>
+        <NewPostModal
+              setShowModal={setShowModal}
+              showModal={showModal}
+              post={post}
+              setPost={setPost}
+              user={user}
+              setUser={setUser}
+          />
 
         </>
          :
@@ -88,3 +117,15 @@ const [post, setPost] = useState({})
 }
 
 export default App;
+
+
+
+
+          
+          {/* <Route path='/' element={<NewPostModal
+              setShowModal={setShowModal}
+              showModal={showModal}
+              post={post}
+              setPost={setPost}
+              user={user}
+          />}/> */}

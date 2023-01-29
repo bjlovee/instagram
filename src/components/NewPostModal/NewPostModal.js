@@ -1,7 +1,7 @@
 import styles from '../NewPostModal/NewPostModal.module.scss'
 import NavBarBottom from '../NavBarBottom/NavBarBottom'
 import { useEffect, useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 
 export default function NewPostModal({
     showModal,
@@ -11,7 +11,15 @@ export default function NewPostModal({
     user
 }){
 console.log(showModal)
-console.log(user)
+
+const navigate = useNavigate()
+
+const [newPost, setNewPost] = useState({
+  image: '',
+  location: '',
+  caption: '',
+  music: '',
+})
 
 
 
@@ -40,17 +48,26 @@ const createPost = async () => {
         ...post,
         poster: user._id,
         posterPic: user.profilePic,
-        name: user.handle
+        name: user.handle,
       })
     })
     const data = await response.json()
+    console.log(data)
+    // setNewPost(data)
+    setPost(data)
     // getPost(user._id)
 
-    getPost()
-    // setNewCustomer({
-    //   image: '',
-    //   location: ''
-    // })
+    // getPost()
+
+    setNewPost({
+      // poster: user._id,
+      // posterName: user.handle,
+      // posterPic: user.profilePic,
+      image: '',
+      location: '',
+      caption: '',
+      music: '',
+    })
   } catch (error) {
     console.error(error)
   }
@@ -60,6 +77,8 @@ const createPost = async () => {
 const handleSubmit = (e) => {
   e.preventDefault()
   createPost()
+  setShowModal(false)
+  navigate('/post')
 }
 
 
@@ -68,7 +87,7 @@ const handleChange = (evt) => {
 }
 
 
-
+console.log(user)
 
 // useEffect(()=>
 //  async function getPost(user._id){
@@ -105,7 +124,7 @@ console.log(post)
                   <input type='text' name='image' value={post.image} onChange={handleChange} placeholder='image' />
                   <input type='text' name='location' value={post.location} onChange={handleChange} placeholder='location' required />
                   <input type='text' name='music' value={post.music} onChange={handleChange} placeholder='music' required />
-                  <textarea type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='caption' required />
+                  <textarea className={styles.textArea} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required />
                     {/* <button type='submit'>Submit</button> */}
                     <div className={styles.buttonContainer}>
                   <button type='submit'>Submit</button>

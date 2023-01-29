@@ -10,12 +10,14 @@ import { trusted } from 'mongoose';
 
 export default function NavBarBottom({
     showModal,
-    setShowModal
+    setShowModal,
+    user
 }) {
 
 // const handleShowModal = (e) => {
 //     e.preventDefault()
 //     setShowModal(true)
+console.log(user)
 // }
     return (
         <div className={styles.navBarBottom}>
