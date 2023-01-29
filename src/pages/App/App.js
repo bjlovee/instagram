@@ -18,6 +18,7 @@ function App() {
 
 const [followersEvents, setFollowersEvents] = useState([])
 const [showModal, setShowModal] = useState(false)
+const [post, setPost] = useState({})
 
   // Index Restaurants
   const getFollowers = async (id) => {
@@ -43,6 +44,9 @@ const [showModal, setShowModal] = useState(false)
           <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
+              post={post}
+              setPost={setPost}
+              user={user}
           />
           <Routes>
             <Route path="/home" element={<HomePage 
