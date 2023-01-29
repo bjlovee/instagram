@@ -7,6 +7,8 @@ import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import HomePageCarousel from '../../components/HomePageCarousel/HomePageCarousel'
 import NewPostModal from '../../components/NewPostModal/NewPostModal';
 
+import Footer from '../../components/Footer/Footer';
+
 export default function HomePage({
     user,
     getFollowers,
@@ -17,7 +19,7 @@ export default function HomePage({
 
 
     
-const [showModal, setShowModal] = useState(false)
+
 const [followersPosts, setFollowersPosts] = useState([])
 
 
@@ -64,17 +66,8 @@ useEffect(() => {
     return (
         <>
             <header>
-                {/* <NavBar /> */}
-                <NavBarTop />
-                <NewPostModal
-                    setShowModal={setShowModal}
-                    showModal={showModal}
-                />
             </header>
             <section>
-                {/* component placeholder */}
-                {/* <div className={styles.profileCarousel}>
-                </div> */}
                 <HomePageCarousel/>
             </section>
             <section>
@@ -87,8 +80,6 @@ useEffect(() => {
                         {}
                     </div>
                     <div className={styles.postContainer}>
-                        {/* {followersPosts[0].caption}<br/>
-                        {followersPosts[0].image} */}
                     </div>
                     <div className={styles.postContainer}></div>
                     <div className={styles.postContainer}></div>
@@ -99,15 +90,11 @@ useEffect(() => {
                     <div className={styles.postContainer}></div>
                     <div className={styles.postContainer}></div>
                     <div className={styles.postContainer}></div>
-
                 </div>
             </section>
-            <footer>
-            <NavBarBottom 
-                setShowModal={setShowModal}
-                showModal={showModal}
-            />
-            </footer>
+            {/* <footer>
+            </footer> */}
+            <Footer/>
         </>
     )
 }
