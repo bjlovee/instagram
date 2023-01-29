@@ -1,13 +1,10 @@
 import styles from '../HomePage/HomePage.module.scss'
-import NavBar from '../../components/NavBar/NavBar';
 import { useState, useEffect } from 'react'
 import Post from '../../components/Post/Post';
-import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
-import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import HomePageCarousel from '../../components/HomePageCarousel/HomePageCarousel'
-import NewPostModal from '../../components/NewPostModal/NewPostModal';
-
 import Footer from '../../components/Footer/Footer';
+import SwitchProfile from '../../components/SwitchProfile/SwitchProfile';
+import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile';
 
 export default function HomePage({
     user,
@@ -65,22 +62,15 @@ useEffect(() => {
 
     return (
         <>
-            <header>
-            </header>
-            <section>
-                <HomePageCarousel/>
-            </section>
-            <section>
-                {/* component placeholder */}
+            <div className={styles.indexSection}>
+              <section>
                 <div className={styles.postsIndex}>
-                    {/* {getPosts} */}
-                <Post />
-                    {/* component placeholder */}
-                    <div className={styles.postContainer}>
-                        {}
-                    </div>
-                    <div className={styles.postContainer}>
-                    </div>
+                  <section>
+                    <HomePageCarousel/>
+                  </section>
+                  <Post />
+                    <div className={styles.postContainer}></div>
+                    <div className={styles.postContainer}></div>
                     <div className={styles.postContainer}></div>
                     <div className={styles.postContainer}></div>
                     <div className={styles.postContainer}></div>
@@ -91,13 +81,25 @@ useEffect(() => {
                     <div className={styles.postContainer}></div>
                     <div className={styles.postContainer}></div>
                 </div>
-            </section>
-            {/* <footer>
-            </footer> */}
+              </section>
+              <div className={styles.sectionWrapper}>
+              <section className={styles.suggestedContainer}>
+                <SwitchProfile/>
+                <SuggestedProfile/>
+              </section>
+              </div>
+            </div>
             <Footer/>
         </>
     )
 }
+
+
+
+
+
+
+
 
 
 
