@@ -9,6 +9,7 @@ import styles from '../App/App.module.scss'
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom';
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal';
+import NavBar from '../../components/NavBar/NavBar';
 
 function App() {
   const [state, setState] = useState(null)
@@ -40,6 +41,7 @@ const [post, setPost] = useState({})
       {
         user ?
         <>
+        {/* <NavBar/> */}
           <NavBarTop/>
           <NewPostModal
               setShowModal={setShowModal}

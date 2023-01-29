@@ -113,9 +113,6 @@ console.log(post)
                   </form>
                 </div>
 
-
-
-
               </div>
 
             </div>
