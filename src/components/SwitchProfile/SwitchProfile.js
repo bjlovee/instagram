@@ -32,13 +32,22 @@ export default function SwitchProfile({
               {user && post
                 ?
                 <>
-                  <div><IconButton><DeleteIcon sx={{ fontSize: 18 }}/></IconButton></div>
+                  <div onClick={()=>{
+                    console.log('click')
+                  }}>
+                    <IconButton><DeleteIcon sx={{ fontSize: 18 }}/>
+                    </IconButton>
+                    </div>
                   <div onClick={()=>{
                     // console.log('click')
                     setUpdateForm(true)
                     setShowModal(true)
-                    setPostModal(false)
-                  }}><IconButton><Edit sx={{ fontSize: 18 }}/></IconButton></div>
+                    // setPostModal(false)
+                    console.log('click')
+                      }}>
+                    <IconButton><Edit sx={{ fontSize: 18 }}/>
+                    </IconButton>
+                  </div>
                 </>
                 :
                 <h5>Edit</h5>

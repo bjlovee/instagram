@@ -20,7 +20,7 @@ const [newPost, setNewPost] = useState({
   caption: '',
   music: '',
 })
-const [updatedPost, setUpdatedPost] = useState()
+const [updatedPost, setUpdatedPost] = useState({})
 
 
   // Get post
@@ -116,7 +116,7 @@ const updatePost = async () => {
 const handleSubmitUpdate = (e) => {
   e.preventDefault()
   updatePost()
-         
+  showModal(false)         
   setPostModal(true)
 
 }
@@ -169,14 +169,15 @@ console.log(updatedPost)
                       </form>
                     </div>
                   </> 
-                  :
-                  <>
-                    <div className={styles.formContainer}>
-                      <form onSubmit={(e) => {handleSubmitUpdate(e)}}>
-                        <input type='text' name='image' value={updatedPost.image} autocomplete='on' placeholder='image' onChange={(e) => {setUpdatedPost({ ...updatedPost, image: e.target.value})}}/>
-                        <input type='text' name='location' autocomplete='on' value={updatedPost.location} placeholder='location' onChange={(e) => {setUpdatedPost({ ...updatedPost, location: e.target.value})}}/>
-                        <input type='text' name='music' autocomplete='on' value={updatedPost.music} placeholder='music' onChange={(e) => {setUpdatedPost({ ...updatedPost, music: e.target.value})}}/>
-                        <textarea className={styles.textArea}type='text' autocomplete='on' name='caption' value={updatedPost.caption} placeholder='caption' onChange={(e) => {setUpdatedPost({ ...updatedPost, caption: e.target.value})}}/>
+                  : updateForm && post 
+                    ?
+                    <>
+                      <div className={styles.formContainer}>
+                      <form autoComplete='off' onSubmit={(e) => {handleSubmitUpdate(e)}}>
+                        <input type='text' value={updatedPost.image} placeholder='image' onChange={(e) => {setUpdatedPost({ ...updatedPost, image: e.target.value})}}/>
+                        <input type='text' value={updatedPost.location} placeholder='location' onChange={(e) => {setUpdatedPost({ ...updatedPost, location: e.target.value})}}/>
+                        <input type='text' value={updatedPost.music} placeholder='music' onChange={(e) => {setUpdatedPost({ ...updatedPost, music: e.target.value})}}/>
+                        <textarea className={styles.textArea}type='text' name='caption' value={updatedPost.caption} placeholder='caption' onChange={(e) => {setUpdatedPost({ ...updatedPost, caption: e.target.value})}}/>
                         <div className={styles.buttonContainer}>
                           <button 
                             onClick={()=>{
@@ -187,8 +188,10 @@ console.log(updatedPost)
                           type='submit'>Submit</button>
                         </div>
                       </form>
-                    </div>
-                  </>
+                      </div>
+                    </>
+                    :
+                    ''
                 }
               </div>
             </div>
