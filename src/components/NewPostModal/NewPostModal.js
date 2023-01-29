@@ -9,7 +9,9 @@ export default function NewPostModal({
     setPost,
     user,
     setPostModal,
-    getPosterInfo
+    getPosterInfo,
+    updateForm,
+    setUpdateForm
 }){
 
 const [newPost, setNewPost] = useState({
@@ -18,7 +20,7 @@ const [newPost, setNewPost] = useState({
   caption: '',
   music: '',
 })
-
+const [updatedPost, setUpdatedPost] = useState()
 
 
   // Get post
@@ -33,7 +35,7 @@ const [newPost, setNewPost] = useState({
     }
   }
 
-
+//CREATE POST
 const createPost = async () => {
   try {
     const response = await fetch('/api/posts', {
@@ -71,7 +73,6 @@ const createPost = async () => {
   }
 }
 
-
 const handleSubmit = (e) => {
   e.preventDefault()
   createPost()
@@ -82,12 +83,50 @@ const handleSubmit = (e) => {
   getPosterInfo(newPost.poster)
 }
 
-
 const handleChange = (evt) => {
   setPost({ ...post, [evt.target.name]: evt.target.value })
 }
 
+useEffect(()=>{
+  getPosterInfo(post.poster)
+}, [])
+// console.log(user)
 
+
+
+//UPDATE POST
+const updatePost = async () => {
+  try {
+    const response = await fetch(`/api/posts/${post._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedPost)
+    })
+    const data = await response.json()
+    setPost(data)
+
+    // getPost(post._id)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+const handleSubmitUpdate = (e) => {
+  e.preventDefault()
+  updatePost()
+         
+  setPostModal(true)
+
+}
+console.log(post)
+console.log(updatedPost)
+
+// const handleUpdateChange = (e) => {
+//   setUpdatedPost({ ...updatedPost, [e.target.name]: e.target.value })
+// }
+// console.log(post)
     return(
     <>
         {showModal 
@@ -96,34 +135,62 @@ const handleChange = (evt) => {
             <button className={styles.closeButton} 
                 onClick={()=>{
                     setShowModal(false)
+                    setUpdateForm(false)
                 }}
-            
             >&#x2715;</button>
             <div className={styles.modal}>
-
               <div className={styles.postCreation}>
-
-
                 <div className={styles.modalContainer}>
-                    <h5>Create A New Post</h5>
-                </div>
+                  {!updateForm
+                    ?
+                      <>
+                      <h5>Create A New Post</h5>
+                      </>
+                  
+                    :
 
-                <div className={styles.formContainer}>
-                  {/* <button>Add Images</button> */}
-                  <form autoComplete='off'onSubmit={handleSubmit}>
-                  <input type='text' name='image' value={post.image} onChange={handleChange} placeholder='image' />
-                  <input type='text' name='location' value={post.location} onChange={handleChange} placeholder='location' required />
-                  <input type='text' name='music' value={post.music} onChange={handleChange} placeholder='music' required />
-                  <textarea className={styles.textArea} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required />
-                    {/* <button type='submit'>Submit</button> */}
-                    <div className={styles.buttonContainer}>
-                  <button type='submit'>Submit</button>
+                      <>
+                        <h5>Update Post</h5>
+                      </>
+                  }
                 </div>
-                  </form>
-                </div>
-
+                {!updateForm 
+                  ?
+                  <>
+                    <div className={styles.formContainer}>
+                      <form autoComplete='off'onSubmit={handleSubmit}>
+                        <input type='text' key={post._id + '1'} name='image' value={post.image} onChange={handleChange} placeholder='image' />
+                        <input type='text' key={post._id + '2'} name='location' value={post.location} onChange={handleChange} placeholder='location' required />
+                        <input type='text' key={post._id + '3'} name='music' value={post.music} onChange={handleChange} placeholder='music' required />
+                        <textarea className={styles.textArea} key={post._id} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required />
+                        <div className={styles.buttonContainer}>
+                          <button type='submit'>Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </> 
+                  :
+                  <>
+                    <div className={styles.formContainer}>
+                      <form onSubmit={(e) => {handleSubmitUpdate(e)}}>
+                        <input type='text' name='image' value={updatedPost.image} autocomplete='on' placeholder='image' onChange={(e) => {setUpdatedPost({ ...updatedPost, image: e.target.value})}}/>
+                        <input type='text' name='location' autocomplete='on' value={updatedPost.location} placeholder='location' onChange={(e) => {setUpdatedPost({ ...updatedPost, location: e.target.value})}}/>
+                        <input type='text' name='music' autocomplete='on' value={updatedPost.music} placeholder='music' onChange={(e) => {setUpdatedPost({ ...updatedPost, music: e.target.value})}}/>
+                        <textarea className={styles.textArea}type='text' autocomplete='on' name='caption' value={updatedPost.caption} placeholder='caption' onChange={(e) => {setUpdatedPost({ ...updatedPost, caption: e.target.value})}}/>
+                        <div className={styles.buttonContainer}>
+                          <button 
+                            onClick={()=>{
+                              updateForm(false)
+                              showModal(false)   
+                            }}
+                          
+                          type='submit'>Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </>
+                }
               </div>
-
             </div>
             </>
             :

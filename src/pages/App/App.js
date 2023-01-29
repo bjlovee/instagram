@@ -24,7 +24,9 @@ const [showModal, setShowModal] = useState(false)
 const [postModal, setPostModal] = useState(false)
 const [posterInfo, setPosterInfo] = useState({})
 
+
 const [post, setPost] = useState({})
+const [updateForm, setUpdateForm] = useState(false)
 
 
   // Index Restaurants
@@ -62,6 +64,8 @@ const getPosterInfo = async (id) => {
     console.log(err)
   }
 }
+
+
 
 useEffect(() => {
   fetchState()
@@ -104,6 +108,11 @@ useEffect(() => {
               setPostModal={setPostModal}
 
               getPosterInfo={getPosterInfo}
+
+              setUpdateForm={setUpdateForm}
+              updateForm={updateForm}
+
+
           />
           <ShowPostModal
               setShowModal={setShowModal}
@@ -119,6 +128,8 @@ useEffect(() => {
               setUser={setUser}
               getPosterInfo={getPosterInfo}
               posterInfo={posterInfo}
+
+              setUpdateForm={setUpdateForm}
           />
 
         </>

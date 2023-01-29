@@ -10,7 +10,10 @@ export default function ShowPostModal({
     postModal,
     setPostModal,
     posterInfo,
-    getPosterInfo
+    getPosterInfo,
+    setUpdateForm,
+    showModal,
+    setShowModal
 }){
     console.log(post.poster)
 
@@ -46,8 +49,15 @@ useEffect(()=>{
                 <SwitchProfile
                   image={post.posterPic}
                   handle={post.posterName}
+                  location={post.location}
                   user={user}
                   post={post}
+
+                  setUpdateForm={setUpdateForm}
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+
+                  setPostModal={setPostModal}
                 />
               </div>
               <div className={styles.commentsIndex}></div>
@@ -56,9 +66,6 @@ useEffect(()=>{
                 </div>
                     {/* <img src={post.image}/> */}
                 </div>
-
-
-
             </div>
             </>
             :
