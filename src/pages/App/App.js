@@ -21,7 +21,11 @@ function App() {
 
 const [followersEvents, setFollowersEvents] = useState([])
 const [showModal, setShowModal] = useState(false)
+const [postModal, setPostModal] = useState(false)
+const [posterInfo, setPosterInfo] = useState({})
+
 const [post, setPost] = useState({})
+
 
   // Index Restaurants
   const getFollowers = async (id) => {
@@ -45,25 +49,32 @@ const [post, setPost] = useState({})
     }
   }
 
-  useEffect(() => {
-    fetchState()
-  }, [])
-// console.log(followersPosts)
+// Get User Info
+const getPosterInfo = async (id) => {
+  try {
+    console.log(id)
+    const response = await fetch(`/api/users/${id}`)
+    const data = await response.json()
+    console.log(data)
+    setPosterInfo(data)
+    
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-console.log(user)
+useEffect(() => {
+  fetchState()
+  // getPosterInfo()
+}, [])
+
+
   return (
     <main className={styles.App}>
       {
         user ?
         <>
           <Routes>
-            <Route path='/' element={<NewPostModal
-              setShowModal={setShowModal}
-              showModal={showModal}
-              post={post}
-              setPost={setPost}
-              user={user}
-          />}/>
             <Route path="/home" element={<HomePage 
               user={user}
 
@@ -72,19 +83,8 @@ console.log(user)
               setFollowersEvents={setFollowersEvents}
               followersEvents={followersEvents}
             />} />
-            {/* <Route path="/orders" element={<OrderHistoryPage/>} /> */}
-            <Route path="/profile" element={<ProfilePage/>} />
-
-            <Route path="/post" element={<ShowPostModal 
-              user={user}
-              post={post}
-              setPost={setPost}
-
-            />} />
-            {/* <Route path="/orders" element={<OrderHistoryPage/>} /> */}
             <Route path="/profile" element={<ProfilePage/>} />
           </Routes>
-          <NewPostModal/>
           <NavBarBottom 
                 setShowModal={setShowModal}
                 showModal={showModal}
@@ -94,10 +94,31 @@ console.log(user)
         <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
+
               post={post}
               setPost={setPost}
+
               user={user}
               setUser={setUser}
+
+              setPostModal={setPostModal}
+
+              getPosterInfo={getPosterInfo}
+          />
+          <ShowPostModal
+              setShowModal={setShowModal}
+              showModal={showModal}
+
+              setPostModal={setPostModal}
+              postModal={postModal}
+
+              post={post}
+              setPost={setPost}
+
+              user={user}
+              setUser={setUser}
+              getPosterInfo={getPosterInfo}
+              posterInfo={posterInfo}
           />
 
         </>
@@ -119,13 +140,3 @@ console.log(user)
 export default App;
 
 
-
-
-          
-          {/* <Route path='/' element={<NewPostModal
-              setShowModal={setShowModal}
-              showModal={showModal}
-              post={post}
-              setPost={setPost}
-              user={user}
-          />}/> */}

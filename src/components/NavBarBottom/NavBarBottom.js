@@ -17,7 +17,7 @@ export default function NavBarBottom({
 // const handleShowModal = (e) => {
 //     e.preventDefault()
 //     setShowModal(true)
-console.log(user)
+// console.log(user)
 // }
     return (
         <div className={styles.navBarBottom}>

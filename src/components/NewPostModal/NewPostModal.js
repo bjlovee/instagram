@@ -1,18 +1,16 @@
 import styles from '../NewPostModal/NewPostModal.module.scss'
 import NavBarBottom from '../NavBarBottom/NavBarBottom'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 export default function NewPostModal({
     showModal,
     setShowModal,
     post,
     setPost,
-    user
+    user,
+    setPostModal,
+    getPosterInfo
 }){
-console.log(showModal)
-
-const navigate = useNavigate()
 
 const [newPost, setNewPost] = useState({
   image: '',
@@ -23,7 +21,7 @@ const [newPost, setNewPost] = useState({
 
 
 
-  // Get Customer Profile
+  // Get post
   const getPost = async () => {
     try {
       const response = await fetch(`api/posts/poster/${user._id}`)
@@ -48,7 +46,7 @@ const createPost = async () => {
         ...post,
         poster: user._id,
         posterPic: user.profilePic,
-        name: user.handle,
+        posterName: user.handle,
       })
     })
     const data = await response.json()
@@ -78,7 +76,10 @@ const handleSubmit = (e) => {
   e.preventDefault()
   createPost()
   setShowModal(false)
-  navigate('/post')
+  // navigate('/post')
+  console.log(post.poster)
+  setPostModal(true)
+  getPosterInfo(newPost.poster)
 }
 
 
@@ -87,17 +88,6 @@ const handleChange = (evt) => {
 }
 
 
-console.log(user)
-
-// useEffect(()=>
-//  async function getPost(user._id){
-//   const response await
-//  }
-// ,[])
-
-
-
-console.log(post)
     return(
     <>
         {showModal 
@@ -145,10 +135,3 @@ console.log(post)
 
 
 
-
-
-        // {/* <button onClick={()=>{console.log('here')}}></button> */}
-        // <button onClick={()=>
-        //     {setShowModal(false)
-        //     console.log(showModal)}
-        // }></button>

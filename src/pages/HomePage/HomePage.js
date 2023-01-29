@@ -16,7 +16,7 @@ export default function HomePage({
 }){
 
 
-console.log(user)
+// console.log(user)
 
 const [followersPosts, setFollowersPosts] = useState([])
 
@@ -84,7 +84,11 @@ useEffect(() => {
               </section>
               <div className={styles.sectionWrapper}>
               <section className={styles.suggestedContainer}>
-                <SwitchProfile/>
+                <SwitchProfile
+                    user={user}
+                    handle={user.handle}
+                    image={user.profilePic}
+                />
                 <SuggestedProfile/>
               </section>
               </div>
