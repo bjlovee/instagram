@@ -19,8 +19,6 @@ export default function HomePage({
 
 const [followersPosts, setFollowersPosts] = useState([])
 
-
-
 //settings posts data in loop
 const handleSetPosts = (data) => {
     //adding to state via conditional to prevent infinite loop
@@ -39,7 +37,7 @@ const getFollowersLatestPost = async (id) => {
       const data = await response.json()
       handleSetPosts(data)
     } catch (e) {
-
+    
     }
   }
 
