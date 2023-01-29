@@ -6,6 +6,9 @@ import ProfilePage from '../ProfilePage/Profilepage';
 // import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route} from 'react-router-dom'
 import styles from '../App/App.module.scss'
+import NavBarBottom from '../../components/NavBarBottom/NavBarBottom';
+import NavBarTop from '../../components/NavBarTop/NavBarTop'
+import NewPostModal from '../../components/NewPostModal/NewPostModal';
 
 function App() {
   const [state, setState] = useState(null)
@@ -14,7 +17,7 @@ function App() {
 
 
 const [followersEvents, setFollowersEvents] = useState([])
-
+const [showModal, setShowModal] = useState(false)
 
   // Index Restaurants
   const getFollowers = async (id) => {
@@ -29,22 +32,6 @@ const [followersEvents, setFollowersEvents] = useState([])
   }
 
 
-
-
-
-  // const fetchState = async () => {
-  //   try {
-  //     const response = await fetch('/api/test')
-  //     const data = await response.json()
-  //     setState(data)
-  //   } catch (error) {
-  //     console.error(error) 
-  //   }
-  // }
-
-
-  
-
 // console.log(followersPosts)
 
   return (
@@ -52,7 +39,11 @@ const [followersEvents, setFollowersEvents] = useState([])
       {
         user ?
         <>
-          
+          <NavBarTop/>
+          <NewPostModal
+              setShowModal={setShowModal}
+              showModal={showModal}
+          />
           <Routes>
             <Route path="/home" element={<HomePage 
               user={user}
@@ -62,9 +53,18 @@ const [followersEvents, setFollowersEvents] = useState([])
               setFollowersEvents={setFollowersEvents}
               followersEvents={followersEvents}
             />} />
-            <Route path="/orders" element={<OrderHistoryPage/>} />
+            {/* <Route path="/orders" element={<OrderHistoryPage/>} /> */}
             <Route path="/profile" element={<ProfilePage/>} />
           </Routes>
+
+          <NavBarBottom/>
+          <NewPostModal/>
+          <NavBarBottom 
+                setShowModal={setShowModal}
+                showModal={showModal}
+            />
+          
+
         </>
          :
         <LandingPage 
