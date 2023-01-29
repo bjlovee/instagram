@@ -19,10 +19,12 @@
     min-height: 28rem;
     // max-width:40rem;
     // max-height: 50rem;
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
+    display: grid;
+    grid-template-rows: 0.1fr 1fr 0.1fr;
 }
 .closeButton{
     position: fixed;
@@ -36,6 +38,7 @@
 .closeButton:hover{
     cursor: pointer;
     background: none;
+    opacity: 0.7;
 }
 
 .postCreation > button{
@@ -43,8 +46,49 @@
     // margin-top: 45vh;
 }
 
+// .modalHeader{
+//     // border: solid black;
+//     // padding: 2rem;
+//     border: solid red;
+//     // margin-bottom: 1rem;
+//     background-color: gray;
+//     justify-content: center;
+//     display: flex;
+//     margin: 0 auto;
+// }
 .modalHeader{
-    border: solid black;
-    padding: 2rem;
-    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.buttonContainer, .modalContainer, .formContainer{
+    // border: solid pink;
+    // align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.buttonContainer{
+    padding-bottom: 4rem;
+}
+
+.modalContainer{
+    // border: solid red;
+    border-bottom: solid var(--outlines);
+    border-width: 0.5px;
+}
+
+.modalContainer > h5{
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+
+.formContainer{
+    // border: solid purple;
+    margin: 1rem 0 0 0;
+    width: 100%;
+    display: block;
+}
+
+.formContainer > form{
+padding: 4rem;
 }

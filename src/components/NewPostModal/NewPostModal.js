@@ -16,18 +16,35 @@ console.log(showModal)
             <button className={styles.closeButton} 
                 onClick={()=>{
                     setShowModal(false)
-                    console.log('here')
                 }}
             
             >&#x2715;</button>
             <div className={styles.modal}>
+
               <div className={styles.postCreation}>
-                <div clasName={styles.modalHeader}>
+
+
+                <div className={styles.modalContainer}>
+                    <h5>Create A New Post</h5>
                 </div>
-                <div>
+
+                <div className={styles.formContainer}>
+                  {/* <button>Add Images</button> */}
+                  <form>
+                    <input></input>
+                    <input></input>
+                    <input></input>
+                    <input></input>
+                  </form>
+                </div>
+
+
+                <div className={styles.buttonContainer}>
                   <button>Add Images</button>
                 </div>
+
               </div>
+
             </div>
             </>
             :
