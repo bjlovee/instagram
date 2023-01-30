@@ -27,6 +27,17 @@ const dataController = {
       res.status(400).json(e)
     }
   },
+  async getAllPostsByUser (req, res, next){
+    try{
+      //finds the post by the poster ID and then sorts by the latest
+      const posts = await Post.find({poster:req.params.id}).sort({createdAt: 'desc'})
+      //sending back only the latest post for the page index
+      res.locals.data.posts = posts
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
 
   // Destroy
   destroy (req, res, next) {

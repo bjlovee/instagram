@@ -5,6 +5,7 @@ import HomePageCarousel from '../../components/HomePageCarousel/HomePageCarousel
 import Footer from '../../components/Footer/Footer';
 import SwitchProfile from '../../components/SwitchProfile/SwitchProfile';
 import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile';
+import ShowPostModal from '../../components/ShowPostModal/ShowPostModal';
 
 export default function HomePage({
     user,
@@ -15,7 +16,7 @@ export default function HomePage({
 }){
 
 
-    
+// console.log(user)
 
 const [followersPosts, setFollowersPosts] = useState([])
 
@@ -83,7 +84,11 @@ useEffect(() => {
               </section>
               <div className={styles.sectionWrapper}>
               <section className={styles.suggestedContainer}>
-                <SwitchProfile/>
+                <SwitchProfile
+                    user={user}
+                    handle={user.handle}
+                    image={user.profilePic}
+                />
                 <SuggestedProfile/>
               </section>
               </div>

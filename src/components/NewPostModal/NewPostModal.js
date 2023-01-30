@@ -2,20 +2,28 @@ import styles from '../NewPostModal/NewPostModal.module.scss'
 import NavBarBottom from '../NavBarBottom/NavBarBottom'
 import { useEffect, useState } from 'react'
 
-
 export default function NewPostModal({
     showModal,
     setShowModal,
     post,
     setPost,
-    user
+    user,
+    setPostModal,
+    getPosterInfo,
+    updateForm,
+    setUpdateForm
 }){
-console.log(showModal)
-console.log(user)
+
+const [newPost, setNewPost] = useState({
+  image: '',
+  location: '',
+  caption: '',
+  music: '',
+})
+const [updatedPost, setUpdatedPost] = useState({})
 
 
-
-  // Get Customer Profile
+  // Get post
   const getPost = async () => {
     try {
       const response = await fetch(`api/posts/poster/${user._id}`)
@@ -27,7 +35,7 @@ console.log(user)
     }
   }
 
-
+//CREATE POST
 const createPost = async () => {
   try {
     const response = await fetch('/api/posts', {
@@ -40,45 +48,85 @@ const createPost = async () => {
         ...post,
         poster: user._id,
         posterPic: user.profilePic,
-        name: user.handle
+        posterName: user.handle,
       })
     })
     const data = await response.json()
+    console.log(data)
+    // setNewPost(data)
+    setPost(data)
     // getPost(user._id)
 
-    getPost()
-    // setNewCustomer({
-    //   image: '',
-    //   location: ''
-    // })
+    // getPost()
+
+    setNewPost({
+      // poster: user._id,
+      // posterName: user.handle,
+      // posterPic: user.profilePic,
+      image: '',
+      location: '',
+      caption: '',
+      music: '',
+    })
   } catch (error) {
     console.error(error)
   }
 }
 
-
 const handleSubmit = (e) => {
   e.preventDefault()
   createPost()
+  setShowModal(false)
+  // navigate('/post')
+  console.log(post.poster)
+  setPostModal(true)
+  getPosterInfo(newPost.poster)
 }
-
 
 const handleChange = (evt) => {
   setPost({ ...post, [evt.target.name]: evt.target.value })
 }
 
+// useEffect(()=>{
+//   getPosterInfo(post.poster)
+// }, [])
+// // console.log(user)
 
 
 
-// useEffect(()=>
-//  async function getPost(user._id){
-//   const response await
-//  }
-// ,[])
+//UPDATE POST
+const updatePost = async () => {
+  try {
+    const response = await fetch(`/api/posts/${post._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedPost)
+    })
+    const data = await response.json()
+    setPost(data)
 
+    // getPost(post._id)
+  } catch (e) {
+    console.error(e)
+  }
+}
 
+const handleSubmitUpdate = (e) => {
+  e.preventDefault()
+  updatePost()
+  showModal(false)         
+  setPostModal(true)
 
-console.log(post)
+}
+// console.log(post)
+// console.log(updatedPost)
+
+// const handleUpdateChange = (e) => {
+//   setUpdatedPost({ ...updatedPost, [e.target.name]: e.target.value })
+// }
+// console.log(post)
     return(
     <>
         {showModal 
@@ -87,34 +135,65 @@ console.log(post)
             <button className={styles.closeButton} 
                 onClick={()=>{
                     setShowModal(false)
+                    setUpdateForm(false)
                 }}
-            
             >&#x2715;</button>
             <div className={styles.modal}>
-
               <div className={styles.postCreation}>
-
-
                 <div className={styles.modalContainer}>
-                    <h5>Create A New Post</h5>
-                </div>
+                  {!updateForm
+                    ?
+                      <>
+                      <h5>Create A New Post</h5>
+                      </>
+                  
+                    :
 
-                <div className={styles.formContainer}>
-                  {/* <button>Add Images</button> */}
-                  <form autoComplete='off'onSubmit={handleSubmit}>
-                  <input type='text' name='image' value={post.image} onChange={handleChange} placeholder='image' />
-                  <input type='text' name='location' value={post.location} onChange={handleChange} placeholder='location' required />
-                  <input type='text' name='music' value={post.music} onChange={handleChange} placeholder='music' required />
-                  <textarea type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='caption' required />
-                    {/* <button type='submit'>Submit</button> */}
-                    <div className={styles.buttonContainer}>
-                  <button type='submit'>Submit</button>
+                      <>
+                        <h5>Update Post</h5>
+                      </>
+                  }
                 </div>
-                  </form>
-                </div>
-
+                {!updateForm 
+                  ?
+                  <>
+                    <div className={styles.formContainer}>
+                      <form autoComplete='off'onSubmit={handleSubmit}>
+                        <input type='text' key={post._id + '1'} name='image' value={post.image} onChange={handleChange} placeholder='image' />
+                        <input type='text' key={post._id + '2'} name='location' value={post.location} onChange={handleChange} placeholder='location' required />
+                        <input type='text' key={post._id + '3'} name='music' value={post.music} onChange={handleChange} placeholder='music' />
+                        <textarea className={styles.textArea} key={post._id} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required />
+                        <div className={styles.buttonContainer}>
+                          <button type='submit'>Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </> 
+                  : updateForm && post 
+                    ?
+                    <>
+                      <div className={styles.formContainer}>
+                      <form autoComplete='off' onSubmit={(e) => {handleSubmitUpdate(e)}}>
+                        <input type='text' name='image' value={updatedPost.image} placeholder='image' onChange={(e) => {setUpdatedPost({ ...updatedPost, image: e.target.value})}}/>
+                        <input type='text' name='location' value={updatedPost.location} placeholder='location' onChange={(e) => {setUpdatedPost({ ...updatedPost, location: e.target.value})}}/>
+                        <input type='text' name='music' value={updatedPost.music} placeholder='music' onChange={(e) => {setUpdatedPost({ ...updatedPost, music: e.target.value})}}/>
+                        <textarea className={styles.textArea} type='text' name='caption' value={updatedPost.caption} placeholder='caption' onChange={(e) => {setUpdatedPost({ ...updatedPost, caption: e.target.value})}}/>
+                        <div className={styles.buttonContainer}>
+                          <button 
+                            onClick={()=>{
+                              updateForm(false)
+                              showModal(false)   
+                            }}
+                          
+                          type='submit'>Submit</button>
+                        </div>
+                      </form>
+                      </div>
+                    </>
+                    :
+                    ''
+                }
               </div>
-
             </div>
             </>
             :
@@ -126,10 +205,3 @@ console.log(post)
 
 
 
-
-
-        // {/* <button onClick={()=>{console.log('here')}}></button> */}
-        // <button onClick={()=>
-        //     {setShowModal(false)
-        //     console.log(showModal)}
-        // }></button>

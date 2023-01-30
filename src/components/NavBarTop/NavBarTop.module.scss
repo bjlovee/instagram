@@ -23,6 +23,11 @@ $rochester: 'Rochester', cursive;
 .logo{
     padding: 0.5rem;
 }
+
+.logo:hover{
+    color: gray;
+    cursor: pointer;
+}
 .logo > h3{
     margin: 0 auto;   
 }

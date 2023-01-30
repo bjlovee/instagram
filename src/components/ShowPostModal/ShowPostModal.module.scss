@@ -1,0 +1,94 @@
+.modal{
+    position: fixed;
+    z-index: +2;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background: rgba(62, 75, 77, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.postCreation{
+    // border: solid black;
+    position: absolute;
+    // padding: 5rem;
+    // width: ;
+    // min-width: 23rem;
+    // min-height: 28rem;
+    // max-width:40rem;
+    // max-height: 50rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.5rem;
+    background-color: black;
+    // display: flex;
+    // flex-direction: column;
+    // display: grid;
+    // grid-template-rows: 0.05fr 1fr;
+}
+.closeButton{
+    position: fixed;
+    z-index: +3;
+    background: none;
+    font-size: 1.7rem;
+    top: 0;
+    right: 0
+}
+
+.closeButton:hover{
+    cursor: pointer;
+    background: none;
+    opacity: 0.7;
+}
+
+
+
+.modalHeader{
+    padding: 1rem;
+}
+
+.buttonContainer, .modalContainer, .formContainer{
+    justify-content: center;
+    display: flex;
+}
+
+.buttonContainer{
+    padding-top: 2rem;
+}
+
+.modalContainer{
+    // border: solid red;
+    border-bottom: solid var(--outlines);
+    border-width: 0.5px;
+}
+
+.formContainer{
+    // border: solid purple;
+    margin: 1rem 0 1rem 0;
+    // width: 100%;
+    display: block;
+    height: fit-content;
+    width: 70%;
+    // background-color: black;
+}
+
+.commentsContainer{
+    // border: solid red;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.formContainer > img{
+    width: 100%;
+    // height: 110%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+// .profileInfo{
+//     border: solid green;
+//     // padding: 2rem;
+// }
+

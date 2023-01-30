@@ -4,6 +4,8 @@ const { dataController, apiController } = require('../../controllers/api/posts')
 
 // GET /api/posts
 router.get('/', dataController.index, apiController.index)
+// GET ALL POSTS BY POSTER /api/posts
+router.get('/:id', dataController.getAllPostsByUser, apiController.index)
 // GET ONE POST BY POSTER /api/posts
 router.get('/poster/:id', dataController.getPostByUser, apiController.show)
 // DELETE /api/posts/:id
