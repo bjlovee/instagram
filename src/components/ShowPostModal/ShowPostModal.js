@@ -16,7 +16,7 @@ export default function ShowPostModal({
     setShowModal,
     deletePost
 }){
-    console.log(post.poster)
+    // console.log(post.poster)
 
 
 useEffect(()=>{
@@ -29,44 +29,41 @@ useEffect(()=>{
         {postModal
             ?
             <>
-            <button className={styles.closeButton} 
-                onClick={()=>{
-                    setPostModal(false)
-                }}
-            
-            >&#x2715;</button>
-            <div className={styles.modal}>
+              <button className={styles.closeButton} 
+                  onClick={()=>{
+                      setPostModal(false)
+                  }}
+              >&#x2715;</button>
+              <div className={styles.modal}>
+                <div className={styles.postCreation}>
 
-              <div className={styles.postCreation}>
+                  <div className={styles.modalContainer}>
+                  <div className={styles.formContainer}>
+                      <img src={post.image}/>
+                  </div>
 
-                <div className={styles.modalContainer}>
-                <div className={styles.formContainer}>
-                    <img src={post.image}/>
+                <div className={styles.commentsContainer}>
+                <div className={styles.profileInfo}>
+                  <SwitchProfile
+                    image={post.posterPic}
+                    handle={post.posterName}
+                    location={post.location}
+                    user={user}
+                    post={post}
+
+                    setUpdateForm={setUpdateForm}
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+
+                    setPostModal={setPostModal}
+                    deletePost={deletePost}
+                  />
                 </div>
-
-              <div className={styles.commentsContainer}>
-              <div className={styles.profileInfo}>
-                <SwitchProfile
-                  image={post.posterPic}
-                  handle={post.posterName}
-                  location={post.location}
-                  user={user}
-                  post={post}
-
-                  setUpdateForm={setUpdateForm}
-                  showModal={showModal}
-                  setShowModal={setShowModal}
-
-                  setPostModal={setPostModal}
-                  deletePost={deletePost}
-                />
+                <div className={styles.commentsIndex}></div>
+                </div>
+                </div>
+                </div>
               </div>
-              <div className={styles.commentsIndex}></div>
-              </div>
-
-              </div>
-              </div>
-            </div>
             </>
             :
             ''

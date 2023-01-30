@@ -14,23 +14,21 @@ export default function NavBarBottom({
     user
 }) {
 
-// const handleShowModal = (e) => {
-//     e.preventDefault()
-//     setShowModal(true)
-// console.log(user)
-// }
+console.log(user)
     return (
         <div className={styles.navBarBottom}>
             <IconButton><HomeIcon /></IconButton>
             <IconButton><ExploreIcon /></IconButton>
             <IconButton><MovieIcon /></IconButton>
             <div onClick={(e)=>{
-                e.preventDefault()
-                setShowModal(true)
-            }}>
-            <IconButton><ControlPointIcon/></IconButton>
+                e.preventDefault() 
+                setShowModal(true)}}>
+                <IconButton><ControlPointIcon/></IconButton>
             </div>
-            <IconButton><SendIcon /></IconButton>
+            <div className={styles.profile}>
+                <img src={user.profilePic}/>
+            </div>
+            {/* <IconButton><SendIcon /></IconButton> */}
         </div>
     );
 }
