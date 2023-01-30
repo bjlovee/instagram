@@ -56,12 +56,11 @@ const [updateForm, setUpdateForm] = useState(false)
 // Get User Info
 const getPosterInfo = async (id) => {
   try {
-    console.log(id)
+    // console.log(id)
     const response = await fetch(`/api/users/${id}`)
     const data = await response.json()
     console.log(data)
     setPosterInfo(data)
-    
   } catch (err) {
     console.log(err)
   }
@@ -98,10 +97,21 @@ const getPosts = async (id) => {
 
 useEffect(() => {
   fetchState()
-  // if(user){
-  //   getPosts(user._id)
+  // if a post exists, get the poster info
+  // console.log(post)
+    if(post){
+      getPosterInfo(post.poster)
+    }
   // }
 }, [])
+
+// console.log(posterInfo)
+// if(user && post){
+//   console.log(post.poster)
+// console.log(user._id)
+// }
+
+// console.log(posterInfo)
 
   return (
     <main className={styles.App}>
@@ -122,7 +132,11 @@ useEffect(() => {
                 <Route path='/profile' element={<ProfilePage
                   userPosts={userPosts}
                   getPosts={getPosts}
+                  getPosterInfo={getPosterInfo}
                   user={user}
+                  setPostModal={setPostModal}
+                  setPost={setPost}
+                  post={post}
                 />}/>
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>

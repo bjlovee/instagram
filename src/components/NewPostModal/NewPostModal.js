@@ -80,7 +80,7 @@ const handleSubmit = (e) => {
   // navigate('/post')
   console.log(post.poster)
   setPostModal(true)
-  getPosterInfo(newPost.poster)
+  // getPosterInfo(newPost.poster)
 }
 
 const handleChange = (evt) => {

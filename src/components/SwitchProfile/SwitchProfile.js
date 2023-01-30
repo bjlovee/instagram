@@ -13,14 +13,16 @@ export default function SwitchProfile({
   showModal,
   setShowModal,
   setPostModal,
-  deletePost
+  deletePost,
+  caption,
+  posterInfo
 }){
 
 
-
+console.log(user._id)
   // --- EVENT HANDLERS ---//
 
-
+// console.log(caption)
 
     return (
         <div className={styles.switchProfile}>
@@ -30,33 +32,43 @@ export default function SwitchProfile({
                 <div class={styles.username}>
                   <div>
                     <h5>{handle}</h5>
-                  <p>{location}</p>
+                    {/* the post header component info will have location */}
+                    {post && location
+                      ?
+                        <p>{location}</p>
+                      :
+                        ''
+                    }
+
                   </div>
                 </div>
-                
               </div>
             <div class={styles.switchLink}>
-              {user && post
+              {/* only the owner of the post can edit/delete */}
+              {user && post && user._id === post.poster
                 ?
-                <>
-                  <div onClick={()=>{
-                    deletePost(post._id)
-                    setPostModal(false)
-                    }}>
-                    <IconButton><DeleteIcon sx={{ fontSize: 18 }}/>
-                    </IconButton>
-                  </div>
-                  <div onClick={()=>{
-                    setUpdateForm(true)
-                    setShowModal(true)
-                    console.log('click')
+                  <>
+                    <div onClick={()=>{
+                      deletePost(post._id)
+                      setPostModal(false)
                       }}>
-                    <IconButton><Edit sx={{ fontSize: 18 }}/>
-                    </IconButton>
-                  </div>
-                </>
-                :
-                <h5>Edit</h5>
+                      <IconButton><DeleteIcon sx={{ fontSize: 18 }}/>
+                      </IconButton>
+                    </div>
+                    <div onClick={()=>{
+                      setUpdateForm(true)
+                      setShowModal(true)
+                      console.log('click')
+                        }}>
+                      <IconButton><Edit sx={{ fontSize: 18 }}/>
+                      </IconButton>
+                    </div>
+                  </>
+                : posterInfo                 
+                  ?
+                    ''  
+                  :                
+                   <h5>Edit</h5>
               }
             </div>
           </div>
