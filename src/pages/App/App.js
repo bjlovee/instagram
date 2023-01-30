@@ -98,9 +98,10 @@ const getPosts = async (id) => {
 
 useEffect(() => {
   fetchState()
-  // getPosterInfo()
+  // if(user){
+  //   getPosts(user._id)
+  // }
 }, [])
-
 
   return (
     <main className={styles.App}>
@@ -118,7 +119,11 @@ useEffect(() => {
                   followersEvents={followersEvents}
                 />} />
 
-                <Route path='/profile' element={<ProfilePage/>}/>
+                <Route path='/profile' element={<ProfilePage
+                  userPosts={userPosts}
+                  getPosts={getPosts}
+                  user={user}
+                />}/>
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>
           </Routes>
