@@ -12,9 +12,14 @@ export default function NavBarBottom() {
     return (
         <div className={styles.navBar}>
             {/* <div> */}
-            <div className={styles.logo}><h3
+            {/* <div className={styles.logo}><h3
               onClick={()=>{
                 navigate('/home')
+              }} */}
+
+              <div className={styles.logo}><h3
+              onClick={()=>{
+                navigate('/profile')
               }}
             >Instafake</h3></div>
             <IconButton><SearchOutlined className={styles.search}/></IconButton>

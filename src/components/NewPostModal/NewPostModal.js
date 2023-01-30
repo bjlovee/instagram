@@ -144,7 +144,7 @@ const handleSubmitUpdate = (e) => {
                   {!updateForm
                     ?
                       <>
-                      <h5>Create A New Post</h5>
+                        <h5>Create A New Post</h5>
                       </>
                   
                     :

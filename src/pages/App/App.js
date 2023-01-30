@@ -4,7 +4,7 @@ import HomePage from '../HomePage/HomePage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import ProfilePage from '../ProfilePage/Profilepage';
 // import NavBar from '../../components/NavBar/NavBar';
-import { Routes, Route} from 'react-router-dom'
+import { Routes, Route, Router} from 'react-router-dom'
 import styles from '../App/App.module.scss'
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom';
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
@@ -107,24 +107,28 @@ useEffect(() => {
       {
         user ?
         <>
-          <Routes>
-            <Route path="/home" element={<HomePage 
-              user={user}
+            <Routes>
+              <>
+                <Route path="/" element={<HomePage 
+                  user={user}
 
-              getFollowers={getFollowers}
+                  getFollowers={getFollowers}
 
-              setFollowersEvents={setFollowersEvents}
-              followersEvents={followersEvents}
-            />} />
-            <Route path="/profile" element={<ProfilePage/>} />
+                  setFollowersEvents={setFollowersEvents}
+                  followersEvents={followersEvents}
+                />} />
+
+                <Route path='/profile' element={<ProfilePage/>}/>
+                <Route path='/orders' element={<OrderHistoryPage />} />
+              </>
           </Routes>
+          <NavBarTop/>
           <NavBarBottom 
                 setShowModal={setShowModal}
                 showModal={showModal}
                 user={user}
             />
-        <NavBarTop/>
-        <NewPostModal
+          <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
 
@@ -140,8 +144,6 @@ useEffect(() => {
 
               setUpdateForm={setUpdateForm}
               updateForm={updateForm}
-
-
           />
           <ShowPostModal
               setShowModal={setShowModal}
@@ -164,7 +166,6 @@ useEffect(() => {
               userPosts={userPosts}
 
               deletePost={deletePost}
-
           />
 
         </>
@@ -184,5 +185,105 @@ useEffect(() => {
 }
 
 export default App;
+
+
+{/* <Routes>
+<Route path="/home" element={<HomePage 
+  user={user}
+
+  getFollowers={getFollowers}
+
+  setFollowersEvents={setFollowersEvents}
+  followersEvents={followersEvents}
+/>} />
+
+<Route path='/profile' element={<ProfilePage/>}/>
+
+</Routes> */}
+
+
+
+// return (
+//   <main className={styles.App}>
+//     {
+//       user ?
+//       <>
+//                 <NavBarBottom 
+//               setShowModal={setShowModal}
+//               showModal={showModal}
+//               user={user}
+//           />
+//         <NavBarTop/>
+//           <Routes>
+//             <>
+//               <Route path="/home" element={<HomePage 
+//                 user={user}
+
+//                 getFollowers={getFollowers}
+
+//                 setFollowersEvents={setFollowersEvents}
+//                 followersEvents={followersEvents}
+//               />} />
+
+//               <Route path='/profile' element={<ProfilePage/>}/>
+//             </>
+//         </Routes>
+
+//         <NewPostModal
+//             setShowModal={setShowModal}
+//             showModal={showModal}
+
+//             post={post}
+//             setPost={setPost}
+
+//             user={user}
+//             setUser={setUser}
+
+//             setPostModal={setPostModal}
+
+//             getPosterInfo={getPosterInfo}
+
+//             setUpdateForm={setUpdateForm}
+//             updateForm={updateForm}
+//         />
+//         <ShowPostModal
+//             setShowModal={setShowModal}
+//             showModal={showModal}
+
+//             setPostModal={setPostModal}
+//             postModal={postModal}
+
+//             post={post}
+//             setPost={setPost}
+
+//             user={user}
+//             setUser={setUser}
+//             getPosterInfo={getPosterInfo}
+//             posterInfo={posterInfo}
+
+//             setUpdateForm={setUpdateForm}
+
+//             setUserPosts={setUserPosts}
+//             userPosts={userPosts}
+
+//             deletePost={deletePost}
+//         />
+
+//       </>
+//        :
+//       <LandingPage 
+//         setUser={setUser}
+//         user={user}
+
+//         getFollowers={getFollowers}
+
+//         setFollowersEvents={setFollowersEvents}
+//         followersEvents={followersEvents}
+//         />
+//     }
+//   </main>
+// );
+
+
 
 
