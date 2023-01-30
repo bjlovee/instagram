@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    // padding: 5rem;
 }
 
 .postCreation{
@@ -108,7 +109,7 @@
     margin: 0 auto;
 }
 .commentsIndex{
-    border: solid blue;
+    // border: solid blue;
     overflow-x: hidden;
     overflow-y: scroll;
     max-height: 20rem;
@@ -120,6 +121,13 @@
     border: solid purple;
     bottom: 0;
     position: absolute;
-    display: flex;
-    width: fit-content;
+    // display: flex;
+    width: inherit;
+    // padding: 1rem;
+    background-color: white;
+    justify-content: center;
+}
+
+.addComment > input{
+    width: 71%;
 }
