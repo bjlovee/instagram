@@ -26,10 +26,12 @@ const [posterInfo, setPosterInfo] = useState({})
 
 
 const [post, setPost] = useState({})
+const [userPosts, setUserPosts] = useState([])
+
 const [updateForm, setUpdateForm] = useState(false)
 
 
-  // Index Restaurants
+  // Followers
   const getFollowers = async (id) => {
     try {
       const response = await fetch(`api/followers/follower/${id}`)
@@ -65,6 +67,33 @@ const getPosterInfo = async (id) => {
   }
 }
 
+//get Posts by user
+const getPosts = async (id) => {
+  try{
+    const response = await fetch(`/api/posts/${id}`)
+    const data = await response.json()
+    console.log(data)
+    setUserPosts(data)
+  } catch (e){
+    console.error({ msg:e.message })
+  }
+}
+
+  // Delete Post
+  const deletePost = async (id) => {
+    try {
+      await fetch(`/api/posts/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      setPost({})
+      getPosts(user._id)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
 
 useEffect(() => {
@@ -130,6 +159,12 @@ useEffect(() => {
               posterInfo={posterInfo}
 
               setUpdateForm={setUpdateForm}
+
+              setUserPosts={setUserPosts}
+              userPosts={userPosts}
+
+              deletePost={deletePost}
+
           />
 
         </>

@@ -13,7 +13,8 @@ export default function ShowPostModal({
     getPosterInfo,
     setUpdateForm,
     showModal,
-    setShowModal
+    setShowModal,
+    deletePost
 }){
     console.log(post.poster)
 
@@ -22,7 +23,7 @@ useEffect(()=>{
     getPosterInfo(post.poster)
 },[])
 
-  console.log(posterInfo)
+  // console.log(posterInfo)
     return(
         <>
         {postModal
@@ -31,7 +32,6 @@ useEffect(()=>{
             <button className={styles.closeButton} 
                 onClick={()=>{
                     setPostModal(false)
-                    // setPost(null)
                 }}
             
             >&#x2715;</button>
@@ -58,14 +58,14 @@ useEffect(()=>{
                   setShowModal={setShowModal}
 
                   setPostModal={setPostModal}
+                  deletePost={deletePost}
                 />
               </div>
               <div className={styles.commentsIndex}></div>
               </div>
 
-                </div>
-                    {/* <img src={post.image}/> */}
-                </div>
+              </div>
+              </div>
             </div>
             </>
             :

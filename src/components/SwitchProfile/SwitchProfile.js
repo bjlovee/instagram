@@ -12,8 +12,15 @@ export default function SwitchProfile({
   setUpdateForm,
   showModal,
   setShowModal,
-  setPostModal
+  setPostModal,
+  deletePost
 }){
+
+
+
+  // --- EVENT HANDLERS ---//
+
+
 
     return (
         <div className={styles.switchProfile}>
@@ -33,16 +40,15 @@ export default function SwitchProfile({
                 ?
                 <>
                   <div onClick={()=>{
-                    console.log('click')
-                  }}>
+                    deletePost(post._id)
+                    setPostModal(false)
+                    }}>
                     <IconButton><DeleteIcon sx={{ fontSize: 18 }}/>
                     </IconButton>
-                    </div>
+                  </div>
                   <div onClick={()=>{
-                    // console.log('click')
                     setUpdateForm(true)
                     setShowModal(true)
-                    // setPostModal(false)
                     console.log('click')
                       }}>
                     <IconButton><Edit sx={{ fontSize: 18 }}/>
@@ -52,7 +58,6 @@ export default function SwitchProfile({
                 :
                 <h5>Edit</h5>
               }
-              
             </div>
           </div>
         </div>

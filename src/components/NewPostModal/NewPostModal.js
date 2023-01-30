@@ -87,10 +87,10 @@ const handleChange = (evt) => {
   setPost({ ...post, [evt.target.name]: evt.target.value })
 }
 
-useEffect(()=>{
-  getPosterInfo(post.poster)
-}, [])
-// console.log(user)
+// useEffect(()=>{
+//   getPosterInfo(post.poster)
+// }, [])
+// // console.log(user)
 
 
 
@@ -120,8 +120,8 @@ const handleSubmitUpdate = (e) => {
   setPostModal(true)
 
 }
-console.log(post)
-console.log(updatedPost)
+// console.log(post)
+// console.log(updatedPost)
 
 // const handleUpdateChange = (e) => {
 //   setUpdatedPost({ ...updatedPost, [e.target.name]: e.target.value })
@@ -161,7 +161,7 @@ console.log(updatedPost)
                       <form autoComplete='off'onSubmit={handleSubmit}>
                         <input type='text' key={post._id + '1'} name='image' value={post.image} onChange={handleChange} placeholder='image' />
                         <input type='text' key={post._id + '2'} name='location' value={post.location} onChange={handleChange} placeholder='location' required />
-                        <input type='text' key={post._id + '3'} name='music' value={post.music} onChange={handleChange} placeholder='music' required />
+                        <input type='text' key={post._id + '3'} name='music' value={post.music} onChange={handleChange} placeholder='music' />
                         <textarea className={styles.textArea} key={post._id} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required />
                         <div className={styles.buttonContainer}>
                           <button type='submit'>Submit</button>
@@ -174,10 +174,10 @@ console.log(updatedPost)
                     <>
                       <div className={styles.formContainer}>
                       <form autoComplete='off' onSubmit={(e) => {handleSubmitUpdate(e)}}>
-                        <input type='text' value={updatedPost.image} placeholder='image' onChange={(e) => {setUpdatedPost({ ...updatedPost, image: e.target.value})}}/>
-                        <input type='text' value={updatedPost.location} placeholder='location' onChange={(e) => {setUpdatedPost({ ...updatedPost, location: e.target.value})}}/>
-                        <input type='text' value={updatedPost.music} placeholder='music' onChange={(e) => {setUpdatedPost({ ...updatedPost, music: e.target.value})}}/>
-                        <textarea className={styles.textArea}type='text' name='caption' value={updatedPost.caption} placeholder='caption' onChange={(e) => {setUpdatedPost({ ...updatedPost, caption: e.target.value})}}/>
+                        <input type='text' name='image' value={updatedPost.image} placeholder='image' onChange={(e) => {setUpdatedPost({ ...updatedPost, image: e.target.value})}}/>
+                        <input type='text' name='location' value={updatedPost.location} placeholder='location' onChange={(e) => {setUpdatedPost({ ...updatedPost, location: e.target.value})}}/>
+                        <input type='text' name='music' value={updatedPost.music} placeholder='music' onChange={(e) => {setUpdatedPost({ ...updatedPost, music: e.target.value})}}/>
+                        <textarea className={styles.textArea} type='text' name='caption' value={updatedPost.caption} placeholder='caption' onChange={(e) => {setUpdatedPost({ ...updatedPost, caption: e.target.value})}}/>
                         <div className={styles.buttonContainer}>
                           <button 
                             onClick={()=>{
