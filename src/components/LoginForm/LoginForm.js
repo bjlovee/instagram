@@ -28,7 +28,7 @@ export default function LoginForm ({
     try {
       const user = await userService.login(credentials)
       setUser(user)
-      navigate('/home')
+      // navigate('/home')
       getFollowers(user._id)
     } catch (error) {
       setError(error.message)
