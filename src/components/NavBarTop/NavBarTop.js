@@ -5,26 +5,27 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import styles from '../NavBarTop/NavBarTop.module.scss'
 import { useNavigate } from 'react-router-dom'
 
-export default function NavBarBottom() {
+export default function NavBarBottom () {
+  const navigate = useNavigate()
 
-    const navigate = useNavigate()
-
-    return (
-        <div className={styles.navBar}>
-            {/* <div> */}
-            {/* <div className={styles.logo}><h3
+  return (
+    <div className={styles.navBar}>
+      {/* <div> */}
+      {/* <div className={styles.logo}><h3
               onClick={()=>{
                 navigate('/home')
               }} */}
 
-              <div className={styles.logo}><h3
-              onClick={()=>{
-                navigate('/profile')
-              }}
-            >Instafake</h3></div>
-            <IconButton><SearchOutlined className={styles.search}/></IconButton>
-            {/* </div> */}
-            <IconButton><FavoriteBorderIcon /></IconButton>
-        </div>
-    );
+      <div className={styles.logo}><h3
+        onClick={() => {
+          navigate('/profile')
+        }}
+                                   >Instafake
+                                   </h3>
+      </div>
+      <IconButton><SearchOutlined className={styles.search} /></IconButton>
+      {/* </div> */}
+      <IconButton><FavoriteBorderIcon /></IconButton>
+    </div>
+  )
 }

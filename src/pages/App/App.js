@@ -1,35 +1,45 @@
-import { useState, useEffect } from 'react';
-import LandingPage from '../LandingPage/LandingPage';
-import HomePage from '../HomePage/HomePage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
-import ProfilePage from '../ProfilePage/Profilepage';
+import { useState, useEffect } from 'react'
+import LandingPage from '../LandingPage/LandingPage'
+import HomePage from '../HomePage/HomePage'
+import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage'
+import ProfilePage from '../ProfilePage/Profilepage'
 // import NavBar from '../../components/NavBar/NavBar';
-import { Routes, Route, Router} from 'react-router-dom'
+import { Routes, Route, Router } from 'react-router-dom'
 import styles from '../App/App.module.scss'
-import NavBarBottom from '../../components/NavBarBottom/NavBarBottom';
+import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
-import NewPostModal from '../../components/NewPostModal/NewPostModal';
-import NavBar from '../../components/NavBar/NavBar';
-import ShowPostModal from '../../components/ShowPostModal/ShowPostModal';
+import NewPostModal from '../../components/NewPostModal/NewPostModal'
+import NavBar from '../../components/NavBar/NavBar'
+import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
 
-
-function App() {
+function App () {
   const [state, setState] = useState(null)
-  const [user, setUser ] = useState(null)
+  const [user, setUser] = useState(null)
 
+  const [followersEvents, setFollowersEvents] = useState([])
+  const [showModal, setShowModal] = useState(false)
+  const [postModal, setPostModal] = useState(false)
+  const [posterInfo, setPosterInfo] = useState({})
 
+  const [post, setPost] = useState({})
+  const [userPosts, setUserPosts] = useState([])
 
-const [followersEvents, setFollowersEvents] = useState([])
-const [showModal, setShowModal] = useState(false)
-const [postModal, setPostModal] = useState(false)
-const [posterInfo, setPosterInfo] = useState({})
+  const [updateForm, setUpdateForm] = useState(false)
 
+  const [commentsByPost, setCommentsByPost] = useState([])
 
-const [post, setPost] = useState({})
-const [userPosts, setUserPosts] = useState([])
-
-const [updateForm, setUpdateForm] = useState(false)
-
+  // Index Comments by post
+  const getComments = async (id) => {
+    console.log(id)
+    try {
+      const response = await fetch(`/api/comments/post/${id}`)
+      const data = await response.json()
+      // console.log(data)
+      setCommentsByPost(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   // Followers
   const getFollowers = async (id) => {
@@ -53,31 +63,30 @@ const [updateForm, setUpdateForm] = useState(false)
     }
   }
 
-// Get User Info
-const getPosterInfo = async (id) => {
-  try {
-    console.log(id)
-    const response = await fetch(`/api/users/${id}`)
-    const data = await response.json()
-    console.log(data)
-    setPosterInfo(data)
-    
-  } catch (err) {
-    console.log(err)
+  // Get User Info
+  const getPosterInfo = async (id) => {
+    try {
+    // console.log(id)
+      const response = await fetch(`/api/users/${id}`)
+      const data = await response.json()
+      // console.log(data)
+      setPosterInfo(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
-}
 
-//get Posts by user
-const getPosts = async (id) => {
-  try{
-    const response = await fetch(`/api/posts/${id}`)
-    const data = await response.json()
-    console.log(data)
-    setUserPosts(data)
-  } catch (e){
-    console.error({ msg:e.message })
+  // get Posts by user
+  const getPosts = async (id) => {
+    try {
+      const response = await fetch(`/api/posts/${id}`)
+      const data = await response.json()
+      // console.log(data)
+      setUserPosts(data)
+    } catch (e) {
+      console.error({ msg: e.message })
+    }
   }
-}
 
   // Delete Post
   const deletePost = async (id) => {
@@ -95,40 +104,67 @@ const getPosts = async (id) => {
     }
   }
 
+  useEffect(() => {
+  // fetchState()
+  // if a post exists, get the poster info
+  // console.log(post)
+    if (post) {
+      getPosterInfo(post.poster)
+    }
+  // }
+  }, [])
 
-useEffect(() => {
-  fetchState()
-  // getPosterInfo()
-}, [])
+  // console.log(posterInfo)
+  // if(user && post){
+  //   console.log(post.poster)
+  // console.log(user._id)
+  // }
 
+  // console.log(posterInfo)
+  // if(post){
+  //   console.log(commentsByPost)
+  // }
 
   return (
     <main className={styles.App}>
       {
-        user ?
-        <>
+        user
+          ? <>
             <Routes>
               <>
-                <Route path="/" element={<HomePage 
-                  user={user}
+                <Route
+                  path='/' element={<HomePage
+                    user={user}
 
-                  getFollowers={getFollowers}
+                    getFollowers={getFollowers}
 
-                  setFollowersEvents={setFollowersEvents}
-                  followersEvents={followersEvents}
-                />} />
+                    setFollowersEvents={setFollowersEvents}
+                    followersEvents={followersEvents}
+                                    />}
+                />
 
-                <Route path='/profile' element={<ProfilePage/>}/>
+                <Route
+                  path='/profile' element={<ProfilePage
+                    userPosts={userPosts}
+                    getPosts={getPosts}
+                    getPosterInfo={getPosterInfo}
+                    user={user}
+                    setPostModal={setPostModal}
+                    setPost={setPost}
+                    post={post}
+                    getComments={getComments}
+                                           />}
+                />
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>
-          </Routes>
-          <NavBarTop/>
-          <NavBarBottom 
-                setShowModal={setShowModal}
-                showModal={showModal}
-                user={user}
+            </Routes>
+            <NavBarTop />
+            <NavBarBottom
+              setShowModal={setShowModal}
+              showModal={showModal}
+              user={user}
             />
-          <NewPostModal
+            <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
 
@@ -144,8 +180,8 @@ useEffect(() => {
 
               setUpdateForm={setUpdateForm}
               updateForm={updateForm}
-          />
-          <ShowPostModal
+            />
+            <ShowPostModal
               setShowModal={setShowModal}
               showModal={showModal}
 
@@ -166,29 +202,30 @@ useEffect(() => {
               userPosts={userPosts}
 
               deletePost={deletePost}
-          />
 
-        </>
-         :
-        <LandingPage 
-          setUser={setUser}
-          user={user}
+              getComments={getComments}
+              commentsByPost={commentsByPost}
+            />
 
-          getFollowers={getFollowers}
+          </>
+          : <LandingPage
+              setUser={setUser}
+              user={user}
 
-          setFollowersEvents={setFollowersEvents}
-          followersEvents={followersEvents}
-          />
+              getFollowers={getFollowers}
+
+              setFollowersEvents={setFollowersEvents}
+              followersEvents={followersEvents}
+            />
       }
     </main>
-  );
+  )
 }
 
-export default App;
+export default App
 
-
-{/* <Routes>
-<Route path="/home" element={<HomePage 
+{ /* <Routes>
+<Route path="/home" element={<HomePage
   user={user}
 
   getFollowers={getFollowers}
@@ -199,16 +236,14 @@ export default App;
 
 <Route path='/profile' element={<ProfilePage/>}/>
 
-</Routes> */}
-
-
+</Routes> */ }
 
 // return (
 //   <main className={styles.App}>
 //     {
 //       user ?
 //       <>
-//                 <NavBarBottom 
+//                 <NavBarBottom
 //               setShowModal={setShowModal}
 //               showModal={showModal}
 //               user={user}
@@ -216,7 +251,7 @@ export default App;
 //         <NavBarTop/>
 //           <Routes>
 //             <>
-//               <Route path="/home" element={<HomePage 
+//               <Route path="/home" element={<HomePage
 //                 user={user}
 
 //                 getFollowers={getFollowers}
@@ -271,7 +306,7 @@ export default App;
 
 //       </>
 //        :
-//       <LandingPage 
+//       <LandingPage
 //         setUser={setUser}
 //         user={user}
 
@@ -283,7 +318,3 @@ export default App;
 //     }
 //   </main>
 // );
-
-
-
-

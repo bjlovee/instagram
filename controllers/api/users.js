@@ -51,30 +51,30 @@ const dataController = {
     }
   },
   async update (req, res, next) {
-    try{
+    try {
       console.log(req.body.profilePic)
       const updatedUser = await User.findByIdAndUpdate(req.params.id, {
         profilePic: req.body.profilePic,
         handle: req.body.handle
       })
       // const updatedUser = await User.findById(req.params.id)
-      
+
       res.locals.data.user = updatedUser
       next()
-    } catch(e) {
+    } catch (e) {
       res.status(400).json(e)
     }
   },
-    async index (req, res, next) {
-      try{
-        const users = await User.find({})
-        // res.status(200).json(users)
-        res.locals.data.users = users
-        next()
-      } catch (e) {
-        res.status(400).json(e)
-      }
+  async index (req, res, next) {
+    try {
+      const users = await User.find({})
+      // res.status(200).json(users)
+      res.locals.data.users = users
+      next()
+    } catch (e) {
+      res.status(400).json(e)
     }
+  }
 }
 
 const apiController = {
@@ -101,19 +101,6 @@ function createJWT (user) {
   // accept a user and return a token
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h' })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // // /controllers/api/users.js
 // const User = require('../../models/user')

@@ -1,3 +1,3 @@
-export default function ProfileIcon(){
-    return <h1>ProfileIcon</h1>
+export default function ProfileIcon () {
+  return <h1>ProfileIcon</h1>
 }

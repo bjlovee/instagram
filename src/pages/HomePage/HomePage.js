@@ -1,116 +1,100 @@
 import styles from '../HomePage/HomePage.module.scss'
 import { useState, useEffect } from 'react'
-import Post from '../../components/Post/Post';
+import Post from '../../components/Post/Post'
 import HomePageCarousel from '../../components/HomePageCarousel/HomePageCarousel'
-import Footer from '../../components/Footer/Footer';
-import SwitchProfile from '../../components/SwitchProfile/SwitchProfile';
-import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile';
-import ShowPostModal from '../../components/ShowPostModal/ShowPostModal';
+import Footer from '../../components/Footer/Footer'
+import SwitchProfile from '../../components/SwitchProfile/SwitchProfile'
+import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile'
+import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
 
-export default function HomePage({
-    user,
-    getFollowers,
+export default function HomePage ({
+  user,
+  getFollowers,
 
-    setFollowersEvents,
-    followersEvents,
-}){
-
-
+  setFollowersEvents,
+  followersEvents
+}) {
 // console.log(user)
 
-const [followersPosts, setFollowersPosts] = useState([])
+  const [followersPosts, setFollowersPosts] = useState([])
 
-//settings posts data in loop
-const handleSetPosts = (data) => {
-    //adding to state via conditional to prevent infinite loop
-    if(followersPosts.length < followersEvents.length - 1){
-        setFollowersPosts(followersPosts => [...followersPosts, data])
-    }
-    else{
-        return;
-    }
-}
+  // settings posts data in loop
+  const handleSetPosts = (data) => {
+    // adding to state via conditional to prevent infinite loop
+    if (followersPosts.length < followersEvents.length - 1) {
+      setFollowersPosts(followersPosts => [...followersPosts, data])
+    } else {
 
-// getting the users followers posts by the latest post
-const getFollowersLatestPost = async (id) => {
-    try{
+    }
+  }
+
+  // getting the users followers posts by the latest post
+  const getFollowersLatestPost = async (id) => {
+    try {
       const response = await fetch(`api/posts/poster/${id}`)
       const data = await response.json()
       handleSetPosts(data)
     } catch (e) {
-    
+
     }
   }
 
-//mapping through the array of followers and 
- const getPosts = () => {
-    if(followersEvents.length > 0){
-        followersEvents.map(event => {
-            getFollowersLatestPost(event.followerUser)
-        })
+  // mapping through the array of followers and
+  const getPosts = () => {
+    if (followersEvents.length > 0) {
+      followersEvents.map(event => {
+        getFollowersLatestPost(event.followerUser)
+      })
     }
+  }
 
- } 
-
-//gets posts on page load
-useEffect(() => {
+  // gets posts on page load
+  useEffect(() => {
     getPosts()
-})
+  })
 
+  // console.log(followersPosts)
 
-// console.log(followersPosts)
-
-    return (
-        <>
-            <div className={styles.indexSection}>
-              <section>
-                <div className={styles.postsIndex}>
-                  <section>
-                    <HomePageCarousel/>
-                  </section>
-                  <Post />
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                    <div className={styles.postContainer}></div>
-                </div>
-              </section>
-              <div className={styles.sectionWrapper}>
-              <section className={styles.suggestedContainer}>
-                <SwitchProfile
-                    user={user}
-                    handle={user.handle}
-                    image={user.profilePic}
-                />
-                <SuggestedProfile/>
-              </section>
-              </div>
-            </div>
-            <Footer/>
-        </>
-    )
+  return (
+    <>
+      <div className={styles.indexSection}>
+        <section>
+          <div className={styles.postsIndex}>
+            <section>
+              <HomePageCarousel />
+            </section>
+            <Post />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+            <div className={styles.postContainer} />
+          </div>
+        </section>
+        <div className={styles.sectionWrapper}>
+          <section className={styles.suggestedContainer}>
+            <SwitchProfile
+              user={user}
+              handle={user.handle}
+              image={user.profilePic}
+            />
+            <SuggestedProfile />
+          </section>
+        </div>
+      </div>
+      <Footer />
+    </>
+  )
 }
-
-
-
-
-
-
-
-
-
-
 
 // const [followersEvents, setFollowersEvents] = useState([])
 // const [followersPosts, setFollowersPosts] = useState([])
-
 
 //   // Index Restaurants
 //   const getFollowers = async (id) => {
@@ -141,57 +125,18 @@ useEffect(() => {
 //     getFollowers(user._id)
 //   }, [])
 
-
 // //number of followers
 // console.log(followersEvents.length)
 
 // //showing each follower event
 // followersEvents.map(event => console.log(event))
 
-
 // //getting one followers latest post
 // followersEvents.map(event => {
 //     getFollowersLatestPost(event.followerUser)
 // })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {/* <div className={styles.postContainer}>
+{ /* <div className={styles.postContainer}>
                         <div className={styles.post}></div>
                     </div>
                     <div className={styles.postContainer}>
@@ -220,14 +165,9 @@ useEffect(() => {
                     </div>
                     <div className={styles.postContainer}>
                         <div className={styles.post}></div>
-                    </div> */}
+                    </div> */ }
 
-
-
-                    //Get one post by follower
-
-
-
+// Get one post by follower
 
 //     followersEvents.map(event => {
 //         if (counter <= followersEvents.length){
@@ -236,44 +176,22 @@ useEffect(() => {
 //         counter ++
 //     })
 
-    // console.log(followersPosts)
+// console.log(followersPosts)
 
-
-
-
-    // console.log(followersPosts)
+// console.log(followersPosts)
 // followersEvents.map(event => {
 //     setFollowers(followers => [...followers, event])
 // })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Followers in jims profile
-//Followers
+// Followers
 // "63d16996f11057f2263c9ca5",
-    //followerUser 
-    // "63d05696f24703987800a352" --> match to poster in post
+// followerUser
+// "63d05696f24703987800a352" --> match to poster in post
 
-//Followers
+// Followers
 // "63d17a5e4500f61ebc60c114"
-    // followerUser
-    // "63d0563a41be762fc7220c7a" --> match to poster in post
+// followerUser
+// "63d0563a41be762fc7220c7a" --> match to poster in post
 
 //
-

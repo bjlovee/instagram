@@ -8,10 +8,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    // padding: 5rem;
 }
 
 .postCreation{
     // border: solid black;
+    // max-height: 40rem;
     position: absolute;
     // padding: 5rem;
     // width: ;
@@ -41,8 +43,6 @@
     background: none;
     opacity: 0.7;
 }
-
-
 
 .modalHeader{
     padding: 1rem;
@@ -76,8 +76,12 @@
 .commentsContainer{
     // border: solid red;
     width: 50%;
+    // max-height: 30rem;
     background-color: rgb(255, 255, 255);
     border-radius: 0 0.5rem 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .formContainer > img{
@@ -87,8 +91,44 @@
     overflow: hidden;
 }
 
-// .profileInfo{
-//     border: solid green;
-//     // padding: 2rem;
-// }
+.profileInfo{
+    border-bottom: solid var(--outlines);
+    border-width: 0.4px;
+}
 
+.caption{
+    border: solid white;
+}
+
+.captionContainer{
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+}
+.captionContainer > p{
+    margin: 0 auto;
+}
+.commentsIndex{
+    // border: solid blue;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 20rem;
+    // display: flex;
+    // flex-direction: column;
+}
+
+.addComment{
+    // border: solid purple;
+    bottom: 0;
+    position: absolute;
+    // display: flex;
+    width: inherit;
+    // padding: 1rem;
+    background-color: white;
+    justify-content: center;
+}
+
+.addComment > input{
+    width: 71%;
+}

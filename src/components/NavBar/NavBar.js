@@ -9,7 +9,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import styles from '../NavBar/NavBar.module.scss'
 
-export default function NavBar() {
+export default function NavBar () {
   return (
     <div className={styles.navBar}>
       <IconButton><InstagramIcon /></IconButton>
@@ -21,5 +21,5 @@ export default function NavBar() {
       <IconButton><ControlPointIcon /></IconButton>
       {/* <IconButton><InstagramIcon /></IconButton> */}
     </div>
-  );
+  )
 }
