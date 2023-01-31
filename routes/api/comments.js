@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { dataController, apiController} = require('../../controllers/api/comments')
+const { dataController, apiController } = require('../../controllers/api/comments')
 
 // GET ALL /api/comments
 router.get('/', dataController.index, apiController.index)

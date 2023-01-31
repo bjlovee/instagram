@@ -30,9 +30,9 @@ const dataController = {
   //     }
   //   })
   // },
-  async getCommentsByPost (req, res, next){
-    try{
-      const postComments = await Comment.find({ post:req.params.id }).sort({ createdAt: 'desc' })
+  async getCommentsByPost (req, res, next) {
+    try {
+      const postComments = await Comment.find({ post: req.params.id }).sort({ createdAt: 'desc' })
       res.locals.data.comments = postComments
       next()
     } catch (e) {
@@ -40,18 +40,18 @@ const dataController = {
     }
   },
 
-  async destroy (req, res, next){
-    try{
-      //find the comment passed in
+  async destroy (req, res, next) {
+    try {
+      // find the comment passed in
       const comment = await Comment.findById(req.params.id)
-      //getting the comment stored in the post 
+      // getting the comment stored in the post
       await Post.findByIdAndUpdate(comment.post, {
         $pull: {
-          //pulling the object stored in the array matching the comment id
-          comments: { $in: [req.params.id]}
+          // pulling the object stored in the array matching the comment id
+          comments: { $in: [req.params.id] }
         }
       })
-      //deleting the comment
+      // deleting the comment
       await Comment.deleteOne(comment)
       res.locals.data.comment = comment
       next()
@@ -74,7 +74,7 @@ const dataController = {
   },
   // Create
   // create (req, res, next) {
-   
+
   //   Comment.create(req.body, (err, createdComment) => {
   //     if (err) {
   //       res.status(400).send({
@@ -86,8 +86,8 @@ const dataController = {
   //     }
   //   })
   // },
-  async create (req, res, next){
-    try{
+  async create (req, res, next) {
+    try {
       const comment = await Comment.create(req.body)
       await Post.findByIdAndUpdate(comment.post, {
         $push: {
@@ -118,12 +118,12 @@ const dataController = {
 }
 
 const apiController = {
-    index (req, res, next) {
-      res.json(res.locals.data.comments)
-    },
-    show (req, res, next) {
-      res.json(res.locals.data.comment)
-    }
+  index (req, res, next) {
+    res.json(res.locals.data.comments)
+  },
+  show (req, res, next) {
+    res.json(res.locals.data.comment)
   }
+}
 
-module.exports = { dataController, apiController}
+module.exports = { dataController, apiController }
