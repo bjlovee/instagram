@@ -7,6 +7,7 @@ import Comment from '../Comment/Comment'
 // import {AiOutlineHeart} from 'react-icons/ai'
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Message } from '@mui/icons-material'
 
 
 export default function ShowPostModal ({
@@ -22,14 +23,18 @@ export default function ShowPostModal ({
   setShowModal,
   deletePost,
   commentsByPost,
-  getComments
+  getComments,
+  getLikesByPost,
+  setLikesByPost,
+  likesByPost,
+  setLike,
+  like
 }) {
   const [newComment, setNewComment] = useState({
     comment: ''
   })
 
-  const [like, setLike] = useState({})
-  const [likesByPost, setLikesByPost] = useState([])
+ 
 
   const [comment, setComment] = useState({})
 
@@ -81,7 +86,6 @@ export default function ShowPostModal ({
         headers: {
           'Content-Type': 'application/json'
         }
-
       })
       getComments(post._id)
     } catch (error) {
@@ -108,19 +112,6 @@ export default function ShowPostModal ({
   }
 
 
-//Get likes by post
-  const getLikesByPost = async (id) => {
-    try {
-    // console.log(id)
-      const response = await fetch(`/api/likes/${id}`)
-      const data = await response.json()
-      // console.log(data)
-      setLikesByPost(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
 
 //Create Like
 const createLike = async () => {
@@ -139,27 +130,41 @@ const createLike = async () => {
     const data = await response.json()
     setLike(data)
     getLikesByPost(post._id)
-    // setNewComment({
-    //   comment: ''
-    // })
   } catch (error) {
     console.error(error)
   }
 }
+
+//Delete Like
+const deleteLike = async () => {
+  try {
+    await fetch(`/api/likes/${like._id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    setLike({})
+    getLikesByPost(post._id)
+  } catch (e) {
+    console.error({ msg:e.message })
+  }
+}
+
+
 
 
   // Side effects
   useEffect(() => {
     getPosterInfo(post.poster)
 
+    // handleSetLike()
   }, [])
 
-  // console.log(commentsByPost)
-  console.log(post._id)
-  console.log(user._id)
-console.log(likesByPost)
-console.log(posterInfo)
 console.log(like)
+
+// console.log(like)
+// console.log(likesByPost)
 
   return (
     <>
@@ -169,6 +174,8 @@ console.log(like)
             className={styles.closeButton}
             onClick={() => {
               setPostModal(false)
+              setLike({})
+              setLikesByPost([])
             }}
           >&#x2715;
           </button>
@@ -256,7 +263,12 @@ console.log(like)
                     <div className={styles.likeButton}>
                       {like && like.liker === user._id
                         ?
-                          <FavoriteIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
+                          <div onClick={(e) => {
+                            e.preventDefault()
+                            deleteLike()
+                          }}>
+                            <FavoriteIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
+                          </div>
                         :
                         <div onClick={(e) =>{
                           e.preventDefault()

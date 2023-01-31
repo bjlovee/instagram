@@ -27,7 +27,7 @@ export default function Comment ({
       ...updatedComment, [e.target.name]: e.target.value
     })
   }
-  console.log(Date.now())
+  // console.log(Date.now())
   return (
     <div className={styles.commentContainer}>
       <div class={styles.switchContainer}>

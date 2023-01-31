@@ -1,18 +1,28 @@
 import ProfilePostsIndex from '../ProfilePostsIndex/ProfilePostsIndex'
 import styles from './ProfileSection.module.scss'
 // import tempStyles from '../ProfilePostsIndex/ProfilePostsIndex.module.scss'
+import { useEffect } from 'react'
 
 export default function ProfileSection ({
   userPosts,
   setPostModal,
   setPost,
-  getComments
+  getComments,
+  getLikesByPost,
+  setLike,
+  like
+  // post,
+  
 }) {
   const handleSelectPost = (post) => {
+    // console.log(post)
     setPost(post)
     setPostModal(true)
+    
     getComments(post._id)
+    getLikesByPost(post._id)
   }
+
 
   return (
     <>
