@@ -5,13 +5,16 @@ import styles from './ProfileSection.module.scss'
 export default function ProfileSection({
   userPosts,
   setPostModal,
-  setPost
+  setPost,
+  getComments
 }){
 
   const handleSelectPost = (post) => {
     setPost(post)
     setPostModal(true)
+    getComments(post._id)
   }
+  
     return(
       <>
       <div className={styles.sectionTitle}>

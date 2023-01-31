@@ -2,8 +2,10 @@ const express = require('express')
 const router = express.Router()
 const { dataController, apiController} = require('../../controllers/api/comments')
 
-// GET /api/comments
+// GET ALL /api/comments
 router.get('/', dataController.index, apiController.index)
+// GET ALL /api/comments/post/:id
+router.get('/post/:id', dataController.getCommentsByPost, apiController.index)
 // DELETE /api/comments/:id
 router.delete('/:id', dataController.destroy, apiController.show)
 // UPDATE /api/comments/:id

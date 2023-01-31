@@ -11,7 +11,8 @@ export default function ProfilePage({
     setPostModal,
     setPost,
     getPosterInfo,
-    post
+    post,
+    getComments
 }){
 
   // console.log(user._id)
@@ -45,6 +46,7 @@ useEffect(() => {
             userPosts={userPosts}
             setPostModal={setPostModal}
             setPost={setPost}
+            getComments={getComments}
             // user={user}
           />
           <Footer/>

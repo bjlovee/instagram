@@ -1,3 +1,4 @@
+const { requirePropFactory } = require('@mui/material')
 const Comment = require('../../models/comments')
 const Post = require('../../models/posts')
 
@@ -29,6 +30,16 @@ const dataController = {
   //     }
   //   })
   // },
+  async getCommentsByPost (req, res, next){
+    try{
+      const postComments = await Comment.find({ post:req.params.id }).sort({ createdAt: 'desc' })
+      res.locals.data.comments = postComments
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
+
   async destroy (req, res, next){
     try{
       //find the comment passed in
@@ -40,7 +51,7 @@ const dataController = {
           comments: { $in: [req.params.id]}
         }
       })
-      //deleting the post
+      //deleting the comment
       await Comment.deleteOne(comment)
       res.locals.data.comment = comment
       next()

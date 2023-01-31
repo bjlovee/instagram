@@ -30,6 +30,22 @@ const [userPosts, setUserPosts] = useState([])
 
 const [updateForm, setUpdateForm] = useState(false)
 
+const [commentsByPost, setCommentsByPost] = useState([])
+
+
+
+// Index Comments by post
+const getComments = async (id) => {
+  console.log(id)
+  try {
+    const response = await fetch(`/api/comments/post/${id}`)
+    const data = await response.json()
+    // console.log(data)
+    setCommentsByPost(data)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
   // Followers
   const getFollowers = async (id) => {
@@ -59,7 +75,7 @@ const getPosterInfo = async (id) => {
     // console.log(id)
     const response = await fetch(`/api/users/${id}`)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     setPosterInfo(data)
   } catch (err) {
     console.log(err)
@@ -71,7 +87,7 @@ const getPosts = async (id) => {
   try{
     const response = await fetch(`/api/posts/${id}`)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     setUserPosts(data)
   } catch (e){
     console.error({ msg:e.message })
@@ -96,7 +112,7 @@ const getPosts = async (id) => {
 
 
 useEffect(() => {
-  fetchState()
+  // fetchState()
   // if a post exists, get the poster info
   // console.log(post)
     if(post){
@@ -112,6 +128,10 @@ useEffect(() => {
 // }
 
 // console.log(posterInfo)
+// if(post){
+//   console.log(commentsByPost)
+// }
+
 
   return (
     <main className={styles.App}>
@@ -137,6 +157,7 @@ useEffect(() => {
                   setPostModal={setPostModal}
                   setPost={setPost}
                   post={post}
+                  getComments={getComments}
                 />}/>
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>
@@ -185,6 +206,9 @@ useEffect(() => {
               userPosts={userPosts}
 
               deletePost={deletePost}
+              
+              getComments={getComments}
+              commentsByPost={commentsByPost}
           />
 
         </>

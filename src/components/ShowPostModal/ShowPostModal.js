@@ -16,7 +16,9 @@ export default function ShowPostModal({
     setUpdateForm,
     showModal,
     setShowModal,
-    deletePost
+    deletePost,
+    commentsByPost,
+    getComments
 }){
     
   const [newComment, setNewComment] = useState({
@@ -24,10 +26,11 @@ export default function ShowPostModal({
   })
 
   const [comment, setComment] = useState({})
-  const [commentsByPost, setCommentsByPost] = useState([])
 
+  const [updatedComment, setUpdatedComment] = useState({})
 
-  const createComment = async () => {
+//Create Comment
+const createComment = async () => {
       try {
         const response = await fetch('/api/comments', {
           method: 'POST',
@@ -38,33 +41,77 @@ export default function ShowPostModal({
             // nesting the user id on creation
             ...newComment,
             post: post._id,
-            poster: user._id
-
+            poster: user._id,
+            handle: user.handle,
+            posterImage: user.profilePic
           })
         })
         const data = await response.json()
         setComment(data)
+        getComments(post._id)
         setNewComment({
           comment:''
         })
       } catch (error) {
         console.error(error)
       }
-    }
+  }
 
-  const handleChange = (evt) => {
+const handleChange = (evt) => {
     setNewComment({ ...newComment, [evt.target.name]: evt.target.value })
   }
 
 const handleSubmit = (e) => {
   e.preventDefault()
   createComment()
+  // getComments(post._id)
 }
 
+//Delete Comment
+const deleteComment = async (id) => {
+  try {
+    await fetch(`/api/comments/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    })
+    getComments(post._id)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+//Update comment
+const updateComment = async (id) => {
+  try {
+    const response = await fetch(`/api/comments/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedComment)
+    })
+    const data = await response.json()
+    setComment(data)
+    getComments(post._id)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+// const restaurantIndexUpdate = () => {
+//   navigate('/home')
+// }
+
+
+
+//Side effects
 useEffect(()=>{
     getPosterInfo(post.poster)
 },[])
-
+console.log(commentsByPost)
     return(
         <>
         {postModal
@@ -124,27 +171,41 @@ useEffect(()=>{
                       </div>
                   </div>
                   <div className={styles.commentsIndex}>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
-                    <Comment/>
+                    {commentsByPost
+                      ?
+                      <>
+                      {commentsByPost.map((comment)=>{
+                        return(
+                          <>
+                            <Comment
+                              handle={comment.handle}
+                              comment={comment.comment}
+                              avatar={comment.posterImage}
+                              user={user}
+                              poster={comment.poster}
+                              id={comment._id}
+                              commentDate={comment.updatedAt}
+                              deleteComment={deleteComment}
+
+                              updateComment={updateComment}
+                              setUpdatedComment={setUpdatedComment}
+
+                              updatedComment={updatedComment}
+                            />
+                          </>
+                        )
+                      })}
+                      </>
+                      :
+                        ''
+                    }
                   </div>
                   <div className={styles.addComment} type='submit' onKeyDown={(e) => {
                     if(e.key == 'Enter'){
                       handleSubmit(e)
                     }
                   }}>
-                    <input name='comment' value={newComment.comment} onChange={handleChange} placeholder='add a comment..' required />
+                    <input name='comment' value={newComment.comment} onChange={handleChange} placeholder='add a comment...' required />
                   </div>
                 </div>
                 </div>
@@ -158,6 +219,19 @@ useEffect(()=>{
     )
 
 }
+
+
+
+
+// {commentsByPost.map((comment)=>{
+//   return(
+//     <div>
+//       <h6>{comment.handle}</h6>
+//       <p>{comment.comment}</p>
+//     </div>
+//   )
+// })}
+
 
 
                     {/* <input type='submit' value={newComment.comment} onKeyDown={(e) =>{

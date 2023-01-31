@@ -74,7 +74,7 @@
 }
 
 .commentsContainer{
-    border: solid red;
+    // border: solid red;
     width: 50%;
     // max-height: 30rem;
     background-color: rgb(255, 255, 255);
@@ -103,6 +103,7 @@
 .captionContainer{
     margin-left: 10px;
     margin-right: 20px;
+    margin-bottom: 1rem;
     justify-content: space-between;
 }
 .captionContainer > p{
@@ -118,7 +119,7 @@
 }
 
 .addComment{
-    border: solid purple;
+    // border: solid purple;
     bottom: 0;
     position: absolute;
     // display: flex;
