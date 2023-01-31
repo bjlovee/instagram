@@ -28,6 +28,9 @@ export default function ShowPostModal ({
     comment: ''
   })
 
+  const [like, setLike] = useState({})
+  const [likesByPost, setLikesByPost] = useState([])
+
   const [comment, setComment] = useState({})
 
   const [updatedComment, setUpdatedComment] = useState({})
@@ -104,13 +107,46 @@ export default function ShowPostModal ({
     }
   }
 
+
+//Get likes by post
+  const getLikesByPost = async (id) => {
+    try {
+    // console.log(id)
+      const response = await fetch(`/api/likes/${id}`)
+      const data = await response.json()
+      // console.log(data)
+      setLikesByPost(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
 //Create Like
+const createLike = async () => {
+  try {
+    const response = await fetch('/api/likes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // nesting the user id on creation
+        liker: user._id,
+        post: post._id,
+      })
+    })
+    const data = await response.json()
+    setLike(data)
+    getLikesByPost(post._id)
+    // setNewComment({
+    //   comment: ''
+    // })
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-
-
-  // const restaurantIndexUpdate = () => {
-  //   navigate('/home')
-  // }
 
   // Side effects
   useEffect(() => {
@@ -121,9 +157,10 @@ export default function ShowPostModal ({
   // console.log(commentsByPost)
   console.log(post._id)
   console.log(user._id)
+console.log(likesByPost)
+console.log(posterInfo)
+console.log(like)
 
-
-  const buttonStyle = { color:"red", fillColor:'red', borderRadius: 'none', size:"2rem"}
   return (
     <>
       {postModal
@@ -137,7 +174,6 @@ export default function ShowPostModal ({
           </button>
           <div className={styles.modal}>
             <div className={styles.postCreation}>
-
               <div className={styles.modalContainer}>
                 <div className={styles.formContainer}>
                   <img src={post.image} />
@@ -209,8 +245,6 @@ export default function ShowPostModal ({
                           </>
                         : ''}
                   </div>
-
-                 {/* <div className={styles.wrapper}>         */}
                   <div className={styles.commentWrapper}>
                     <div className={styles.addComment} type='submit' onKeyDown={(e) => {
                           if (e.key == 'Enter') {
@@ -220,12 +254,19 @@ export default function ShowPostModal ({
                       <input name='comment' value={newComment.comment} onChange={handleChange} placeholder='add a comment...' required />
                     </div>
                     <div className={styles.likeButton}>
-                       <FavoriteBorderOutlinedIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
-                       {/* <FavoriteIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} /> */}
+                      {like && like.liker === user._id
+                        ?
+                          <FavoriteIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
+                        :
+                        <div onClick={(e) =>{
+                          e.preventDefault()
+                          createLike()
+                        }}>
+                          <FavoriteBorderOutlinedIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
+                        </div>
+                      }
                     </div>
                   </div>
-                 {/* </div>   */}
-
                 </div>
               </div>
             </div>
