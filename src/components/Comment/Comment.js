@@ -5,6 +5,7 @@ import Edit from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 // import {AiOutlineHeart} from "react-icons/ai"
 import { useState } from 'react'
+import { StyledList } from '@mui/joy/List/List'
 
 
 export default function Comment ({
@@ -54,7 +55,10 @@ export default function Comment ({
                     }
                   }}
                 >
-                  <input name='comment' value={updateComment.comment} onChange={handleChange} placeholder='edit your comment here...' required />
+                  <input name='comment' value={updateComment.comment} onChange={handleChange} placeholder='edit your comment...(ESC to close)' required />
+                  <div className={styles.closeButton} onClick={()=>{
+                    showEditComment(false)
+                  }}>X</div>
                 </div>
               </>}
           </div>

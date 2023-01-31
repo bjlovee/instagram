@@ -50,44 +50,17 @@ function App () {
   //Get likes by post
   const getLikesByPost = async (id) => {
     try {
-
       const response = await fetch(`/api/likes/${id}`)
       const data = await response.json()
-      // console.log(data)
       setLikesByPost(data)
-      // console.log(data)
-      // handleSetLike()
-      // likesByPost.filter(like => like.liker === user._id).map((like) =>{
-      //   // console.log(like)
-      //   // if(i == 0)
-      //   //  return setLike(like)
-      //   console.log(like)
-      //   setLike(like)
-      // })
-      
     } catch (err) {
       console.log(err)
     }
   }
 
 
-  // console.log(likesByPost)
-// if(post){
-//   likesByPost.filter(like => like.liker === user._id).map((like, i) =>{
-//     // console.log(like)
-//     if(i == 0){
-//       return setLike(like)
-//     }
-//     else return
-//     //  
-//     // console.log(like)
-//     // setLike(like)
-//   })
-// }
 
-
-
-  console.log(like)
+  // console.log(like)
 
 
   // Followers
