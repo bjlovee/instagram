@@ -3,7 +3,9 @@ import styles from './Comment.module.scss'
 import IconButton from '@mui/material/IconButton'
 import Edit from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
+// import {AiOutlineHeart} from "react-icons/ai"
 import { useState } from 'react'
+
 
 export default function Comment ({
   handle,

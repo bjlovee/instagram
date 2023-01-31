@@ -4,6 +4,10 @@ import SwitchProfile from '../SwitchProfile/SwitchProfile'
 import { Switch } from '@mui/material'
 import Comment from '../Comment/Comment'
 // import { create } from '../../../models/comments'
+// import {AiOutlineHeart} from 'react-icons/ai'
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+
 
 export default function ShowPostModal ({
   post,
@@ -100,6 +104,10 @@ export default function ShowPostModal ({
     }
   }
 
+//Create Like
+
+
+
   // const restaurantIndexUpdate = () => {
   //   navigate('/home')
   // }
@@ -107,8 +115,15 @@ export default function ShowPostModal ({
   // Side effects
   useEffect(() => {
     getPosterInfo(post.poster)
+
   }, [])
-  console.log(commentsByPost)
+
+  // console.log(commentsByPost)
+  console.log(post._id)
+  console.log(user._id)
+
+
+  const buttonStyle = { color:"red", fillColor:'red', borderRadius: 'none', size:"2rem"}
   return (
     <>
       {postModal
@@ -194,15 +209,23 @@ export default function ShowPostModal ({
                           </>
                         : ''}
                   </div>
-                  <div
-                    className={styles.addComment} type='submit' onKeyDown={(e) => {
-                        if (e.key == 'Enter') {
-                          handleSubmit(e)
-                        }
-                      }}
-                  >
-                    <input name='comment' value={newComment.comment} onChange={handleChange} placeholder='add a comment...' required />
+
+                 {/* <div className={styles.wrapper}>         */}
+                  <div className={styles.commentWrapper}>
+                    <div className={styles.addComment} type='submit' onKeyDown={(e) => {
+                          if (e.key == 'Enter') {
+                            handleSubmit(e)
+                          }
+                        }}>
+                      <input name='comment' value={newComment.comment} onChange={handleChange} placeholder='add a comment...' required />
+                    </div>
+                    <div className={styles.likeButton}>
+                       <FavoriteBorderOutlinedIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
+                       {/* <FavoriteIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} /> */}
+                    </div>
                   </div>
+                 {/* </div>   */}
+
                 </div>
               </div>
             </div>
