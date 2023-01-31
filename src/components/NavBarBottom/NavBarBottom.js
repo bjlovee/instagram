@@ -15,22 +15,18 @@ export default function NavBarBottom ({
   user
 }) {
   const navigate = useNavigate()
-  // console.log(user)
-  return (
-    <div
-      onClick={(e) => {
-        e.preventDefault()
-        navigate('/')
-      }} className={styles.navBarBottom}
-    >
 
-      <div className={styles.homeButton}>
+  return (
+    <div className={styles.navBarBottom}
+    >
+      <div onClick={(e) => {
+                e.preventDefault()
+                navigate('/')
+              }} className={styles.homeButton}>
         <IconButton className={styles.icon}><HomeIcon /></IconButton>
       </div>
-
       <IconButton className={styles.icon}><ExploreIcon /></IconButton>
       <IconButton className={styles.icon}><MovieIcon /></IconButton>
-
       <div onClick={(e) => {
         e.preventDefault()
         setShowModal(true)
@@ -38,25 +34,12 @@ export default function NavBarBottom ({
       >
         <IconButton className={styles.icon}><ControlPointIcon /></IconButton>
       </div>
-
-      <nav>
-        <Link to='/profile'>
-          <div className={styles.profile}>
+          <div onClick={(e) => {
+                e.preventDefault()
+                navigate('/profile')
+              }} className={styles.profile}>
             <img src={user.profilePic} />
           </div>
-        </Link>
-      </nav>
-      {/* <a href='/profile'>h</a> */}
-      {/* <IconButton><SendIcon /></IconButton> */}
     </div>
   )
 }
-
-{ /* <div className={styles.profile}>
-                <img onClick={()=>{
-                    navigate('/profile')
-                    // console.log('click')
-                }}
-
-                src={user.profilePic}/>
-            </div> */ }

@@ -4,6 +4,11 @@ import SwitchProfile from '../SwitchProfile/SwitchProfile'
 import { Switch } from '@mui/material'
 import Comment from '../Comment/Comment'
 // import { create } from '../../../models/comments'
+// import {AiOutlineHeart} from 'react-icons/ai'
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Message } from '@mui/icons-material'
+
 
 export default function ShowPostModal ({
   post,
@@ -18,11 +23,18 @@ export default function ShowPostModal ({
   setShowModal,
   deletePost,
   commentsByPost,
-  getComments
+  getComments,
+  getLikesByPost,
+  setLikesByPost,
+  likesByPost,
+  setLike,
+  like
 }) {
   const [newComment, setNewComment] = useState({
     comment: ''
   })
+
+ 
 
   const [comment, setComment] = useState({})
 
@@ -74,7 +86,6 @@ export default function ShowPostModal ({
         headers: {
           'Content-Type': 'application/json'
         }
-
       })
       getComments(post._id)
     } catch (error) {
@@ -100,15 +111,61 @@ export default function ShowPostModal ({
     }
   }
 
-  // const restaurantIndexUpdate = () => {
-  //   navigate('/home')
-  // }
 
+
+//Create Like
+const createLike = async () => {
+  try {
+    const response = await fetch('/api/likes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // nesting the user id on creation
+        liker: user._id,
+        post: post._id,
+      })
+    })
+    const data = await response.json()
+    setLike(data)
+    getLikesByPost(post._id)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+//Delete Like
+const deleteLike = async () => {
+  try {
+    await fetch(`/api/likes/${like._id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    setLike({})
+    getLikesByPost(post._id)
+  } catch (e) {
+    console.error({ msg:e.message })
+  }
+}
+
+
+const handleFilterLike = () => {
+  if(post){
+    likesByPost.filter(like => like.liker === user._id).map((like) =>{
+        return setLike(like)
+    })
+  }
+}
   // Side effects
   useEffect(() => {
     getPosterInfo(post.poster)
-  }, [])
-  console.log(commentsByPost)
+    handleFilterLike()
+  }, [likesByPost])
+
+
   return (
     <>
       {postModal
@@ -117,12 +174,13 @@ export default function ShowPostModal ({
             className={styles.closeButton}
             onClick={() => {
               setPostModal(false)
+              setLike({})
+              setLikesByPost([])
             }}
           >&#x2715;
           </button>
           <div className={styles.modal}>
             <div className={styles.postCreation}>
-
               <div className={styles.modalContainer}>
                 <div className={styles.formContainer}>
                   <img src={post.image} />
@@ -194,14 +252,32 @@ export default function ShowPostModal ({
                           </>
                         : ''}
                   </div>
-                  <div
-                    className={styles.addComment} type='submit' onKeyDown={(e) => {
-                        if (e.key == 'Enter') {
-                          handleSubmit(e)
-                        }
-                      }}
-                  >
-                    <input name='comment' value={newComment.comment} onChange={handleChange} placeholder='add a comment...' required />
+                  <div className={styles.commentWrapper}>
+                    <div className={styles.addComment} type='submit' onKeyDown={(e) => {
+                          if (e.key == 'Enter') {
+                            handleSubmit(e)
+                          }
+                        }}>
+                      <input name='comment' value={newComment.comment} onChange={handleChange} placeholder='add a comment...' required />
+                    </div>
+                    <div className={styles.likeButton}>
+                      {like && like.liker === user._id
+                        ?
+                          <div onClick={(e) => {
+                            e.preventDefault()
+                            deleteLike()
+                          }}>
+                            <FavoriteIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
+                          </div>
+                        :
+                        <div onClick={(e) =>{
+                          e.preventDefault()
+                          createLike()
+                        }}>
+                          <FavoriteBorderOutlinedIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
+                        </div>
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
@@ -222,10 +298,17 @@ export default function ShowPostModal ({
 //   )
 // })}
 
-{ /* <input type='submit' value={newComment.comment} onKeyDown={(e) =>{
-                      if(e.key == 'Enter'){
-                        // handleSubmit(e)
-                        setNewComment({ ...newComment, comment: e.target.value})
-                        console.log(newComment)
-                      }
-                    }}placeholder='add a comment..' /> */ }
+
+
+// if(post){
+//   likesByPost.filter(like => like.liker === user._id).map((like, i) =>{
+//     // console.log(like)
+//     if(i == 0){
+//       return setLike(like)
+//     }
+//     else return
+//     //  
+//     // console.log(like)
+//     // setLike(like)
+//   })
+// }

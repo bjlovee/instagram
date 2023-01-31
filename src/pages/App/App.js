@@ -11,6 +11,8 @@ import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal'
 import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
+import { ImportExport } from '@mui/icons-material'
+import { ListItem } from '@mui/material'
 
 function App () {
   const [state, setState] = useState(null)
@@ -28,9 +30,12 @@ function App () {
 
   const [commentsByPost, setCommentsByPost] = useState([])
 
+  const [likesByPost, setLikesByPost] = useState([])
+  const [like, setLike] = useState({})
+
   // Index Comments by post
   const getComments = async (id) => {
-    console.log(id)
+    // console.log(id)
     try {
       const response = await fetch(`/api/comments/post/${id}`)
       const data = await response.json()
@@ -40,6 +45,23 @@ function App () {
       console.log(err)
     }
   }
+
+
+  //Get likes by post
+  const getLikesByPost = async (id) => {
+    try {
+      const response = await fetch(`/api/likes/${id}`)
+      const data = await response.json()
+      setLikesByPost(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
+
+  // console.log(like)
+
 
   // Followers
   const getFollowers = async (id) => {
@@ -105,25 +127,13 @@ function App () {
   }
 
   useEffect(() => {
-  // fetchState()
-  // if a post exists, get the poster info
-  // console.log(post)
     if (post) {
       getPosterInfo(post.poster)
     }
-  // }
+    // console.log(likesByPost)
+    // handleSetLike()
   }, [])
 
-  // console.log(posterInfo)
-  // if(user && post){
-  //   console.log(post.poster)
-  // console.log(user._id)
-  // }
-
-  // console.log(posterInfo)
-  // if(post){
-  //   console.log(commentsByPost)
-  // }
 
   return (
     <main className={styles.App}>
@@ -153,6 +163,12 @@ function App () {
                     setPost={setPost}
                     post={post}
                     getComments={getComments}
+
+                    getLikesByPost={getLikesByPost}
+                    likesByPost={likesByPost}
+                    // handleSetLike={handleSetLike}
+                    setLike={setLike}
+                    like={like}
                                            />}
                 />
                 <Route path='/orders' element={<OrderHistoryPage />} />
@@ -205,6 +221,17 @@ function App () {
 
               getComments={getComments}
               commentsByPost={commentsByPost}
+
+              getLikesByPost={getLikesByPost}
+              setLikesByPost={setLikesByPost}
+              likesByPost={likesByPost}
+              // handleSetLike={handleSetLike}
+
+
+              
+              setLike={setLike}
+             
+              like={like}
             />
 
           </>

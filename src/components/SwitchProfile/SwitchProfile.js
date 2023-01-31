@@ -17,7 +17,7 @@ export default function SwitchProfile ({
   caption,
   posterInfo
 }) {
-  console.log(user._id)
+  // console.log(user._id)
   // --- EVENT HANDLERS ---//
 
   // console.log(caption)

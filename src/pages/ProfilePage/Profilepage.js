@@ -12,7 +12,13 @@ export default function ProfilePage ({
   setPost,
   getPosterInfo,
   post,
-  getComments
+  getComments,
+  getLikesByPost,
+  likesByPost,
+  handleSetLike,
+  setLike,
+  like,
+  setLikesByPost
 }) {
   // console.log(user._id)
   useEffect(() => {
@@ -42,7 +48,14 @@ export default function ProfilePage ({
         userPosts={userPosts}
         setPostModal={setPostModal}
         setPost={setPost}
+        post={post}
+
         getComments={getComments}
+
+        getLikesByPost={getLikesByPost}
+        setLikesByPost={setLikesByPost}
+        setLike={setLike}
+        like={like}
       />
       <Footer />
     </div>
