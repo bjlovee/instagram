@@ -152,19 +152,19 @@ const deleteLike = async () => {
 }
 
 
-
-
+const handleFilterLike = () => {
+  if(post){
+    likesByPost.filter(like => like.liker === user._id).map((like) =>{
+        return setLike(like)
+    })
+  }
+}
   // Side effects
   useEffect(() => {
     getPosterInfo(post.poster)
+    handleFilterLike()
+  }, [likesByPost])
 
-    // handleSetLike()
-  }, [])
-
-console.log(like)
-
-// console.log(like)
-// console.log(likesByPost)
 
   return (
     <>
@@ -298,10 +298,17 @@ console.log(like)
 //   )
 // })}
 
-{ /* <input type='submit' value={newComment.comment} onKeyDown={(e) =>{
-                      if(e.key == 'Enter'){
-                        // handleSubmit(e)
-                        setNewComment({ ...newComment, comment: e.target.value})
-                        console.log(newComment)
-                      }
-                    }}placeholder='add a comment..' /> */ }
+
+
+// if(post){
+//   likesByPost.filter(like => like.liker === user._id).map((like, i) =>{
+//     // console.log(like)
+//     if(i == 0){
+//       return setLike(like)
+//     }
+//     else return
+//     //  
+//     // console.log(like)
+//     // setLike(like)
+//   })
+// }

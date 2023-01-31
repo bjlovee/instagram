@@ -11,6 +11,8 @@ import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal'
 import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
+import { ImportExport } from '@mui/icons-material'
+import { ListItem } from '@mui/material'
 
 function App () {
   const [state, setState] = useState(null)
@@ -51,27 +53,41 @@ function App () {
 
       const response = await fetch(`/api/likes/${id}`)
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       setLikesByPost(data)
       // console.log(data)
       // handleSetLike()
-
+      // likesByPost.filter(like => like.liker === user._id).map((like) =>{
+      //   // console.log(like)
+      //   // if(i == 0)
+      //   //  return setLike(like)
+      //   console.log(like)
+      //   setLike(like)
+      // })
+      
     } catch (err) {
       console.log(err)
     }
   }
 
-  console.log(likesByPost)
 
-
-
-// const handleSetLike = () => {
-//   likesByPost.map((like) => {
-//     if(post && like.liker === user._id){
-//       setLike(like)
+  // console.log(likesByPost)
+// if(post){
+//   likesByPost.filter(like => like.liker === user._id).map((like, i) =>{
+//     // console.log(like)
+//     if(i == 0){
+//       return setLike(like)
 //     }
+//     else return
+//     //  
+//     // console.log(like)
+//     // setLike(like)
 //   })
 // }
+
+
+
+  console.log(like)
 
 
   // Followers
@@ -141,28 +157,10 @@ function App () {
     if (post) {
       getPosterInfo(post.poster)
     }
+    // console.log(likesByPost)
     // handleSetLike()
   }, [])
 
-  // console.log(like)
-  // const handleSetLike = () => {
-  //   likesByPost.map((currentLike) => {
-  
-  //     if (currentLike.liker === user._id){
-  //       return console.log('match')
-  //       // setLike(currentLike)
-  //     }
-  //     else{
-  //       // setLike({})
-  //       return console.log('no match')
-  //     }
-  //   })
-  // }
-  
-// console.log(likesByPost)
-
-// console.log(post)
-  // console.log(like)
 
   return (
     <main className={styles.App}>
