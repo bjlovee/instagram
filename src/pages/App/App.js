@@ -11,7 +11,7 @@ import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal'
 import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
-import { ImportExport } from '@mui/icons-material'
+import { ConstructionOutlined, ImportExport } from '@mui/icons-material'
 import { ListItem } from '@mui/material'
 
 function App () {
@@ -35,6 +35,8 @@ function App () {
 
   const [likesByPost, setLikesByPost] = useState([])
   const [like, setLike] = useState({})
+
+  const [allUsers, setAllUsers] = useState([])
 
   // Index Comments by post
   const getComments = async (id) => {
@@ -140,16 +142,25 @@ function App () {
     }
   } 
 
+  const getUsers = async () => {
+    try{
+      const response = await fetch('/api/users')
+      const data = await response.json()
+      setAllUsers(data)
+    } catch (e) {
+      console.error({msg: e.message})
+    }
+  }
+
 
   useEffect(() => {
     if (post) {
       getPosterInfo(post.poster)
     }
-    // console.log(likesByPost)
-    // handleSetLike()
+    getUsers()
   }, [])
 
-
+// console.log(allUsers)
   return (
     <main className={styles.App}>
       {
@@ -189,7 +200,9 @@ function App () {
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>
             </Routes>
-            <NavBarTop />
+            <NavBarTop 
+              allUsers={allUsers}
+            />
             <NavBarBottom
               setShowModal={setShowModal}
               showModal={showModal}

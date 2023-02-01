@@ -35,19 +35,15 @@ $rochester: 'Rochester', cursive;
 .searchProfileIndex{
     border: solid var(--outlines);
     border-width: 0.2px;
-    border-radius: 3px 3px 0 0;
+    border-radius: 0 0 3px 3px;
     position: fixed;
     top: 2.5rem;
-    // right: 0;
+ 
     padding: 2rem 0 0 0;
     background-color: white;
     display: flex;
     width: 90vw;
     left: 4vw;
-    // min-width: 30rem;
-    // max-width: 80rem;
-    // margin: 0 5rem 0 5rem;
-    // right: 3vw;
     flex-direction: column;
 }
 

@@ -1,7 +1,7 @@
 import styles from '../NewPostModal/NewPostModal.module.scss'
 import NavBarBottom from '../NavBarBottom/NavBarBottom'
 import { useEffect, useState } from 'react'
-import { getUser } from '../../utilities/users-service'
+// import { getUser } from '../../utilities/users-service'
 
 export default function NewPostModal ({
   showModal,
@@ -155,7 +155,7 @@ export default function NewPostModal ({
 
   // console.log(addImageForm)
   // console.log(updateForm)
-console.log(user.profilePic)
+// console.log(user.profilePic)
 
 useEffect(()=>{
   getUser(user._id)
@@ -224,7 +224,6 @@ useEffect(()=>{
                                   updateForm(false)
                                   showModal(false)
                                 }}
-
                                   type='submit'
                                 >Submit
                                 </button>

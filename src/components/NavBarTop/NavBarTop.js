@@ -6,8 +6,17 @@ import styles from '../NavBarTop/NavBarTop.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
  
-export default function NavBarBottom () {
+export default function NavBarBottom ({
+  allUsers
+}) {
+
+  // console.log(allUsers)
   const navigate = useNavigate()
+  // const includes = includes()
+
+  // const includes = (info, searchTerm) => {
+  //   return info.includes(searchTerm)
+  // }
 
   const [showSearch, setShowSearch] = useState(false)
   // const [currentIconState, setCurrentIconState] = useState(false)
@@ -50,6 +59,18 @@ export default function NavBarBottom () {
       {showSearch
         ?
           <div className={styles.searchProfileIndex}>
+              {
+                // allUsers.filter(user => {user.handle.includes('a')})
+                allUsers.filter(user => user.handle ? user.handle.toLowerCase().includes('ar') : null)
+                .map((filteredUser) =>{
+                  // console.log(filteredUser)
+                  return (
+                      <div>{filteredUser.handle}</div>
+                  )
+                })
+              }
+
+
             <div className={styles.closeButtonWrapper}>
               <div onClick={()=>{
                 setShowSearch(false)
