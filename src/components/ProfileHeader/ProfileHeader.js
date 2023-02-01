@@ -1,5 +1,5 @@
-import ProfileAvatar from "./ProfileAvatar";
-import ProfileInfo from "./ProfileInfo";
+import ProfileAvatar from "../../components/ProfileAvatar/ProfileAvatar";
+import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 import styles from "./ProfileHeader.module.scss";
 
 export default function ProfileHeader() {

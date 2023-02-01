@@ -62,7 +62,7 @@ function App () {
   }
 
 
-console.log(user)
+// console.log(user)
   // console.log(like)
 
 
@@ -128,6 +128,18 @@ console.log(user)
       console.error(error)
     }
   }
+
+  //getUser
+  const getUser = async (id) => {
+    try{
+      const response = await fetch(`api/users/${id}`)
+      const data = await response.json()
+      setUser(data)
+    } catch (e) {
+      console.error({ msg: e.message })
+    }
+  } 
+
 
   useEffect(() => {
     if (post) {
@@ -196,6 +208,7 @@ console.log(user)
 
               user={user}
               setUser={setUser}
+              getUser={getUser}  
 
               setPostModal={setPostModal}
 
@@ -219,6 +232,8 @@ console.log(user)
 
               user={user}
               setUser={setUser}
+                  
+
               getPosterInfo={getPosterInfo}
               posterInfo={posterInfo}
 
