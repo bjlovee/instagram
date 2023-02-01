@@ -13,6 +13,9 @@ import {TbMessageCircle2} from "react-icons/tb"
 import {AiOutlineHeart} from "react-icons/ai"
 import {FaRegBookmark} from "react-icons/fa"
 import "../Post/Post.css"
+import { borderBottomColor } from '@mui/system';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 
 export default function ContainerResponsive() {
   return (
@@ -25,12 +28,13 @@ export default function ContainerResponsive() {
           gridColumn: 'span 2',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          resize: 'horizontal',
+          // resize: 'horizontal',
           overflow: 'hidden',
           gap: 'clamp(0px, (100% - 360px + 32px) * 999, 16px)',
           transition: 'transform 0.3s, border 0.3s',
+          border: "none",
           '&:hover': {
-            borderColor: theme.vars.palette.primary.outlinedHoverBorder,
+            borderColor:  '#e0e0e0'.outlinedHoverBorder,
             transform: 'translateY(-2px)',
           },
           '& > *': { minWidth: 'clamp(0px, (360px - 100%) * 999,100%)' },
@@ -79,10 +83,15 @@ export default function ContainerResponsive() {
           />
             </Avatar>
             &nbsp; BJ Love &nbsp; 
-          
+              <div className='button'> 
+              <button>
+                  Follow
+               </button>
+              </div> 
+              <MoreHorizIcon />
                 </Link>
               </Typography>
-              <Typography level="body2">California, USA</Typography>
+              {/* <Typography level="body2">California, USA</Typography> */}
             </div>
     
           </Box>
@@ -109,9 +118,9 @@ export default function ContainerResponsive() {
               <FaRegBookmark  size="30px"/>
               </div>
               <br />
-              <Typography level="body2">Designed by</Typography>
+              <Typography level="body2">Liked by <b>CreamPanda</b>, <b>NatureGuy</b> and <b>35 others</b></Typography>
               <Typography fontWeight="lg" level="body2">
-                Nature itself
+               
               </Typography>
               <br/>
             </div>
