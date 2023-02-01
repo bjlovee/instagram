@@ -69,12 +69,13 @@
     // border: solid black;
     // padding: 0.5rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .closeButton{
     // border: solid blue;
     margin: 0.2rem;
+    margin-left: 0.4rem;
 }
 .closeButton:hover{
     color: gray;

@@ -37,16 +37,16 @@ export default function NavBarBottom ({
             e.preventDefault()
             navigate('/')
             }} className={styles.homeButton}>
-          <IconButton className={styles.icon}><HomeIcon /></IconButton>
+          <IconButton className={styles.icon}><HomeIcon sx={{color: 'black'}}/></IconButton>
         </div>
-              <IconButton className={styles.icon}><ExploreIcon /></IconButton>
-              <IconButton className={styles.icon}><MovieIcon /></IconButton>
+              <IconButton className={styles.icon}><ExploreIcon sx={{color: 'black'}}/></IconButton>
+              <IconButton className={styles.icon}><MovieIcon sx={{color: 'black'}}/></IconButton>
             <div onClick={(e) => {
                 e.preventDefault()
                 setShowModal(true)
               }}
               >
-                <IconButton className={styles.icon}><ControlPointIcon /></IconButton>
+                <IconButton className={styles.icon}><ControlPointIcon sx={{color: 'black'}}/></IconButton>
             </div>
 
             <div onClick={(e) => {
@@ -66,7 +66,10 @@ export default function NavBarBottom ({
                   }} className={styles.closeButton}>X</div>
               </div>
 
-              <div onClick={handleLogout} className={styles.logoutClicker}>Logout</div>
+              <div onClick={()=>{
+                handleLogout()
+                setShowLogOut(false)
+              }} className={styles.logoutClicker}>Logout</div>
 
               <div onClick={(e)=>{
                 e.preventDefault()

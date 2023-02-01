@@ -24,6 +24,9 @@ body{
 
 .sectionWrapper{
     position: relative;
+    // border: solid yellow;
+    // max-width: 25rem;
+    // min-width: 15rem;
 }
 
 
@@ -32,7 +35,9 @@ body{
     display: grid;
     grid-template-rows: 0.3fr 1fr;
     min-width: 20rem;
+    max-width: 30rem;
     position: absolute;
+    
 }
 
 .indexSection{
