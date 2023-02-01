@@ -39,9 +39,31 @@ $rochester: 'Rochester', cursive;
     position: fixed;
     top: 2.5rem;
     // right: 0;
-    padding: 2rem;
+    padding: 2rem 0 0 0;
     background-color: white;
     display: flex;
-    width: 100%;
+    width: 90vw;
+    left: 4vw;
+    // min-width: 30rem;
+    // max-width: 80rem;
+    // margin: 0 5rem 0 5rem;
+    // right: 3vw;
     flex-direction: column;
+}
+
+.closeButtonWrapper{
+    // border: solid blue;
+    border-top: solid var(--outlines);
+    border-width: 0.2px;
+    display: flex;
+}
+
+.closeButton{
+    // border: solid blue;
+    padding: 0.1rem;
+}
+
+.closeButton:hover{
+    color: gray;
+    cursor: pointer;
 }

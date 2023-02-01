@@ -42,13 +42,20 @@ export default function NavBarBottom () {
               // }
               
               }}><SearchOutlined className={styles.search} /></IconButton>
-            <IconButton><FavoriteBorderIcon /></IconButton>
+            
           </>
         }
+        <IconButton><FavoriteBorderIcon /></IconButton>
       </div>
       {showSearch
         ?
-          <div className={styles.searchProfileIndex}></div>
+          <div className={styles.searchProfileIndex}>
+            <div className={styles.closeButtonWrapper}>
+              <div onClick={()=>{
+                setShowSearch(false)
+              }}className={styles.closeButton}>X</div>
+            </div>
+          </div>
         :
         ''
       }
