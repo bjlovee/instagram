@@ -61,19 +61,23 @@ console.log(searchTerm)
       {showSearch
         ?
           <div className={styles.searchProfileIndex}>
-              {
-                // allUsers.filter(user => {user.handle.includes('a')})
-                
-                allUsers.filter(user => user.handle ? user.handle.toLowerCase().includes(searchTerm) : '')
-                .map((filteredUser) =>{
-                  // console.log(filteredUser)
-                  return (
-                      <div>{filteredUser.handle}</div>
-                  )
-                })
-              }
 
-
+            {searchTerm
+              ?
+                <>
+                  {
+                    allUsers.filter(user => user.handle ? user.handle.toLowerCase().includes(searchTerm) : '')
+                    .map((filteredUser) =>{
+                      // console.log(filteredUser)
+                      return (
+                          <div>{filteredUser.handle}</div>
+                      )
+                    })
+                  }
+                </>
+              :
+                ''
+            }
             <div className={styles.closeButtonWrapper}>
               <div onClick={()=>{
                 setShowSearch(false)
