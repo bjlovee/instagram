@@ -38,6 +38,8 @@ function App () {
 
   const [allUsers, setAllUsers] = useState([])
 
+  const [profileUser, setProfileUser] = useState({})
+
   // Index Comments by post
   const getComments = async (id) => {
     // console.log(id)
@@ -159,7 +161,7 @@ function App () {
     }
     getUsers()
   }, [])
-
+console.log(profileUser)
 // console.log(allUsers)
   return (
     <main className={styles.App}>
@@ -184,7 +186,8 @@ function App () {
                     userPosts={userPosts}
                     getPosts={getPosts}
                     getPosterInfo={getPosterInfo}
-                    user={user}
+                    // user={user}
+                    user={profileUser}
                     setPostModal={setPostModal}
                     setPost={setPost}
                     post={post}
@@ -202,11 +205,13 @@ function App () {
             </Routes>
             <NavBarTop 
               allUsers={allUsers}
+              setProfileUser={setProfileUser}
             />
             <NavBarBottom
               setShowModal={setShowModal}
               showModal={showModal}
               user={user}
+              setProfileUser={setProfileUser}
               setUser={setUser}
               setAddImageForm={setAddImageForm}
               showLogOut={showLogOut}
@@ -288,98 +293,3 @@ function App () {
 }
 
 export default App
-
-{ /* <Routes>
-<Route path="/home" element={<HomePage
-  user={user}
-
-  getFollowers={getFollowers}
-
-  setFollowersEvents={setFollowersEvents}
-  followersEvents={followersEvents}
-/>} />
-
-<Route path='/profile' element={<ProfilePage/>}/>
-
-</Routes> */ }
-
-// return (
-//   <main className={styles.App}>
-//     {
-//       user ?
-//       <>
-//                 <NavBarBottom
-//               setShowModal={setShowModal}
-//               showModal={showModal}
-//               user={user}
-//           />
-//         <NavBarTop/>
-//           <Routes>
-//             <>
-//               <Route path="/home" element={<HomePage
-//                 user={user}
-
-//                 getFollowers={getFollowers}
-
-//                 setFollowersEvents={setFollowersEvents}
-//                 followersEvents={followersEvents}
-//               />} />
-
-//               <Route path='/profile' element={<ProfilePage/>}/>
-//             </>
-//         </Routes>
-
-//         <NewPostModal
-//             setShowModal={setShowModal}
-//             showModal={showModal}
-
-//             post={post}
-//             setPost={setPost}
-
-//             user={user}
-//             setUser={setUser}
-
-//             setPostModal={setPostModal}
-
-//             getPosterInfo={getPosterInfo}
-
-//             setUpdateForm={setUpdateForm}
-//             updateForm={updateForm}
-//         />
-//         <ShowPostModal
-//             setShowModal={setShowModal}
-//             showModal={showModal}
-
-//             setPostModal={setPostModal}
-//             postModal={postModal}
-
-//             post={post}
-//             setPost={setPost}
-
-//             user={user}
-//             setUser={setUser}
-//             getPosterInfo={getPosterInfo}
-//             posterInfo={posterInfo}
-
-//             setUpdateForm={setUpdateForm}
-
-//             setUserPosts={setUserPosts}
-//             userPosts={userPosts}
-
-//             deletePost={deletePost}
-//         />
-
-//       </>
-//        :
-//       <LandingPage
-//         setUser={setUser}
-//         user={user}
-
-//         getFollowers={getFollowers}
-
-//         setFollowersEvents={setFollowersEvents}
-//         followersEvents={followersEvents}
-//         />
-//     }
-//   </main>
-// );

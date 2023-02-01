@@ -19,7 +19,8 @@ export default function NavBarBottom ({
   setUser,
   setAddImageForm,
   showLogOut,
-  setShowLogOut
+  setShowLogOut,
+  setProfileUser
 }) {
   const navigate = useNavigate()
 
@@ -28,7 +29,6 @@ export default function NavBarBottom ({
     setUser(null)
     navigate('/')
   }
-
 
   return (
     <>
@@ -80,6 +80,7 @@ export default function NavBarBottom ({
 
               <div onClick={(e)=>{
                   e.preventDefault()
+                  setProfileUser(user)
                   navigate('/profile')
                   setShowLogOut(false)
               }}className={styles.editProfileClicker}>Profile Page</div>
