@@ -45,18 +45,10 @@ console.log(searchTerm)
             }} value={searchTerm} onChange={handleChange}/>
           </>
           :
-          <>
-            <IconButton onClick={()=>{
-              // if(!showSearch){
-                setShowSearch(true)
-              // }
-              // else{
-              //   setShowSearch(false)
-              // }
-              
-              }}><SearchOutlined className={styles.search} /></IconButton>
-            
-          </>
+            <div className={styles.searchContainer} onClick={()=>{setShowSearch(true)}}>
+                <IconButton sx={{ padding: '0',borderRadius:'0.2px', display:'flex', flexDirection:'flex-start'}} ><SearchOutlined className={styles.search} sx={{ margin: '0' }}/></IconButton>
+              <p>Search...</p>
+            </div>
         }
         <IconButton><FavoriteBorderIcon /></IconButton>
       </div>
