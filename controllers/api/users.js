@@ -2,7 +2,7 @@
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const { TbArrowAutofitContent } = require('react-icons/tb')
+// const { TbArrowAutofitContent } = require('react-icons/tb')
 
 const checkToken = (req, res) => {
   console.log('req.user', req.user)
@@ -52,7 +52,7 @@ const dataController = {
   },
   async update (req, res, next) {
     try {
-      console.log(req.body.profilePic)
+      console.log(req.body)
       const updatedUser = await User.findByIdAndUpdate(req.params.id, {
         profilePic: req.body.profilePic,
         handle: req.body.handle

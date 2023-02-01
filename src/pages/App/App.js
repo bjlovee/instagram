@@ -27,6 +27,9 @@ function App () {
   const [userPosts, setUserPosts] = useState([])
 
   const [updateForm, setUpdateForm] = useState(false)
+  const [addImageForm, setAddImageForm] = useState(false)
+
+  const [showLogOut, setShowLogOut] = useState(false)
 
   const [commentsByPost, setCommentsByPost] = useState([])
 
@@ -59,7 +62,7 @@ function App () {
   }
 
 
-
+console.log(user)
   // console.log(like)
 
 
@@ -180,6 +183,9 @@ function App () {
               showModal={showModal}
               user={user}
               setUser={setUser}
+              setAddImageForm={setAddImageForm}
+              showLogOut={showLogOut}
+              setShowLogOut={setShowLogOut}
             />
             <NewPostModal
               setShowModal={setShowModal}
@@ -197,6 +203,9 @@ function App () {
 
               setUpdateForm={setUpdateForm}
               updateForm={updateForm}
+              addImageForm={addImageForm} 
+              setAddImageForm={setAddImageForm}
+
             />
             <ShowPostModal
               setShowModal={setShowModal}
