@@ -4,8 +4,14 @@ justify-content: center;
 }
 
 .icons{
+    display: flex;
     position: absolute;
     padding-left: 17rem;
     margin-top: -2rem;
     
+}
+
+.button{
+   display: flex;
+  padding-left: 6rem;
 }
