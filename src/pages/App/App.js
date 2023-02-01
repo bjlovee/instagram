@@ -19,6 +19,8 @@ function App () {
   const [user, setUser] = useState(null)
 
   const [followersEvents, setFollowersEvents] = useState([])
+  const [followingObjects, setFollowingObjects] = useState([])
+
   const [showModal, setShowModal] = useState(false)
   const [postModal, setPostModal] = useState(false)
   const [posterInfo, setPosterInfo] = useState({})
@@ -70,7 +72,7 @@ function App () {
   // console.log(like)
 
 
-  // Followers
+  // Get the usets that are following you!
   const getFollowers = async (id) => {
     try {
       const response = await fetch(`api/followers/follower/${id}`)
@@ -79,6 +81,17 @@ function App () {
     //   getPosts()
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  //Get the users you are following!
+  const getFollowing = async (id) => {
+    try{
+      const response = await fetch(`api/followers/following/${id}`)
+      const data = await response.json()
+      setFollowingObjects(data)
+    } catch (e) {
+      console.error({msg:e.message})
     }
   }
 
@@ -155,14 +168,24 @@ function App () {
   }
 
 
+
   useEffect(() => {
     if (post) {
       getPosterInfo(post.poster)
     }
+
     getUsers()
+
+    // if(user){
+    //   getFollowing(user._id)
+    // }
   }, [])
-console.log(profileUser)
+// console.log(profileUser)
 // console.log(allUsers)
+
+// console.log(followersEvents)
+
+console.log(followingObjects)
   return (
     <main className={styles.App}>
       {
@@ -206,6 +229,9 @@ console.log(profileUser)
             <NavBarTop 
               allUsers={allUsers}
               setProfileUser={setProfileUser}
+              // posts={posts}
+              getPosts={getPosts}
+              profileUser={profileUser}
             />
             <NavBarBottom
               setShowModal={setShowModal}

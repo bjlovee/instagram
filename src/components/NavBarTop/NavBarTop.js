@@ -7,10 +7,13 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { StyledInputEndDecorator } from '@mui/joy/Input/Input'
 import Avatar from "@mui/material/Avatar";
+import { useEffect } from 'react'
  
 export default function NavBarBottom ({
   allUsers,
-  setProfileUser
+  setProfileUser,
+  profileUser,
+  getPosts
 }) {
 
   // console.log(allUsers)
@@ -25,6 +28,12 @@ export default function NavBarBottom ({
     setSearchTerm(e.target.value)
   }
 
+  // useEffect(()=>{
+  //   if(profileUser){
+  //     getPosts(profileUser._id)
+  //   }
+  // },[])
+
   return (
     <>
       <div className={styles.navBar}>
@@ -36,7 +45,7 @@ export default function NavBarBottom ({
         {showSearch
           ?
           <>
-            <input autofocus="on" type='search' onKeyDown={(e)=>{
+            <input autofocus type='search' placeholder='click to search user' onKeyDown={(e)=>{
               if(e.key == 'Enter'){
                 console.log('search')
               } else if (e.key == 'Escape') {

@@ -68,6 +68,10 @@ $rochester: 'Rochester', cursive;
     display: flex;
     padding-left: 0.5rem ;
 }
+.user:hover{
+  background-color: rgb(233, 233, 233);
+  cursor: pointer;
+}
 
 .profileImg{
     // border: solid red;
@@ -109,3 +113,6 @@ $rochester: 'Rochester', cursive;
     font-size: 1rem;
     margin-left: 1rem;
   }
+
+
+  // .navBar > input
