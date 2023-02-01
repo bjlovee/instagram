@@ -5,6 +5,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import styles from '../NavBarTop/NavBarTop.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { StyledInputEndDecorator } from '@mui/joy/Input/Input'
+import Avatar from "@mui/material/Avatar";
  
 export default function NavBarBottom ({
   allUsers
@@ -61,16 +63,30 @@ console.log(searchTerm)
       {showSearch
         ?
           <div className={styles.searchProfileIndex}>
-
             {searchTerm
               ?
                 <>
                   {
                     allUsers.filter(user => user.handle ? user.handle.toLowerCase().includes(searchTerm) : '')
                     .map((filteredUser) =>{
-                      // console.log(filteredUser)
                       return (
-                          <div>{filteredUser.handle}</div>
+                          <div className={styles.user}>
+                            <div className={styles.profileImg}>
+                              {
+                                filteredUser.profilePic
+                                  ?
+                                    <img src={filteredUser.profilePic}/>
+                                  :
+                                    <div className={styles.defaultAvatar}>
+                                      <Avatar sx={{width: '140%', height: '100%'}}/>
+                                    </div>  
+                                  //  <img src='https://thenounproject.com/api/private/icons/138354/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABj2rBEjVf7QUBMfVmmvc-LVHhStKvcttEDipoPNcE1iXCN-wpL5DZrQUWq0VGpqKVaVJ0hqdlaJjq_jpTKB8LRxog02g%3D%3D'/>
+                              }
+                            </div>
+                            <div className={styles.handle}>
+                              <h5>{filteredUser.handle}</h5>
+                            </div>
+                          </div>
                       )
                     })
                   }
