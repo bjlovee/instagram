@@ -12,15 +12,17 @@ export default function NavBarBottom ({
 
   // console.log(allUsers)
   const navigate = useNavigate()
-  // const includes = includes()
-
-  // const includes = (info, searchTerm) => {
-  //   return info.includes(searchTerm)
-  // }
 
   const [showSearch, setShowSearch] = useState(false)
   // const [currentIconState, setCurrentIconState] = useState(false)
 
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value)
+  }
+
+console.log(searchTerm)
   return (
     <>
       <div className={styles.navBar}>
@@ -32,13 +34,13 @@ export default function NavBarBottom ({
         {showSearch
           ?
           <>
-            <input onKeyDown={(e)=>{
+            <input type='search' onKeyDown={(e)=>{
               if(e.key == 'Enter'){
                 console.log('search')
               } else if (e.key == 'Escape') {
                 setShowSearch(false)
               }
-            }}></input>
+            }} value={searchTerm} onChange={handleChange}/>
           </>
           :
           <>
@@ -61,7 +63,8 @@ export default function NavBarBottom ({
           <div className={styles.searchProfileIndex}>
               {
                 // allUsers.filter(user => {user.handle.includes('a')})
-                allUsers.filter(user => user.handle ? user.handle.toLowerCase().includes('ar') : null)
+                
+                allUsers.filter(user => user.handle ? user.handle.toLowerCase().includes(searchTerm) : '')
                 .map((filteredUser) =>{
                   // console.log(filteredUser)
                   return (
