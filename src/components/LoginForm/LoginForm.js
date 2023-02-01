@@ -4,8 +4,8 @@ import styles from '../LoginForm/LoginForm.module.scss'
 // import { useNavigate } from 'react-router-dom'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function LoginForm ({ 
-  setUser, 
+export default function LoginForm ({
+  setUser,
   user,
   getFollowers
 }) {
@@ -15,20 +15,19 @@ export default function LoginForm ({
   })
   const [error, setError] = useState('')
 
-
   // const navigate = useNavigate()
   const handleChange = (evt) => {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value })
     setError('')
   }
   const navigate = useNavigate()
-  
+
   const handleSubmit = async (evt) => {
     evt.preventDefault()
     try {
       const user = await userService.login(credentials)
       setUser(user)
-      navigate('/home')
+      // navigate('/home')
       getFollowers(user._id)
     } catch (error) {
       setError(error.message)
@@ -49,7 +48,7 @@ export default function LoginForm ({
         <h3 className={styles.errorMessage}>&nbsp;{error}</h3>
         <div>Dont have an account?<Link to='/signup'>signup</Link></div>
       </div>
-      
+
     </div>
   )
 }

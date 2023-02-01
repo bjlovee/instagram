@@ -1,0 +1,110 @@
+
+.commentContainer{
+    // border: solid black;
+    border-width: 0.7px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: space-between;
+    border-radius: 2px;
+    padding: 0.2rem 0 0.2rem 0.2rem;
+    min-height: 3rem;
+    margin: 0.3rem
+  }
+  .profileImg{
+    // border: solid blue;
+    padding: 0.2rem;
+    height: 2rem; 
+    width: 2rem; 
+    display: flex;
+  }
+  
+  .profileImg > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 55%;
+    object-fit: cover;
+    // overflow: hidden;
+  }
+  .commentWrapper{
+    // border: solid purple;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+  }
+  
+  .username{
+    // border: solid green;
+    // padding-right: 6rem;
+    justify-content: left;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+  h6{
+    margin: 0;
+    // margin-bottom: .7rem;
+    // text-align: center;
+  }
+  .switchLink{
+    // margin-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    // padding: 0;
+    justify-content: space-between;
+  }
+  
+  .switchLink > h6{
+    margin: 0 auto;
+    padding: 0;
+    text-align: right;
+    padding-right: 0.2rem;
+    color: blue;
+    align-items:center;
+    margin-bottom: 0;
+  }
+  
+p{
+  margin: 0;
+}
+
+.updateComment{
+    // border: solid purple;
+    // bottom: 0;
+    position: absolute;
+    // display: flex;
+    width: inherit;
+    // padding: 1rem;
+    background-color: white;
+    justify-content: center;
+}
+.dateAndTime{
+    display: flex;
+    flex-direction: row;
+    padding: 0.2rem;
+    padding-left: .8rem;
+}
+
+.dateAndTime > p{
+    font-size: 10px;
+    color: rgb(196, 196, 196)
+}
+
+.buttonWrapper{
+    display: flex;
+    flex-direction: row;
+}
+.closeButton{
+  // border: solid black;
+  // border: solid black;
+  width: fit-content;
+  border-radius: 50%;
+  padding: 0 0.3rem 0 0.3rem;
+  background-color: rgb(236, 94, 94);
+  color: white;
+
+}
+.closeButton:hover{
+  background-color: rgb(240, 157, 157);
+  cursor: pointer;
+}

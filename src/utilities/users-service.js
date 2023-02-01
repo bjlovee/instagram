@@ -18,21 +18,18 @@ export async function login (credentials) {
 }
 
 export function getToken () {
-
-  //original
+  // original
   const token = window.localStorage.getItem('token')
 
-  //REMOVING WINDOW
+  // REMOVING WINDOW
   // const token = localStorage.getItem('token')
-
 
   // getItem will return null if no key
   if (!token) return null
 
   console.log(token)
-  //original
+  // original
   const payload = JSON.parse(window.atob(token.split('.')[1]))
-
 
   // A JWT's expiration is expressed in seconds, not miliseconds
   if (payload.exp < Date.now() / 1000) {
@@ -52,47 +49,32 @@ export function logOut () {
   window.localStorage.removeItem('token')
 }
 
+// ADD WINDOW
+// const payload = JSON.parse(window.atob(token.split('.')[1]))
 
+// //WITH JUST DECODE URI - adding and removing window in this line
+// const payload = JSON.parse(window.atob(decodeURIComponent(token.split('.')[1])))
 
+// USING BTOA --split second
+// const encodedToken = JSON.parse(btoa(token))
+// const payload = JSON.parse(atob(encodedToken.split('.')[1]))
 
+// USING BTOA -- split first
+// const encodedToken = JSON.parse(btoa(token.split('.')[1]))
+// const payload = JSON.parse(atob(encodedToken))
 
-  //ADD WINDOW
-  // const payload = JSON.parse(window.atob(token.split('.')[1]))
+// USING BTOA -- ADD WINDOW -split second
+// const encodedToken = JSON.parse(window.btoa(token))
+// const payload = JSON.parse(window.atob(encodedToken.split('.')[1]))
 
+// USING BTOA -- ADD WINDOW -- split first
+// const encodedToken = JSON.parse(window.btoa(token.split('.')[1]))
+// const payload = JSON.parse(window.atob(encodedToken))
 
-  // //WITH JUST DECODE URI - adding and removing window in this line
-  // const payload = JSON.parse(window.atob(decodeURIComponent(token.split('.')[1])))
+// //USING encodeURIComponent - split first
+// const encodedToken = JSON.parse(window.btoa(encodeURIComponent(token.split('.')[1])))
+// const payload = JSON.parse(window.atob(decodeURIComponent(encodedToken)))
 
-
-  //USING BTOA --split second
-  // const encodedToken = JSON.parse(btoa(token))
-  // const payload = JSON.parse(atob(encodedToken.split('.')[1]))
-
-
-  // USING BTOA -- split first
-  // const encodedToken = JSON.parse(btoa(token.split('.')[1]))
-  // const payload = JSON.parse(atob(encodedToken))
-  
-
-
-  //USING BTOA -- ADD WINDOW -split second
-  // const encodedToken = JSON.parse(window.btoa(token))
-  // const payload = JSON.parse(window.atob(encodedToken.split('.')[1]))
-
-
-  //USING BTOA -- ADD WINDOW -- split first
-  // const encodedToken = JSON.parse(window.btoa(token.split('.')[1]))
-  // const payload = JSON.parse(window.atob(encodedToken))
-
-
-
-
-
-  // //USING encodeURIComponent - split first
-  // const encodedToken = JSON.parse(window.btoa(encodeURIComponent(token.split('.')[1])))
-  // const payload = JSON.parse(window.atob(decodeURIComponent(encodedToken)))
-
-
-  //  // //USING encodeURIComponent - split second
-  // const encodedToken = JSON.parse(window.btoa(encodeURIComponent(token)))
-  // const payload = JSON.parse(window.atob(decodeURIComponent(encodedToken.split('.')[1])))
+//  // //USING encodeURIComponent - split second
+// const encodedToken = JSON.parse(window.btoa(encodeURIComponent(token)))
+// const payload = JSON.parse(window.atob(decodeURIComponent(encodedToken.split('.')[1])))

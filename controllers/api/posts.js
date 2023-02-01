@@ -15,13 +15,24 @@ const dataController = {
     })
   },
 
-  //Get post by user
-    async getPostByUser (req, res, next){
-    try{
-      //finds the post by the poster ID and then sorts by the latest
-      const post = await Post.find({poster:req.params.id}).sort({createdAt: 'desc'})
-      //sending back only the latest post for the page index
+  // Get post by user
+  async getPostByUser (req, res, next) {
+    try {
+      // finds the post by the poster ID and then sorts by the latest
+      const post = await Post.find({ poster: req.params.id }).sort({ createdAt: 'desc' })
+      // sending back only the latest post for the page index
       res.locals.data.post = post[0]
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
+  async getAllPostsByUser (req, res, next) {
+    try {
+      // finds the post by the poster ID and then sorts by the latest
+      const posts = await Post.find({ poster: req.params.id }).sort({ createdAt: 'desc' })
+      // sending back only the latest post for the page index
+      res.locals.data.posts = posts
       next()
     } catch (e) {
       res.status(400).json(e)
@@ -57,7 +68,6 @@ const dataController = {
   // Create
   create (req, res, next) {
     Post.create(req.body, (err, createdPost) => {
-
       if (err) {
         res.status(400).send({
           msg: err.message
@@ -87,12 +97,12 @@ const dataController = {
 }
 
 const apiController = {
-    index (req, res, next) {
-      res.json(res.locals.data.posts)
-    },
-    show (req, res, next) {
-      res.json(res.locals.data.post)
-    }
+  index (req, res, next) {
+    res.json(res.locals.data.posts)
+  },
+  show (req, res, next) {
+    res.json(res.locals.data.post)
   }
+}
 
 module.exports = { dataController, apiController }

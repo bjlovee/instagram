@@ -16,8 +16,8 @@ const dataController = {
 //       }
 //     })
 //   },
-  async index (req, res, next){
-    try{
+  async index (req, res, next) {
+    try {
       const likes = await Like.find({})
       res.locals.data.likes = likes
       next()
@@ -25,18 +25,27 @@ const dataController = {
       res.status(400).json(e)
     }
   },
-  async destroy (req, res, next){
-    try{
-      //find the like passed in
+  async indexLikesByPost (req, res, next) {
+    try {
+      const likes = await Like.find({ post:req.params.id })
+      res.locals.data.likes = likes
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
+  async destroy (req, res, next) {
+    try {
+      // find the like passed in
       const like = await Like.findById(req.params.id)
-      //getting the like object stored in the post 
+      // getting the like object stored in the post
       await Post.findByIdAndUpdate(like.post, {
         $pull: {
-          //pulling the object stored in the array matching the comment id
+          // pulling the object stored in the array matching the comment id
           likes: { $in: [req.params.id] }
         }
       })
-      //deleting the like
+      // deleting the like
       await Like.deleteOne(like)
       res.locals.data.like = like
       next()
@@ -44,10 +53,10 @@ const dataController = {
       res.status(400).json(e)
     }
   },
-  async create (req, res, next){
-    try{
+  async create (req, res, next) {
+    try {
       const like = await Like.create(req.body)
-      //pass in the id of the post so it can be found
+      // pass in the id of the post so it can be found
       await Post.findByIdAndUpdate(like.post, {
         $push: {
           likes: like
@@ -62,12 +71,12 @@ const dataController = {
 }
 
 const apiController = {
-    index (req, res, next) {
-      res.json(res.locals.data.likes)
-    },
-    show (req, res, next) {
-      res.json(res.locals.data.like)
-    }
+  index (req, res, next) {
+    res.json(res.locals.data.likes)
+  },
+  show (req, res, next) {
+    res.json(res.locals.data.like)
   }
+}
 
-module.exports = { dataController, apiController}
+module.exports = { dataController, apiController }
