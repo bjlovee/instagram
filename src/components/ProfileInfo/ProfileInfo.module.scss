@@ -1,0 +1,47 @@
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    border: solid red;
+    min-width: 70%;
+}
+
+.profileInfoTop {
+    border: solid purple;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.profileStats {
+    border: solid green;
+    display: flex;
+    justify-content: space-between;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.profileBio {
+    text-align: left;
+}
+
+.profileBioHeader {
+    display: flex;
+}
+
+.profileBioHeaderName {
+    border: solid purple;
+    font-weight: 750;
+    padding: .2rem;
+}
+
+.profileBioHeaderPronouns {
+    border: solid purple;
+    color: gray;
+    font-weight: 100;
+    padding: .2rem;
+}
+
+.profileBioFooter {
+    border: solid pink;
+}

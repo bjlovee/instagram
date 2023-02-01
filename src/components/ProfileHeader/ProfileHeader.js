@@ -1,13 +1,19 @@
-import ProfileInfo from "../ProfileInfo/ProfileInfo"
-import ProfileHighlights from "../ProfileHighlights/ProfileHighlights"
-import ProfileAvatar from "../ProfileAvatar/ProfileAvatar"
+import ProfileAvatar from "./ProfileAvatar";
+import ProfileInfo from "./ProfileInfo";
+import styles from "./ProfileHeader.module.scss";
 
-export default function ProfileHeader(){
+export default function ProfileHeader() {
     return (
-            <>
-            <ProfileInfo/>
-            <ProfileAvatar/>
-            <ProfileHighlights/>
-            </>
-        )
+        <div className={styles.profileHeader}>
+            <div className={styles.profile}>
+                <div className={styles.profileHeader}>
+                    <div className={styles.profileHeaderTop}>
+                        <ProfileAvatar />
+                        <ProfileInfo />
+                    </div>
+                    <div className={styles.profileHighlights}></div>
+                </div>
+            </div>
+        </div>
+    );
 }
