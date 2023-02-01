@@ -8,8 +8,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import styles from '../NavBarBottom/NavBarBottom.module.scss'
 // import { trusted } from 'mongoose';
 import { useNavigate, Link } from 'react-router-dom'
-import LogOut from '../LogOut/LogOut'
-import {useState} from 'react'
+import { useState } from 'react'
 
 import { logOut } from '../../utilities/users-service'
 
@@ -17,58 +16,66 @@ export default function NavBarBottom ({
   showModal,
   setShowModal,
   user,
-  setUser
+  setUser,
+  setAddImageForm,
+  showLogOut,
+  setShowLogOut
 }) {
   const navigate = useNavigate()
-
-  const [showLogOut, setShowLogOut] = useState(false)
 
   function handleLogout () {
     logOut()
     setUser(null)
     navigate('/')
   }
+
+
   return (
     <>
-    <div className={styles.navBarBottom}
-    >
-      <div onClick={(e) => {
+      <div className={styles.navBarBottom}>
+        <div onClick={(e) => {
+            e.preventDefault()
+            navigate('/')
+            }} className={styles.homeButton}>
+          <IconButton className={styles.icon}><HomeIcon /></IconButton>
+        </div>
+              <IconButton className={styles.icon}><ExploreIcon /></IconButton>
+              <IconButton className={styles.icon}><MovieIcon /></IconButton>
+            <div onClick={(e) => {
                 e.preventDefault()
-                navigate('/')
-              }} className={styles.homeButton}>
-        <IconButton className={styles.icon}><HomeIcon /></IconButton>
-      </div>
-      <IconButton className={styles.icon}><ExploreIcon /></IconButton>
-      <IconButton className={styles.icon}><MovieIcon /></IconButton>
-      <div onClick={(e) => {
-        e.preventDefault()
-        setShowModal(true)
-      }}
-      >
-        <IconButton className={styles.icon}><ControlPointIcon /></IconButton>
-      </div>
-          <div onClick={(e) => {
+                setShowModal(true)
+              }}
+              >
+                <IconButton className={styles.icon}><ControlPointIcon /></IconButton>
+            </div>
 
-                setShowLogOut(true)
-              }} className={styles.profile}>
-            <img src={user.profilePic} />
-          </div>
-    </div>
+            <div onClick={(e) => {
+                  setShowLogOut(true)
+                }} className={styles.profile}>
+              <img src={user.profilePic} />
+            </div>
+      </div>
+        {showLogOut
+          ?
+            <div className={styles.logout}>
+              <div onClick={handleLogout}  className={styles.logoutClicker}>Logout</div>
 
-      {showLogOut
-        ?
-          <div onClick={handleLogout} className={styles.logout}>
-            <div className={styles.logoutClicker}>Logout</div>
-            <div className={styles.editProfileClicker}>Edit Profile</div>
-            <div onClick={(e)=>{
+              <div onClick={(e)=>{
                 e.preventDefault()
-                navigate('/profile')
+                setAddImageForm(true)
+                setShowModal(true)
                 setShowLogOut(false)
-            }}className={styles.editProfileClicker}>Profile Page</div>
-          </div>
-        :
-          ''
-      }
+              }}className={styles.editProfileClicker}>Edit Profile</div>
+
+              <div onClick={(e)=>{
+                  e.preventDefault()
+                  navigate('/profile')
+                  setShowLogOut(false)
+              }}className={styles.editProfileClicker}>Profile Page</div>
+            </div>
+          :
+            ''
+        }
     </>
   )
 }

@@ -8,10 +8,14 @@ export default function NewPostModal ({
   post,
   setPost,
   user,
+  setUser,
   setPostModal,
   getPosterInfo,
   updateForm,
-  setUpdateForm
+  setUpdateForm,
+  addImageForm,
+  setAddImageForm
+
 }) {
   const [newPost, setNewPost] = useState({
     image: '',
@@ -20,6 +24,9 @@ export default function NewPostModal ({
     music: ''
   })
   const [updatedPost, setUpdatedPost] = useState({})
+
+  const [updatedProfile, setUpdatedProfile] = useState({})
+
 
   // Get post
   const getPost = async () => {
@@ -85,15 +92,11 @@ export default function NewPostModal ({
     setPost({ ...post, [evt.target.name]: evt.target.value })
   }
 
-  // useEffect(()=>{
-  //   getPosterInfo(post.poster)
-  // }, [])
-  // // console.log(user)
 
   // UPDATE POST
   const updatePost = async () => {
     try {
-      const response = await fetch(`/api/posts/${post._id}`, {
+      const response = await fetch(`/api/users/${user._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -101,9 +104,9 @@ export default function NewPostModal ({
         body: JSON.stringify(updatedPost)
       })
       const data = await response.json()
-      setPost(data)
+      console.log(data)
+      setUser(data)
 
-    // getPost(post._id)
     } catch (e) {
       console.error(e)
     }
@@ -115,13 +118,42 @@ export default function NewPostModal ({
     showModal(false)
     setPostModal(true)
   }
-  // console.log(post)
-  // console.log(updatedPost)
 
-  // const handleUpdateChange = (e) => {
-  //   setUpdatedPost({ ...updatedPost, [e.target.name]: e.target.value })
-  // }
-  // console.log(post)
+  console.log(user)
+
+  //UPDATE PROFILE
+  const updateProfile = async () => {
+    try {
+      const response = await fetch(`/api/users/${user._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedProfile)
+      })
+      const data = await response.json()
+      setUser(data)
+
+    // getPost(post._id)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const handleSubmitProfile = (e) => {
+    e.preventDefault()
+    updateProfile()
+    showModal(false)
+    setAddImageForm(false)
+  }
+
+  const handleChangeProfile = (e) => {
+    setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value })
+  }
+
+  console.log(addImageForm)
+  console.log(updateForm)
+
   return (
     <>
       {showModal
@@ -131,22 +163,33 @@ export default function NewPostModal ({
             onClick={() => {
               setShowModal(false)
               setUpdateForm(false)
+              setAddImageForm(false)
             }}
           >&#x2715;
           </button>
           <div className={styles.modal}>
             <div className={styles.postCreation}>
               <div className={styles.modalContainer}>
-                {!updateForm
-                  ? <>
-                    <h5>Create A New Post</h5>
-                  </>
-
-                  : <>
-                    <h5>Update Post</h5>
-                  </>}
+                {!updateForm && !addImageForm
+                  ? 
+                    <>
+                      <h5>Create A New Post</h5>
+                    </>
+                  : updateForm && !addImageForm 
+                    ?
+                      <>
+                        <h5>Update Post</h5>
+                      </>
+                    : !updateForm && addImageForm
+                      ?
+                        <>
+                          <h5>Add Profile Image</h5>
+                        </>
+                      :
+                        ''
+                  }
               </div>
-              {!updateForm
+              {!updateForm && !addImageForm
                 ? <>
                   <div className={styles.formContainer}>
                     <form autoComplete='off' onSubmit={handleSubmit}>
@@ -160,7 +203,7 @@ export default function NewPostModal ({
                       </form>
                   </div>
                   </>
-                : updateForm && post
+                : updateForm && post && !addImageForm
                   ? <>
                     <div className={styles.formContainer}>
                       <form autoComplete='off' onSubmit={(e) => { handleSubmitUpdate(e) }}>
@@ -182,7 +225,30 @@ export default function NewPostModal ({
                         </form>
                     </div>
                     </>
-                  : ''}
+                  : !updateForm && addImageForm 
+                    ?
+                      <>
+                        <div className={styles.formContainer}>
+                          <form autoComplete='off' onSubmit={(e) => { handleSubmitProfile(e) }}>
+                              <input type='text' name='profilePic' value={updatedProfile.profilePic} placeholder='profile image' onChange={handleChangeProfile} />
+                              <input type='text' name='handle' value={updatedProfile.handle} placeholder='handle' onChange={handleChangeProfile} />
+                              <div className={styles.buttonContainer}>
+                                <button
+                                    //   onClick={() => {
+                                    //   updateForm(false)
+                                    //   showModal(false)
+                                    // }}
+
+                                      type='submit'
+                                    >Submit
+                                    </button>
+                              </div>
+                            </form>
+                        </div>
+                      </>
+                    :
+                      ''
+                  }
             </div>
           </div>
         </>
