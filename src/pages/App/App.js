@@ -179,6 +179,7 @@ function App () {
               setShowModal={setShowModal}
               showModal={showModal}
               user={user}
+              setUser={setUser}
             />
             <NewPostModal
               setShowModal={setShowModal}
