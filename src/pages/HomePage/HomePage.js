@@ -55,6 +55,7 @@ export default function HomePage ({
 
   // console.log(followersPosts)
 
+  // console.log(followersEvents)
   return (
     <>
       <div className={styles.indexSection}>

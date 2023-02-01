@@ -64,3 +64,20 @@
     border-bottom: solid var(--outlines);
     border-width: 0.1px;
 }
+
+.closeContainer{
+    // border: solid black;
+    // padding: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.closeButton{
+    // border: solid blue;
+    margin: 0.2rem;
+    margin-left: 0.4rem;
+}
+.closeButton:hover{
+    color: gray;
+    cursor: pointer;
+}

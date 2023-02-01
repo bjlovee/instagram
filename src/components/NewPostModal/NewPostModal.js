@@ -1,6 +1,7 @@
 import styles from '../NewPostModal/NewPostModal.module.scss'
 import NavBarBottom from '../NavBarBottom/NavBarBottom'
 import { useEffect, useState } from 'react'
+// import { getUser } from '../../utilities/users-service'
 
 export default function NewPostModal ({
   showModal,
@@ -9,6 +10,7 @@ export default function NewPostModal ({
   setPost,
   user,
   setUser,
+  getUser,
   setPostModal,
   getPosterInfo,
   updateForm,
@@ -119,7 +121,7 @@ export default function NewPostModal ({
     setPostModal(true)
   }
 
-  console.log(user)
+  // console.log(user.profilePic)
 
   //UPDATE PROFILE
   const updateProfile = async () => {
@@ -132,9 +134,9 @@ export default function NewPostModal ({
         body: JSON.stringify(updatedProfile)
       })
       const data = await response.json()
+      // console.log(data)
       setUser(data)
-
-    // getPost(post._id)
+      getUser(user._id)
     } catch (e) {
       console.error(e)
     }
@@ -143,7 +145,7 @@ export default function NewPostModal ({
   const handleSubmitProfile = (e) => {
     e.preventDefault()
     updateProfile()
-    showModal(false)
+    setShowModal(false)
     setAddImageForm(false)
   }
 
@@ -151,8 +153,13 @@ export default function NewPostModal ({
     setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value })
   }
 
-  console.log(addImageForm)
-  console.log(updateForm)
+  // console.log(addImageForm)
+  // console.log(updateForm)
+// console.log(user.profilePic)
+
+useEffect(()=>{
+  getUser(user._id)
+},[])
 
   return (
     <>
@@ -217,7 +224,6 @@ export default function NewPostModal ({
                                   updateForm(false)
                                   showModal(false)
                                 }}
-
                                   type='submit'
                                 >Submit
                                 </button>
@@ -234,10 +240,10 @@ export default function NewPostModal ({
                               <input type='text' name='handle' value={updatedProfile.handle} placeholder='handle' onChange={handleChangeProfile} />
                               <div className={styles.buttonContainer}>
                                 <button
-                                    //   onClick={() => {
-                                    //   updateForm(false)
-                                    //   showModal(false)
-                                    // }}
+                                      onClick={() => {
+                                      updateForm(false)
+                                      setShowModal(false)
+                                    }}
 
                                       type='submit'
                                     >Submit

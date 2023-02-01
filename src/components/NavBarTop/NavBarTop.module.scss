@@ -31,3 +31,88 @@ $rochester: 'Rochester', cursive;
 .logo > h3{
     margin: 0 auto;   
 }
+
+.searchProfileIndex{
+    border: solid var(--outlines);
+    border-width: 0.2px;
+    border-radius: 0 0 3px 3px;
+    position: fixed;
+    top: 2.5rem;
+ 
+    padding: 2rem 0 0 0;
+    background-color: white;
+    display: flex;
+    width: 90vw;
+    left: 4vw;
+    flex-direction: column;
+}
+
+.closeButtonWrapper{
+    // border: solid blue;
+    border-top: solid var(--outlines);
+    border-width: 0.2px;
+    display: flex;
+}
+
+.closeButton{
+    // border: solid blue;
+    padding: 0.1rem;
+}
+
+.closeButton:hover{
+    color: gray;
+    cursor: pointer;
+}
+.user{
+    // border: solid blue;
+    display: flex;
+    padding-left: 0.5rem ;
+}
+.user:hover{
+  background-color: rgb(233, 233, 233);
+  cursor: pointer;
+}
+
+.profileImg{
+    // border: solid red;
+    padding: 0.2rem;
+    height: 2rem; 
+    width: 2rem; 
+    display: flex;
+  }
+  
+  .profileImg > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 55%;
+    object-fit: cover;
+  }
+
+  .handle{
+    align-items: center;
+    padding: 0.5rem;
+    display: flex;
+  }
+
+  .handle > h5{
+    margin: 0 auto;
+  }
+
+  .searchContainer{
+    padding: 0;
+    width: 12rem;
+    margin: 0.2rem;
+    border-width: 0.2px ;
+    border-radius: 0.3rem;
+    background-color: rgb(237, 237, 237);
+    display: flex;
+    align-items: center;
+  }
+
+  .searchContainer > p{
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+
+
+  // .navBar > input

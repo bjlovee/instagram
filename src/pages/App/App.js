@@ -11,7 +11,7 @@ import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal'
 import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
-import { ImportExport } from '@mui/icons-material'
+import { ConstructionOutlined, ImportExport } from '@mui/icons-material'
 import { ListItem } from '@mui/material'
 
 function App () {
@@ -19,6 +19,8 @@ function App () {
   const [user, setUser] = useState(null)
 
   const [followersEvents, setFollowersEvents] = useState([])
+  const [followingObjects, setFollowingObjects] = useState([])
+
   const [showModal, setShowModal] = useState(false)
   const [postModal, setPostModal] = useState(false)
   const [posterInfo, setPosterInfo] = useState({})
@@ -35,6 +37,10 @@ function App () {
 
   const [likesByPost, setLikesByPost] = useState([])
   const [like, setLike] = useState({})
+
+  const [allUsers, setAllUsers] = useState([])
+
+  const [profileUser, setProfileUser] = useState({})
 
   // Index Comments by post
   const getComments = async (id) => {
@@ -62,11 +68,11 @@ function App () {
   }
 
 
-console.log(user)
+// console.log(user)
   // console.log(like)
 
 
-  // Followers
+  // Get the usets that are following you!
   const getFollowers = async (id) => {
     try {
       const response = await fetch(`api/followers/follower/${id}`)
@@ -75,6 +81,17 @@ console.log(user)
     //   getPosts()
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  //Get the users you are following!
+  const getFollowing = async (id) => {
+    try{
+      const response = await fetch(`api/followers/following/${id}`)
+      const data = await response.json()
+      setFollowingObjects(data)
+    } catch (e) {
+      console.error({msg:e.message})
     }
   }
 
@@ -129,15 +146,46 @@ console.log(user)
     }
   }
 
+  //getUser
+  const getUser = async (id) => {
+    try{
+      const response = await fetch(`api/users/${id}`)
+      const data = await response.json()
+      setUser(data)
+    } catch (e) {
+      console.error({ msg: e.message })
+    }
+  } 
+
+  const getUsers = async () => {
+    try{
+      const response = await fetch('/api/users')
+      const data = await response.json()
+      setAllUsers(data)
+    } catch (e) {
+      console.error({msg: e.message})
+    }
+  }
+
+
+
   useEffect(() => {
     if (post) {
       getPosterInfo(post.poster)
     }
-    // console.log(likesByPost)
-    // handleSetLike()
+
+    getUsers()
+
+    // if(user){
+    //   getFollowing(user._id)
+    // }
   }, [])
+// console.log(profileUser)
+// console.log(allUsers)
 
+// console.log(followersEvents)
 
+console.log(followingObjects)
   return (
     <main className={styles.App}>
       {
@@ -161,7 +209,8 @@ console.log(user)
                     userPosts={userPosts}
                     getPosts={getPosts}
                     getPosterInfo={getPosterInfo}
-                    user={user}
+                    // user={user}
+                    user={profileUser}
                     setPostModal={setPostModal}
                     setPost={setPost}
                     post={post}
@@ -177,11 +226,18 @@ console.log(user)
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>
             </Routes>
-            <NavBarTop />
+            <NavBarTop 
+              allUsers={allUsers}
+              setProfileUser={setProfileUser}
+              // posts={posts}
+              getPosts={getPosts}
+              profileUser={profileUser}
+            />
             <NavBarBottom
               setShowModal={setShowModal}
               showModal={showModal}
               user={user}
+              setProfileUser={setProfileUser}
               setUser={setUser}
               setAddImageForm={setAddImageForm}
               showLogOut={showLogOut}
@@ -196,6 +252,7 @@ console.log(user)
 
               user={user}
               setUser={setUser}
+              getUser={getUser}  
 
               setPostModal={setPostModal}
 
@@ -219,6 +276,8 @@ console.log(user)
 
               user={user}
               setUser={setUser}
+                  
+
               getPosterInfo={getPosterInfo}
               posterInfo={posterInfo}
 
@@ -260,98 +319,3 @@ console.log(user)
 }
 
 export default App
-
-{ /* <Routes>
-<Route path="/home" element={<HomePage
-  user={user}
-
-  getFollowers={getFollowers}
-
-  setFollowersEvents={setFollowersEvents}
-  followersEvents={followersEvents}
-/>} />
-
-<Route path='/profile' element={<ProfilePage/>}/>
-
-</Routes> */ }
-
-// return (
-//   <main className={styles.App}>
-//     {
-//       user ?
-//       <>
-//                 <NavBarBottom
-//               setShowModal={setShowModal}
-//               showModal={showModal}
-//               user={user}
-//           />
-//         <NavBarTop/>
-//           <Routes>
-//             <>
-//               <Route path="/home" element={<HomePage
-//                 user={user}
-
-//                 getFollowers={getFollowers}
-
-//                 setFollowersEvents={setFollowersEvents}
-//                 followersEvents={followersEvents}
-//               />} />
-
-//               <Route path='/profile' element={<ProfilePage/>}/>
-//             </>
-//         </Routes>
-
-//         <NewPostModal
-//             setShowModal={setShowModal}
-//             showModal={showModal}
-
-//             post={post}
-//             setPost={setPost}
-
-//             user={user}
-//             setUser={setUser}
-
-//             setPostModal={setPostModal}
-
-//             getPosterInfo={getPosterInfo}
-
-//             setUpdateForm={setUpdateForm}
-//             updateForm={updateForm}
-//         />
-//         <ShowPostModal
-//             setShowModal={setShowModal}
-//             showModal={showModal}
-
-//             setPostModal={setPostModal}
-//             postModal={postModal}
-
-//             post={post}
-//             setPost={setPost}
-
-//             user={user}
-//             setUser={setUser}
-//             getPosterInfo={getPosterInfo}
-//             posterInfo={posterInfo}
-
-//             setUpdateForm={setUpdateForm}
-
-//             setUserPosts={setUserPosts}
-//             userPosts={userPosts}
-
-//             deletePost={deletePost}
-//         />
-
-//       </>
-//        :
-//       <LandingPage
-//         setUser={setUser}
-//         user={user}
-
-//         getFollowers={getFollowers}
-
-//         setFollowersEvents={setFollowersEvents}
-//         followersEvents={followersEvents}
-//         />
-//     }
-//   </main>
-// );

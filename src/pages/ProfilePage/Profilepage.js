@@ -20,27 +20,15 @@ export default function ProfilePage ({
   like,
   setLikesByPost
 }) {
-  // console.log(user._id)
+
   useEffect(() => {
-  // fetchState()
     if (user) {
       getPosts(user._id)
     }
-    //   if(post){
-    //   getPosterInfo(post.poster)
-    // }
+
   }, [])
 
-  // useEffect(() => {
-  //   fetchState()
-  //   // if a post exists, get the poster info
-  //   // console.log(post)
-  //     if(post){
-  //       getPosterInfo(post.poster)
-  //     }
-  //   // }
-  // }, [])
-
+// console.log(user)
   return (
     <div className={styles.profilePage}>
       <ProfileHeader />
