@@ -12,7 +12,7 @@ export default function HomePage ({
   getFollowers,
 
   setFollowersEvents,
-  followersEvents
+  followersObjects
 }) {
 // console.log(user)
 
@@ -21,7 +21,7 @@ export default function HomePage ({
   // settings posts data in loop
   const handleSetPosts = (data) => {
     // adding to state via conditional to prevent infinite loop
-    if (followersPosts.length < followersEvents.length - 1) {
+    if (followersPosts.length < followersObjects.length - 1) {
       setFollowersPosts(followersPosts => [...followersPosts, data])
     } else {
 
@@ -41,8 +41,8 @@ export default function HomePage ({
 
   // mapping through the array of followers and
   const getPosts = () => {
-    if (followersEvents.length > 0) {
-      followersEvents.map(event => {
+    if (followersObjects && followersObjects.length > 0) {
+      followersObjects.map(event => {
         getFollowersLatestPost(event.followerUser)
       })
     }

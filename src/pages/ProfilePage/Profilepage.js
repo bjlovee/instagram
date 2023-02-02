@@ -21,7 +21,13 @@ export default function ProfilePage ({
   setLikesByPost,
   user,
   getFollowing,
-  followingObjects
+  followingObjects,
+  getFollowers,
+  followerObjects,
+  followersPresent,
+  followingPresent,
+  setFollowersPresent,
+  setFollowingPresent
 }) {
 
   useEffect(() => {
@@ -39,6 +45,12 @@ export default function ProfilePage ({
         user={user}
         getFollowing={getFollowing}
         followingObjects={followingObjects}
+        getFollowers={getFollowers}
+        followerObjects={followerObjects}
+        followersPresent={followersPresent}
+        followingPresent={followingPresent}
+        setFollowersPresent={setFollowersPresent}
+        setFollowingPresent={setFollowingPresent}
       />
       <ProfileSection
         userPosts={userPosts}
