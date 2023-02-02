@@ -13,7 +13,13 @@ export default function NavBarBottom ({
   allUsers,
   setProfileUser,
   profileUser,
-  getPosts
+  getPosts,
+
+  setFollowingPresent,
+  followingPresent,
+
+  SetFollowersPresent,
+  followersPresent
 }) {
 
   // console.log(allUsers)
@@ -33,6 +39,8 @@ export default function NavBarBottom ({
   //     getPosts(profileUser._id)
   //   }
   // },[])
+
+
 
   return (
     <>
@@ -54,7 +62,11 @@ export default function NavBarBottom ({
             }} value={searchTerm} onChange={handleChange}/>
           </>
           :
-            <div className={styles.searchContainer} onClick={()=>{setShowSearch(true)}}>
+            <div className={styles.searchContainer} onClick={(e)=>{
+              e.preventDefault()
+              setShowSearch(true)
+
+              }}>
                 <IconButton sx={{ padding: '0',borderRadius:'0.2px', display:'flex', flexDirection:'flex-start'}} ><SearchOutlined className={styles.search} sx={{ margin: '0' }}/></IconButton>
               <p>Search...</p>
             </div>
@@ -73,8 +85,12 @@ export default function NavBarBottom ({
                       return (
                           <div className={styles.user} onClick={()=>{
                             setProfileUser(filteredUser)
+                            console.log('click')
                             setShowSearch(false)
+                            setFollowingPresent(false)
+                            setFollowingPresent(false)
                             navigate('/profile')
+
                           }}>
                             <div className={styles.profileImg}>
                               {

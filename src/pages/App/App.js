@@ -18,7 +18,7 @@ function App () {
   const [state, setState] = useState(null)
   const [user, setUser] = useState(null)
 
-  const [followersEvents, setFollowersEvents] = useState([])
+  const [followerObjects, setFollowerObjects] = useState([])
   const [followingObjects, setFollowingObjects] = useState([])
 
   const [showModal, setShowModal] = useState(false)
@@ -41,6 +41,9 @@ function App () {
   const [allUsers, setAllUsers] = useState([])
 
   const [profileUser, setProfileUser] = useState()
+
+  const [followersPresent, setFollowersPresent] = useState(false)
+  const [followingPresent, setFollowingPresent] = useState(false)
 
   // Index Comments by post
   const getComments = async (id) => {
@@ -74,13 +77,15 @@ function App () {
 
   // Get the usets that are following you!
   const getFollowers = async (id) => {
+    console.log(id)
     try {
+      getFollowing(user._id)
       const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
-      setFollowersEvents(data)
+      setFollowerObjects(data)
     //   getPosts()
     } catch (err) {
-      console.log(err)
+      console.log({msg:err.message})
     }
   }
 
@@ -167,21 +172,29 @@ function App () {
     }
   }
 
+console.log(followersPresent)
+console.log(followingPresent)
+
+  useEffect(() => {
+    getUsers()
+    if(user){
+      getFollowing(user._id)
+      getFollowers(user._id)
+    }
+  }, [])
 
 
   useEffect(() => {
     if (post) {
       getPosterInfo(post.poster)
     }
-    getUsers()
-    if(user){
-      getFollowing(user._id)
-    }
   }, [])
-// console.log(profileUser)
-// console.log(allUsers)
 
-// console.log(followersEvents)
+  // useEffect(()=>{
+  //   if(user){
+  //     getFollowers(user._id)
+  //   }
+  // }, [])
 
 // console.log(followingObjects)
   return (
@@ -197,8 +210,8 @@ function App () {
 
                     getFollowers={getFollowers}
 
-                    setFollowersEvents={setFollowersEvents}
-                    followersEvents={followersEvents}
+                    // setFollowersEvents={setFollowersEvents}
+                    // followersEvents={followersEvents}
                                     />}
                 />
 
@@ -213,13 +226,21 @@ function App () {
                     setPost={setPost}
                     post={post}
                     getComments={getComments}
-                    getFollowing={getFollowing}
+                   
                     getLikesByPost={getLikesByPost}
                     likesByPost={likesByPost}
                     // handleSetLike={handleSetLike}
                     setLike={setLike}
                     like={like}
+
+                    getFollowing={getFollowing}
                     followingObjects={followingObjects}
+                    getFollowers={getFollowers}
+                    followerObjects={followerObjects}
+                    setFollowersPresent={setFollowersPresent}
+                    followersPresent={followersPresent}
+                    setFollowingPresent={setFollowingPresent}
+                    followingPresent={followingPresent}
                                            />}
                 />
                 <Route path='/orders' element={<OrderHistoryPage />} />
@@ -231,6 +252,11 @@ function App () {
               // posts={posts}
               getPosts={getPosts}
               profileUser={profileUser}
+              
+              setFollowersPresent={setFollowersPresent}
+              followersPresent={followersPresent} 
+              setFollowingPresent={setFollowingPresent}
+              followingPresent={followingPresent} 
             />
             <NavBarBottom
               setShowModal={setShowModal}
@@ -309,8 +335,8 @@ function App () {
 
               getFollowers={getFollowers}
 
-              setFollowersEvents={setFollowersEvents}
-              followersEvents={followersEvents}
+              // setFollowersEvents={setFollowersEvents}
+              // followersEvents={followersEvents}
             />
       }
     </main>
