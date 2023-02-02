@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 export default function ProfilePage ({
   userPosts,
   getPosts,
-  user,
+  profileUser,
   setPostModal,
   setPost,
   getPosterInfo,
@@ -18,12 +18,15 @@ export default function ProfilePage ({
   handleSetLike,
   setLike,
   like,
-  setLikesByPost
+  setLikesByPost,
+  user,
+  getFollowing,
+  followingObjects
 }) {
 
   useEffect(() => {
-    if (user) {
-      getPosts(user._id)
+    if (profileUser) {
+      getPosts(profileUser._id)
     }
 
   }, [])
@@ -32,7 +35,10 @@ export default function ProfilePage ({
   return (
     <div className={styles.profilePage}>
       <ProfileHeader 
+        profileUser={profileUser}
         user={user}
+        getFollowing={getFollowing}
+        followingObjects={followingObjects}
       />
       <ProfileSection
         userPosts={userPosts}

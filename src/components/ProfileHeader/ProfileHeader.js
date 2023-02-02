@@ -3,7 +3,7 @@ import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 import styles from "./ProfileHeader.module.scss";
 import { useState, useEffect } from 'react'
 
-export default function ProfileHeader(user) {
+export default function ProfileHeader({profileUser, user, getFollowing, followingObjects}) {
     return (
         <div className={styles.profileHeader}>
             <div className={styles.profile}>
@@ -11,7 +11,10 @@ export default function ProfileHeader(user) {
                     <div className={styles.profileHeaderTop}>
                         <ProfileAvatar />
                         <ProfileInfo
-                        user={user}
+                            profileUser={profileUser}
+                            user={user}
+                            getFollowing={getFollowing}
+                            followingObjects={followingObjects}
                         />
                     </div>
                     <div className={styles.profileHighlights}></div>

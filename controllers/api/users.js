@@ -2,7 +2,7 @@
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const { update } = require('../../models/user')
+// const { update } = require('../../models/user')
 // const { TbArrowAutofitContent } = require('react-icons/tb')
 
 const checkToken = (req, res) => {
@@ -12,6 +12,7 @@ const checkToken = (req, res) => {
 
 const dataController = {
   async create (req, res, next) {
+    console.log(req.body)
     try {
       const user = await User.create(req.body)
       console.log(req.body)
@@ -99,8 +100,9 @@ module.exports = {
 // Helper Function //
 // help function so we dont have to write token information over and over
 function createJWT (user) {
+  // console.log(user)
   // accept a user and return a token
-  return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h' })
+  return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h', allowInsecureKeySizes: true })
 }
 
 // // /controllers/api/users.js

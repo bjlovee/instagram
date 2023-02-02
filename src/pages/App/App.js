@@ -40,7 +40,7 @@ function App () {
 
   const [allUsers, setAllUsers] = useState([])
 
-  const [profileUser, setProfileUser] = useState({})
+  const [profileUser, setProfileUser] = useState()
 
   // Index Comments by post
   const getComments = async (id) => {
@@ -173,19 +173,17 @@ function App () {
     if (post) {
       getPosterInfo(post.poster)
     }
-
     getUsers()
-
-    // if(user){
-    //   getFollowing(user._id)
-    // }
+    if(user){
+      getFollowing(user._id)
+    }
   }, [])
 // console.log(profileUser)
 // console.log(allUsers)
 
 // console.log(followersEvents)
 
-console.log(followingObjects)
+// console.log(followingObjects)
   return (
     <main className={styles.App}>
       {
@@ -209,18 +207,19 @@ console.log(followingObjects)
                     userPosts={userPosts}
                     getPosts={getPosts}
                     getPosterInfo={getPosterInfo}
-                    // user={user}
-                    user={profileUser}
+                    user={user}
+                    profileUser={profileUser}
                     setPostModal={setPostModal}
                     setPost={setPost}
                     post={post}
                     getComments={getComments}
-
+                    getFollowing={getFollowing}
                     getLikesByPost={getLikesByPost}
                     likesByPost={likesByPost}
                     // handleSetLike={handleSetLike}
                     setLike={setLike}
                     like={like}
+                    followingObjects={followingObjects}
                                            />}
                 />
                 <Route path='/orders' element={<OrderHistoryPage />} />
