@@ -47,6 +47,7 @@ const dataController = {
           following: follower
         }
       })
+      console.log(userFollowed)
       res.locals.data.follower = follower
       next()
     } catch (e) {
