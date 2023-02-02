@@ -1,11 +1,12 @@
 import styles from "./ProfileInfo.module.scss";
 import React from "react"
 
-export default function ProfileInfo() {
+export default function ProfileInfo({ user }) {
+  console.log(user.user.handle)
   return (
     <div className={styles.profileInfo}>
       <div className={styles.profileInfoTop}>
-        <div className={styles.username}>theshenerd</div>
+        <div className={styles.username}>{user.user.handle}</div>
         <div className={styles.followingButton}>Following</div>
         <div className={styles.messageButton}>Message</div>
         <div className={styles.suggestion}></div>
@@ -17,7 +18,7 @@ export default function ProfileInfo() {
       </div>
       <div className={styles.profileBio}>
         <div className={styles.profileBioHeader}>
-          <div className={styles.profileBioHeaderName}>Kristin E</div>
+          <div className={styles.profileBioHeaderName}>{user.user.name}</div>
           <div className={styles.profileBioHeaderPronouns}>she/her/hers</div>
         </div>
         <p>
