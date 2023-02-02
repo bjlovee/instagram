@@ -32,25 +32,29 @@ const createFollowing = async () => {
   }
 }
 
-
-
-
-
-
-useEffect(()=>{
+const checkFollowing = () => {
   followingObjects.filter(object => setFollowingPresent((object.userFollowed === profileUser._id)))
+}
+
+const checkFollowed = () => {
+  followerObjects.filter(object => setFollowersPresent((object.followerUser === profileUser._id)))
+}
+
+
+
+useEffect(()=>{
+  checkFollowing()
 })
 
 
 useEffect(()=>{
-  followerObjects.filter(object => setFollowingPresent((object.followerUser === profileUser._id)))
+  checkFollowed() 
 })
+
 
 
 useEffect(() => 
-{
-  getFollowers(user._id)
-}, [])
+{getFollowers(user._id)}, [])
 
 //---check if you are following the user---//
 
@@ -78,8 +82,8 @@ console.log(user._id)
 
 
 
-// console.log(followersPresent)
-// console.log(followingPresent)
+console.log(followersPresent)
+console.log(followingPresent)
 
 
 
@@ -88,13 +92,26 @@ console.log(user._id)
       <div className={styles.profileInfoTop}>
         <div className={styles.username}>{profileUser.handle}</div>
         <div className={styles.followingButton}>
-          {
-            user._id !== profileUser._id
+          {/* if you are not viewing your own profile, and if the user is not following the the viewed profile user and the profile user is not following the user*/}
+          {user._id !== profileUser._id && !followingPresent && !followersPresent
+            ?
+              <button onClick={createFollowing}>Follow</button>
+            // if you are not viewing your own profile, and if youre not following the viewed profile user, and if you are being followed by the profile user
+            :user._id !== profileUser._id && !followingPresent && followersPresent
               ?
-                <button onClick={createFollowing}>Follow</button>
-              :
-                ''
+                <button onClick={()=>{console.log('click')}}>Follow back</button>
+              // if you are not viewing your own profile, and if you are following the user profile, but the user profile is not following you
+              : user._id !== profileUser._id && followingPresent && !followersPresent 
+                ?
+                  <button >Waiting for a response</button>
+                   // if you are not viewing your own profile, and if you are following the viewed profile user, and the profile user is following you
+                : user._id !== profileUser._id && followingPresent && followersPresent
+                  ?
+                    <button onClick={()=>{console.log('click')}}>Unfollow</button>
+                  :
+                    ''                                           
           }
+
 
         </div>
         <div className={styles.messageButton}>Message</div>
@@ -127,6 +144,19 @@ console.log(user._id)
 
 
 
+
+
+// {
+//   user._id !== profileUser._id
+//     ?
+//       <button onClick={createFollowing}>Follow</button>
+//     :
+//       ''
+// }
+
+
+
+
           // {/* if you are not viewing your own profile, and if the user is not following the the viewed profile user and the profile user is not following the user*/}
           // {user._id !== profileUser._id && !{checkIfFollowing} && !{checkIfFollowed}
           //   ?
@@ -147,7 +177,14 @@ console.log(user._id)
 
 
 
+// useEffect(()=>{
+//   followingObjects.filter(object => setFollowingPresent((object.userFollowed === profileUser._id)))
+// })
 
+
+// useEffect(()=>{
+//   followerObjects.filter(object => setFollowersPresent((object.followerUser === profileUser._id)))
+// })
 
 
 

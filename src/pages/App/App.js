@@ -172,8 +172,8 @@ function App () {
     }
   }
 
-console.log(followersPresent)
-console.log(followingPresent)
+// console.log(followersPresent)
+// console.log(followingPresent)
 
   useEffect(() => {
     getUsers()
