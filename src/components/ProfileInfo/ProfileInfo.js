@@ -1,4 +1,5 @@
 import styles from "./ProfileInfo.module.scss";
+import React from "react"
 
 export default function ProfileInfo() {
   return (
