@@ -31,7 +31,9 @@ export default function ProfilePage ({
 // console.log(user)
   return (
     <div className={styles.profilePage}>
-      <ProfileHeader />
+      <ProfileHeader 
+        user={user}
+      />
       <ProfileSection
         userPosts={userPosts}
         setPostModal={setPostModal}
