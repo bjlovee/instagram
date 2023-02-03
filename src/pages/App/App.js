@@ -13,7 +13,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
 import { ConstructionOutlined, ImportExport } from '@mui/icons-material'
 import { ListItem } from '@mui/material'
-
+import { Helmet } from 'react-helmet'
 function App () {
   const [state, setState] = useState(null)
   const [user, setUser] = useState(null)
@@ -208,6 +208,12 @@ useEffect(() =>{
 // console.log(followingObjects)
   return (
     <main className={styles.App}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Instafake</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+          <meta name="description" content="Instagram SPA clone" />
+        </Helmet>
       {
         user
           ? <>
