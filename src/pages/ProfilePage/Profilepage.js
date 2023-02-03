@@ -3,6 +3,7 @@ import ProfileSection from '../../components/ProfileSection/ProfileSection'
 import Footer from '../../components/Footer/Footer'
 import styles from './ProfilePage.module.scss'
 import { useState, useEffect } from 'react'
+import { getUser } from '../../utilities/users-service'
 
 export default function ProfilePage ({
   userPosts,
@@ -38,13 +39,19 @@ export default function ProfilePage ({
 
   }, [])
 
+  useEffect(() =>{
+    getUser(user._id)
+  }, [])
 // console.log(userPosts)
 // console.log(user)
+
+// console.log(userPosts)
   return (
     <div className={styles.profilePage}>
       <ProfileHeader 
         profileUser={profileUser}
         user={user}
+        numberOfPosts={userPosts.length}
         // getFollowing={getFollowing}
         // followingObjects={followingObjects}
         getFollowers={getFollowers}
@@ -52,7 +59,7 @@ export default function ProfilePage ({
         setFollowersPresent={setFollowersPresent}
         followersPresent={followersPresent}
         followingPresent={followingPresent}
-      
+        getUser={getUser}
         setFollowingPresent={setFollowingPresent}
       />
       <ProfileSection

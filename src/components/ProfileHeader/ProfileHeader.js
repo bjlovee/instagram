@@ -13,18 +13,22 @@ export default function ProfileHeader({
     setFollowersPresent, 
     followersPresent,
     followingPresent, 
-    
-    setFollowingPresent
+    getUser,
+    setFollowingPresent,
+    numberOfPosts
 }) {
     return (
         <div className={styles.profileHeader}>
             <div className={styles.profile}>
                 <div className={styles.profileHeader}>
                     <div className={styles.profileHeaderTop}>
-                        <ProfileAvatar />
+                        <ProfileAvatar 
+                            profileUser={profileUser}
+                        />
                         <ProfileInfo
                             profileUser={profileUser}
                             user={user}
+                            getUser={getUser}
                             // getFollowing={getFollowing}
                             // followingObjects={followingObjects}
                             getFollowers={getFollowers}
@@ -33,6 +37,7 @@ export default function ProfileHeader({
                             followingPresent={followingPresent}
                             setFollowersPresent={setFollowersPresent}
                             setFollowingPresent={setFollowingPresent}
+                            numberOfPosts={numberOfPosts}
                         />
                     </div>
                     <div className={styles.profileHighlights}></div>

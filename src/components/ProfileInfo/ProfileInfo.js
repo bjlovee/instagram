@@ -1,6 +1,7 @@
 import styles from "./ProfileInfo.module.scss";
 import React from "react"
 import { useEffect, useState } from "react";
+import { useRadioGroup } from "@mui/material";
 
 export default function ProfileInfo({ 
   profileUser, 
@@ -12,8 +13,9 @@ export default function ProfileInfo({
   setFollowersPresent, 
   followersPresent,
   followingPresent, 
- 
-  setFollowingPresent
+  getUser,
+  setFollowingPresent,
+  numberOfPosts
 }) {
 
 
@@ -59,9 +61,9 @@ const createFollow = async () => {
     }
   }
 
+// console.log(numberOfPosts)
 
-
-
+console.log(profileUser)
 
 
 
@@ -102,23 +104,6 @@ useEffect(() =>
   getFollowers(user._id)
 }, [])
 
-//---check if you are following the user---//
-
-//followingObjects
-// userFollowed === profileUser._id
-
-
-
-
-//---check if you are being followed---//
-
-//followersObjects
-//followerUser === profileUser
-
-
-
-
-
 
 
 console.log(profileUser._id)
@@ -157,22 +142,23 @@ console.log(followersPresent)
         <div className={styles.suggestion}></div>
       </div>
       <div className={styles.profileStats}>
-        <div>942 posts</div>
-        <div>846 followers</div>
-        <div>752 following</div>
+        <div>{numberOfPosts} posts</div>
+
+        <div>{profileUser.followers ? profileUser.followers.length : 0 } followers</div>
+        <div>{profileUser.following ? profileUser.following.length : 0 } following</div>
       </div>
       <div className={styles.profileBio}>
         <div className={styles.profileBioHeader}>
           <div className={styles.profileBioHeaderName}>{profileUser.name}</div>
-          <div className={styles.profileBioHeaderPronouns}>she/her/hers</div>
+          {/* <div className={styles.profileBioHeaderPronouns}>she/her/hers</div> */}
         </div>
-        <p>
+        {/* <p>
           I say stupid things and take random pictures. Messages from randos get
           insta-blocked. Bless your hearts
-        </p>
-        <div className={styles.profileBioFooter}>
+        </p> */}
+        {/* <div className={styles.profileBioFooter}>
           Followed by coleortizmackes, claireshiell. janicemcintyre + 54 more
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -183,6 +169,24 @@ console.log(followersPresent)
 
 
 
+// useEffect(()=>{
+//   getUser(user)
+// })
+
+
+
+//---check if you are following the user---//
+
+//followingObjects
+// userFollowed === profileUser._id
+
+
+
+
+//---check if you are being followed---//
+
+//followersObjects
+//followerUser === profileUser
 
 
 

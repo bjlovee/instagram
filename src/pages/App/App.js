@@ -197,7 +197,12 @@ function App () {
   // useEffect(() =>{
   //   getPosts(profileUser._id)
   // }, [])
-
+useEffect(() =>{
+  if(user){
+    getUser(user._id)
+  }
+  
+}, [])
 // console.log(followingObjects)
   return (
     <main className={styles.App}>
@@ -278,7 +283,9 @@ function App () {
             <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
-
+              
+              setProfileUser={setProfileUser}
+              profileUser={profileUser}
               post={post}
               setPost={setPost}
               getPosts={getPosts}
