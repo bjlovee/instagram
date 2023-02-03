@@ -1,4 +1,4 @@
-import ProfilePostsIndex from '../ProfilePostsIndex/ProfilePostsIndex'
+// import ProfilePostsIndex from '../ProfilePostsIndex/ProfilePostsIndex'
 import styles from './ProfileSection.module.scss'
 // import tempStyles from '../ProfilePostsIndex/ProfilePostsIndex.module.scss'
 import { useEffect } from 'react'
