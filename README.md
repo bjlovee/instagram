@@ -473,33 +473,33 @@ If we were to do this again, having Trello board premium would definitly be a we
 
 # Resources
 
-![Image to fit](https://stackoverflow.com/questions/8775149/fit-image-inside-div-without-stretching) 
+[Image to fit](https://stackoverflow.com/questions/8775149/fit-image-inside-div-without-stretching) 
 
 
-![Like button MUI](https://blog.logrocket.com/definitive-guide-react-material/) 
-
- 
-![Uploading Images](https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/) 
+[Like button MUI](https://blog.logrocket.com/definitive-guide-react-material/) 
 
  
-![Cloudinary](https://imagekit.io/cloudinary-alternative/) 
+[Uploading Images](https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/) 
 
  
-![How to add images](https://cloudinary.com/documentation/upload_images) 
+[Cloudinary](https://imagekit.io/cloudinary-alternative/) 
 
  
-![Grepper answer for storing images as a blob](https://www.google.com/search?q=how+to+store+and+retrieve+images+from+cloudinary&oq=how+to+store+and+retrieve+images+from+cloudinary&aqs=chrome..69i57j33i160l2.28729j0j7&sourceid=chrome&ie=UTF-8) 
+[How to add images](https://cloudinary.com/documentation/upload_images) 
+
+ 
+[Grepper answer for storing images as a blob](https://www.google.com/search?q=how+to+store+and+retrieve+images+from+cloudinary&oq=how+to+store+and+retrieve+images+from+cloudinary&aqs=chrome..69i57j33i160l2.28729j0j7&sourceid=chrome&ie=UTF-8) 
 
 
-![Reopening branches](https://stackoverflow.com/questions/25170098/re-open-deleted-git-branch) 
+[Reopening branches](https://stackoverflow.com/questions/25170098/re-open-deleted-git-branch) 
 
-![Sorting by created at mongoose](https://stackoverflow.com/questions/13293254/sort-by-date-and-time-in-mongoose) 
-
-
-![Appending to state array variable using (...spreader)](https://beta.reactjs.org/learn/updating-arrays-in-state) 
+[Sorting by created at mongoose](https://stackoverflow.com/questions/13293254/sort-by-date-and-time-in-mongoose) 
 
 
-![Media queries](https://stackoverflow.com/questions/43264679/how-to-change-css-when-the-screen-size-changes#43265418) 
+[Appending to state array variable using (...spreader)](https://beta.reactjs.org/learn/updating-arrays-in-state) 
+
+
+[Media queries](https://stackoverflow.com/questions/43264679/how-to-change-css-when-the-screen-size-changes#43265418) 
 
 
 ![Search state component](https://plainenglish.io/blog/how-to-implement-a-search-bar-in-react-js) 
