@@ -1,6 +1,8 @@
 
+![Logo](public/images/Logo.png)
+
 # Introduction 
-This is an Insgagram clone where a visitor can come socialize with other users by post, commenting and liking. Just like the real thing, but with a few twists!
+This is an Instagram MERN stack developed clone where a visitor can come socialize with other users by post, commenting and liking. Just like the real thing, but with a few twists!
 
 # Technologies Used 
 * JavaScript
@@ -468,11 +470,11 @@ If we were to do this again, having Trello board premium would definitly be a we
 * Unfollow button functionality
 * Move profile icon to the top
 * Multi Chat System
+* Make naming conventions consistent
 
 
 
 # Resources
-
 [Image to fit](https://stackoverflow.com/questions/8775149/fit-image-inside-div-without-stretching) 
 
 
@@ -502,5 +504,5 @@ If we were to do this again, having Trello board premium would definitly be a we
 [Media queries](https://stackoverflow.com/questions/43264679/how-to-change-css-when-the-screen-size-changes#43265418) 
 
 
-![Search state component](https://plainenglish.io/blog/how-to-implement-a-search-bar-in-react-js) 
+[Search state component](https://plainenglish.io/blog/how-to-implement-a-search-bar-in-react-js) 
 
