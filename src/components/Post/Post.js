@@ -84,9 +84,8 @@ export default function ContainerResponsive() {
             </Avatar>
             &nbsp; BJ Love &nbsp; 
               <div className='button'> 
-              <button>
-                  Follow
-               </button>
+
+
               </div> 
               <MoreHorizIcon />
                 </Link>

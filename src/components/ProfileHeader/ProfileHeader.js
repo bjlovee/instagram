@@ -6,8 +6,8 @@ import { useState, useEffect } from 'react'
 export default function ProfileHeader({
     profileUser, 
     user, 
-    // getFollowing, 
-    // followingObjects, 
+    getFollowing, 
+    followingObjects, 
     getFollowers, 
     followerObjects, 
     setFollowersPresent, 
@@ -29,8 +29,8 @@ export default function ProfileHeader({
                             profileUser={profileUser}
                             user={user}
                             getUser={getUser}
-                            // getFollowing={getFollowing}
-                            // followingObjects={followingObjects}
+                            getFollowing={getFollowing}
+                            followingObjects={followingObjects}
                             getFollowers={getFollowers}
                             followerObjects={followerObjects}
                             followersPresent={followersPresent}

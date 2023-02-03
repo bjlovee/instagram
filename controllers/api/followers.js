@@ -33,37 +33,31 @@ const dataController = {
     }
   },
 
-async create (req, res, next) {
-  try {
-    console.log(req)
-    const follower = await Follower.create(req.body)
-    // follower object passed into the followedUser
-    const userFollowed = await User.findByIdAndUpdate(follower.userFollowed, {
-      $push: {
-        followers: follower
-      }
-    })
-    // update the followerUsers following array with the userFollowed user object
-    await User.findByIdAndUpdate(follower.followerUser, {
-      $push: {
-        followers: follower
-      }
-    })
-    
-    console.log(follower)
-    res.locals.data.follower = follower
-    next()
-  } catch (e) {
-    res.status(400).json(e)
-  }
-},
-
-
-
+  async create (req, res, next) {
+    try {
+      const follower = await Follower.create(req.body)
+      // follower object passed into the followedUser
+      const userFollowed = await User.findByIdAndUpdate(follower.userFollowed, {
+        $push: {
+          followers: follower
+        }
+      })
+      // update the followerUsers following array with the userFollowed user object
+      await User.findByIdAndUpdate(follower.followerUser, {
+        $push: {
+          following: follower
+        }
+      })
+      console.log(userFollowed)
+      res.locals.data.follower = follower
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
+  },
   async destroy (req, res, next) {
     try {
       // find the follower passed in by its object id
-      console.log(req.params.id)
       const follower = await Follower.findById(req.params.id)
       // console.log(follower)
       // getting the follower object stored in the followingUser

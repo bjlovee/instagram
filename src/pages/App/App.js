@@ -19,7 +19,7 @@ function App () {
   const [user, setUser] = useState(null)
 
   const [followerObjects, setFollowerObjects] = useState([])
-  // const [followingObjects, setFollowingObjects] = useState([])
+  const [followingObjects, setFollowingObjects] = useState([])
 
   const [showModal, setShowModal] = useState(false)
   const [postModal, setPostModal] = useState(false)
@@ -83,6 +83,7 @@ function App () {
       const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
       console.log(data)
+      getFollowing(id)
       setFollowerObjects(data)
     //   getPosts()
     } catch (err) {
@@ -91,15 +92,15 @@ function App () {
   }
 
   //Get the users you are following!
-  // const getFollowing = async (id) => {
-  //   try{
-  //     const response = await fetch(`api/followers/following/${id}`)
-  //     const data = await response.json()
-  //     setFollowingObjects(data)
-  //   } catch (e) {
-  //     console.error({msg:e.message})
-  //   }
-  // }
+  const getFollowing = async (id) => {
+    try{
+      const response = await fetch(`api/followers/following/${id}`)
+      const data = await response.json()
+      setFollowingObjects(data)
+    } catch (e) {
+      console.error({msg:e.message})
+    }
+  }
 
   const fetchState = async () => {
     try {
@@ -179,6 +180,7 @@ function App () {
     getUsers()
     if(user){
       // getFollowing(user._id)
+      console.log('here')
       getFollowers(user._id)
     }
   }, [])
@@ -240,8 +242,8 @@ useEffect(() =>{
                     setLike={setLike}
                     like={like}
 
-                    // getFollowing={getFollowing}
-                    // followingObjects={followingObjects}
+                    getFollowing={getFollowing}
+                    followingObjects={followingObjects}
 
                     getFollowers={getFollowers}
                     followerObjects={followerObjects}

@@ -6,8 +6,8 @@ import { useRadioGroup } from "@mui/material";
 export default function ProfileInfo({ 
   profileUser, 
   user, 
-  // getFollowing, 
-  // followingObjects,
+  getFollowing, 
+  followingObjects,
   getFollowers, 
   followerObjects, 
   setFollowersPresent, 
@@ -46,6 +46,30 @@ const createFollow = async () => {
 }
 
 
+const createFollowBack = async () => {
+  try {
+    const response = await fetch('/api/followers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // nesting the user id on creation
+        followerUser: profileUser._id,
+        userFollowed: user._id
+      })
+    })
+    const data = await response.json()
+    console.log(data)
+    getFollowers(user._id)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+
+
+
   // Delete Comment
   const deleteFollowing = async (id) => {
     try {
@@ -67,15 +91,18 @@ console.log(profileUser)
 
 
 
-//filtering to see if the profile being viewed is following the user
-const checkFollowed = () => {
-  followerObjects.filter(object => setFollowersPresent((object.followerUser === profileUser._id)))
+
+const checkFollowing = () => {
+  followingObjects.filter(object => setFollowingPresent((object.userFollowed === profileUser._id)))
+  // console.log(console.log(followingObjects.filter(object => object.userFollowed === profileUser._id)))
 }
 
-//filtering to see if the profile being viewed is following the user
-const checkFollowing = () => {
-  followerObjects.filter(object => setFollowingPresent((object.userFollowed === profileUser._id)))
+const checkFollowed = () => {
+  followingObjects.filter(object => setFollowersPresent((object.followerUser === profileUser._id)))
+  // console.log(console.log(followingObjects.filter(object => object.userFollowed === profileUser._id)))
 }
+
+
 
 useEffect(()=>{
   if(followerObjects.length >= 0){
@@ -124,18 +151,26 @@ console.log(followersPresent)
         <div className={styles.username}>{profileUser.handle}</div>
         <div className={styles.followingButton}>
           {/* if you are not viewing your own profile, and if either you or the profile user hasnt followed, then you can follow*/}
-          {user._id !== profileUser._id && !followersPresent && !followingPresent
-            ?
-              <button onClick={createFollow}>Follow</button>
-              // if you are not viewing your own profile, and if either you or the profile user has followed, then you can unfollow
-                : user._id !== profileUser._id && !followersPresent && followingPresent || followersPresent && !followingPresent 
+          {user._id !== profileUser._id && !followingPresent && !followersPresent
+              ?
+                <button onClick={createFollow}>Follow</button>
+              // if you are not viewing your own profile, and if youre not following the viewed profile user, and if you are being followed by the profile user
+              :user._id !== profileUser._id && !followingPresent && followersPresent
+                ?
+                  <button onClick={createFollowBack}>Follow back</button>
+                // if you are not viewing your own profile, and if you are following the user profile, but the user profile is not following you
+                : user._id !== profileUser._id && followingPresent && !followersPresent 
                   ?
-                    <button onClick={()=>{
-                      deleteFollowing(profileUser._id)
-                    }}>Unfollow</button>
-                  :
-                    ''                                           
-          }
+                    <button >Waiting for a response</button>
+                    // if you are not viewing your own profile, and if you are following the viewed profile user, and the profile user is following you
+                  : user._id !== profileUser._id && followingPresent && followersPresent
+                    ?
+                      <button onClick={()=>{
+                        deleteFollowing(profileUser._id)
+                      }}>Unfollow</button>
+                    :
+                      ''                                           
+            }
 
         </div>
         {/* <div className={styles.messageButton}>Message</div> */}
@@ -167,6 +202,17 @@ console.log(followersPresent)
 
 
 
+
+
+{/* <button onClick={createFollow}>Follow</button>
+// if you are not viewing your own profile, and if either you or the profile user has followed, then you can unfollow
+  : user._id !== profileUser._id && !followersPresent && followingPresent || followersPresent && !followingPresent 
+    ?
+      <button onClick={()=>{
+        deleteFollowing(profileUser._id)
+      }}>Unfollow</button>
+    :
+      ''    */}
 
 
 // useEffect(()=>{

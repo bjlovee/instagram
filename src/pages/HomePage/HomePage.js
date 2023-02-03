@@ -20,12 +20,7 @@ export default function HomePage ({
 
   // settings posts data in loop
   const handleSetPosts = (data) => {
-    // adding to state via conditional to prevent infinite loop
-    if (followersPosts.length < followersObjects.length - 1) {
       setFollowersPosts(followersPosts => [...followersPosts, data])
-    } else {
-
-    }
   }
 
   // getting the users followers posts by the latest post
@@ -41,21 +36,32 @@ export default function HomePage ({
 
   // mapping through the array of followers and
   const getPosts = () => {
-    if (followersObjects && followersObjects.length > 0) {
+    if (followersObjects) {
       followersObjects.map(event => {
         getFollowersLatestPost(event.followerUser)
       })
     }
   }
 
+
+  //get followers
+  useEffect(() =>{
+    
+  })
+
   // gets posts on page load
   useEffect(() => {
     getPosts()
-  })
+  },[followersPosts])
 
-  // console.log(followersPosts)
 
-  // console.log(followersEvents)
+
+
+
+
+  console.log(followersPosts)
+
+  console.log(followersObjects)
   return (
     <>
       <div className={styles.indexSection}>
@@ -65,9 +71,8 @@ export default function HomePage ({
               <HomePageCarousel />
             </section>
             <Post />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
+            <Post />
+            <Post />
             <div className={styles.postContainer} />
             <div className={styles.postContainer} />
             <div className={styles.postContainer} />
@@ -93,6 +98,20 @@ export default function HomePage ({
     </>
   )
 }
+
+
+
+  // // settings posts data in loop
+  // const handleSetPosts = (data) => {
+  //   // adding to state via conditional to prevent infinite loop
+  //   if (followersPosts.length < followersObjects.length - 1) {
+  //     setFollowersPosts(followersPosts => [...followersPosts, data])
+  //   } else {
+
+  //   }
+  // }
+
+
 
 // const [followersEvents, setFollowersEvents] = useState([])
 // const [followersPosts, setFollowersPosts] = useState([])

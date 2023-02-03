@@ -21,8 +21,8 @@ export default function ProfilePage ({
   like,
   setLikesByPost,
   user,
-  // getFollowing,
-  // followingObjects,
+  getFollowing,
+  followingObjects,
   getFollowers,
   followerObjects,
   setFollowersPresent,
@@ -52,8 +52,8 @@ export default function ProfilePage ({
         profileUser={profileUser}
         user={user}
         numberOfPosts={userPosts.length}
-        // getFollowing={getFollowing}
-        // followingObjects={followingObjects}
+        getFollowing={getFollowing}
+        followingObjects={followingObjects}
         getFollowers={getFollowers}
         followerObjects={followerObjects}
         setFollowersPresent={setFollowersPresent}
