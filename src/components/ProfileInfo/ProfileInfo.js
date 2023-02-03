@@ -142,7 +142,7 @@ console.log(followersPresent)
         <div className={styles.suggestion}></div>
       </div>
       <div className={styles.profileStats}>
-        <div>{numberOfPosts} posts</div>
+        <div><span className={styles.posts}>{numberOfPosts}</span> posts</div>
 
         <div><span>{profileUser.followers ? profileUser.followers.length : 0 }</span> followers</div>
         <div><span>{profileUser.following ? profileUser.following.length : 0 }</span> following</div>

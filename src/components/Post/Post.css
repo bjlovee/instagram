@@ -15,3 +15,36 @@ justify-content: center;
    display: flex;
   padding-left: 6rem;
 }
+
+/* img{
+  height: 8rem;
+} */
+
+.image-container > div{
+  /* border: solid black; */
+  height: 10rem;
+  border-radius: 3px;
+  /* width: 5rem; */
+}
+
+/* .image-container > img{
+  width: 100%;
+  height: 100%;
+}  */
+/* .JoyCard-root{
+  border: solid black;
+} */
+/* . */
+
+.box-container > div{
+ /* border: solid black; */
+ padding:0;
+ padding-top: 01rem;
+}
+p{
+  font-size: 0.5rem;
+}
+
+.text{
+  font-size: 0.5rem;
+}

@@ -20,7 +20,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 export default function ContainerResponsive() {
   return (
     <div className='box'>
-    <Box sx={{ minHeight: 350 }}>
+    <Box sx={{ minHeight: 350 }} className='box-container'>
       <Card
         variant="outlined"
         sx={(theme) => ({
@@ -60,7 +60,7 @@ export default function ContainerResponsive() {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            maxWidth: 200,
+            maxWidth: 300,
           }}
         >
           <Box sx={{ display: 'flex' }}>
@@ -95,30 +95,34 @@ export default function ContainerResponsive() {
             </div>
     
           </Box>
-          <AspectRatio
+          <AspectRatio className='image-container'
+
             variant="soft"
             sx={{
               '--AspectRatio-paddingBottom':
                 'clamp(0px, (100% - 200px) * 999, 200px)',
               pointerEvents: 'none',
+              // height: "8rem"
             }}
           >
             <img
               alt=""
               src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2262"
+              // style={{ height:"40rem"}}
             />
           </AspectRatio>
+
           <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
             
             <div>
-            <AiOutlineHeart size="30px" color="#ff1744" />&nbsp;&nbsp;&nbsp;
-              <SlPaperPlane size="30px"/>&nbsp;&nbsp;&nbsp;
-              <TbMessageCircle2  size="30px"/>&nbsp;
+            <AiOutlineHeart size="1.5rem" color="#ff1744" />&nbsp;&nbsp;&nbsp;
+              <SlPaperPlane size="1.5rem"/>&nbsp;&nbsp;&nbsp;
+              <TbMessageCircle2  size="1.5rem"/>&nbsp;
               <div className='icons'>
-              <FaRegBookmark  size="30px"/>
+              <FaRegBookmark  size="1.5rem"/>
               </div>
               <br />
-              <Typography level="body2">Liked by <b>CreamPanda</b>, <b>NatureGuy</b> and <b>35 others</b></Typography>
+              <Typography sx={{ fontSize:'.7rem', paddingTop:"0.7rem" }} level="body2">Liked by <b>CreamPanda</b>, <b>NatureGuy</b> and <b>35 others</b></Typography>
               <Typography fontWeight="lg" level="body2">
                
               </Typography>
