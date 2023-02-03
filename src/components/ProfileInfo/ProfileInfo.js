@@ -138,14 +138,14 @@ console.log(followersPresent)
           }
 
         </div>
-        <div className={styles.messageButton}>Message</div>
+        {/* <div className={styles.messageButton}>Message</div> */}
         <div className={styles.suggestion}></div>
       </div>
       <div className={styles.profileStats}>
         <div>{numberOfPosts} posts</div>
 
-        <div>{profileUser.followers ? profileUser.followers.length : 0 } followers</div>
-        <div>{profileUser.following ? profileUser.following.length : 0 } following</div>
+        <div><span>{profileUser.followers ? profileUser.followers.length : 0 }</span> followers</div>
+        <div><span>{profileUser.following ? profileUser.following.length : 0 }</span> following</div>
       </div>
       <div className={styles.profileBio}>
         <div className={styles.profileBioHeader}>

@@ -40,7 +40,7 @@ export default function ProfileHeader({
                             numberOfPosts={numberOfPosts}
                         />
                     </div>
-                    <div className={styles.profileHighlights}></div>
+                
                 </div>
             </div>
         </div>

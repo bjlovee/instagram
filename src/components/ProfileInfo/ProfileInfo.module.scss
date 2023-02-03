@@ -1,24 +1,28 @@
 .profileInfo {
     display: flex;
     flex-direction: column;
-    border: solid red;
-    min-width: 70%;
+    // border: solid red;
+    // min-width: 70%;?
+    // width: fit-content;?
+    width: 20rem;
+    padding-left: 1rem;
 }
 
 .profileInfoTop {
-    border: solid purple;
+    // border: solid purple;
     display: flex;
     justify-content: space-between;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    // padding-bottom: 1rem;
+    
 }
 
 .profileStats {
-    border: solid green;
+    // border: solid green;
     display: flex;
     justify-content: space-between;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
 }
 
 .profileBio {
@@ -30,22 +34,28 @@
 }
 
 .profileBioHeaderName {
-    border: solid purple;
+    // border: solid purple;
     font-weight: 750;
-    padding: .2rem;
+    // padding: .2rem;
+    color: gray;
 }
 
 .profileBioHeaderPronouns {
-    border: solid purple;
+    // border: solid purple;
     color: gray;
     font-weight: 100;
     padding: .2rem;
 }
 
-.profileBioFooter {
-    border: solid pink;
-}
+// .profileBioFooter {
+//     // border: solid pink;
+// }
 
-.followingButton{
-    border: solid black;
+// .followingButton{
+//     // border: solid black;
+// }
+
+span{
+    // color: black;
+    font-weight: bolder;
 }
