@@ -35,6 +35,7 @@ const dataController = {
 
 async create (req, res, next) {
   try {
+    console.log(req)
     const follower = await Follower.create(req.body)
     // follower object passed into the followedUser
     const userFollowed = await User.findByIdAndUpdate(follower.userFollowed, {

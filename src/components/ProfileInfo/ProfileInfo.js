@@ -24,7 +24,7 @@ console.log(followerObjects)
 
 const createFollow = async () => {
   try {
-    const response = await fetch('/api/followers/follow', {
+    const response = await fetch('/api/followers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,9 +42,6 @@ const createFollow = async () => {
     console.error(error)
   }
 }
-
-
-
 
 
   // Delete Comment
@@ -79,12 +76,23 @@ const checkFollowing = () => {
 }
 
 useEffect(()=>{
-  checkFollowing()
+  if(followerObjects.length >= 0){
+    checkFollowing()
+  } else {
+    checkFollowing(false)
+  }
+  
 })
 
 
 useEffect(()=>{
-  checkFollowed() 
+  if(followerObjects.length >= 0){
+    checkFollowed() 
+  }
+  else{
+    checkFollowed(false)
+  }
+  
 })
 
 

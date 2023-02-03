@@ -19,7 +19,7 @@ function App () {
   const [user, setUser] = useState(null)
 
   const [followerObjects, setFollowerObjects] = useState([])
-  const [followingObjects, setFollowingObjects] = useState([])
+  // const [followingObjects, setFollowingObjects] = useState([])
 
   const [showModal, setShowModal] = useState(false)
   const [postModal, setPostModal] = useState(false)
@@ -77,11 +77,12 @@ function App () {
 
   // Get the usets that are following you!
   const getFollowers = async (id) => {
-    console.log(id)
+    // console.log(id)
     try {
       // getFollowing(user._id)
       const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
+      console.log(data)
       setFollowerObjects(data)
     //   getPosts()
     } catch (err) {
@@ -189,10 +190,12 @@ function App () {
     }
   }, [])
 
-  // useEffect(()=>{
-  //   if(user){
-  //     getFollowers(user._id)
-  //   }
+  useEffect(()=>{
+    getUsers()
+  }, [])
+
+  // useEffect(() =>{
+  //   getPosts(profileUser._id)
   // }, [])
 
 // console.log(followingObjects)
@@ -251,6 +254,7 @@ function App () {
             <NavBarTop 
               allUsers={allUsers}
               setProfileUser={setProfileUser}
+              getUsers={getUsers}
               // posts={posts}
               getPosts={getPosts}
               profileUser={profileUser}
@@ -269,6 +273,7 @@ function App () {
               setAddImageForm={setAddImageForm}
               showLogOut={showLogOut}
               setShowLogOut={setShowLogOut}
+              getPosts={getPosts}
             />
             <NewPostModal
               setShowModal={setShowModal}

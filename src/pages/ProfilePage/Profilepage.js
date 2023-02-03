@@ -38,6 +38,7 @@ export default function ProfilePage ({
 
   }, [])
 
+// console.log(userPosts)
 // console.log(user)
   return (
     <div className={styles.profilePage}>

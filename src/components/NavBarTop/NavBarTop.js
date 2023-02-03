@@ -18,8 +18,10 @@ export default function NavBarBottom ({
   setFollowingPresent,
   followingPresent,
 
+  getUsers,
   setFollowersPresent,
-  followersPresent
+  followersPresent,
+  
 }) {
 
   // console.log(allUsers)
@@ -33,12 +35,6 @@ export default function NavBarBottom ({
   const handleChange = (e) => {
     setSearchTerm(e.target.value)
   }
-
-  // useEffect(()=>{
-  //   if(profileUser){
-  //     getPosts(profileUser._id)
-  //   }
-  // },[])
 
 
 
@@ -64,8 +60,9 @@ export default function NavBarBottom ({
           :
             <div className={styles.searchContainer} onClick={(e)=>{
               e.preventDefault()
+              getUsers()
               setShowSearch(true)
-
+              
               }}>
                 <IconButton sx={{ padding: '0',borderRadius:'0.2px', display:'flex', flexDirection:'flex-start'}} ><SearchOutlined className={styles.search} sx={{ margin: '0' }}/></IconButton>
               <p>Search...</p>
@@ -87,6 +84,7 @@ export default function NavBarBottom ({
                             setProfileUser(filteredUser)
                             console.log('click')
                             setShowSearch(false)
+                            getPosts(filteredUser._id)
                             setFollowingPresent(false)
                             setFollowersPresent(false)
                             navigate('/profile')
