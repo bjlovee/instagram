@@ -3,8 +3,19 @@ import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 import styles from "./ProfileHeader.module.scss";
 import { useState, useEffect } from 'react'
 
-export default function ProfileHeader({profileUser, user, getFollowing, followingObjects, getFollowers, followerObjects, followersPresent,
-    followingPresent, setFollowersPresent, setFollowingPresent}) {
+export default function ProfileHeader({
+    profileUser, 
+    user, 
+    // getFollowing, 
+    // followingObjects, 
+    getFollowers, 
+    followerObjects, 
+    setFollowersPresent, 
+    followersPresent,
+    followingPresent, 
+    
+    setFollowingPresent
+}) {
     return (
         <div className={styles.profileHeader}>
             <div className={styles.profile}>
@@ -14,8 +25,8 @@ export default function ProfileHeader({profileUser, user, getFollowing, followin
                         <ProfileInfo
                             profileUser={profileUser}
                             user={user}
-                            getFollowing={getFollowing}
-                            followingObjects={followingObjects}
+                            // getFollowing={getFollowing}
+                            // followingObjects={followingObjects}
                             getFollowers={getFollowers}
                             followerObjects={followerObjects}
                             followersPresent={followersPresent}

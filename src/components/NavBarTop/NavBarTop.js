@@ -18,7 +18,7 @@ export default function NavBarBottom ({
   setFollowingPresent,
   followingPresent,
 
-  SetFollowersPresent,
+  setFollowersPresent,
   followersPresent
 }) {
 
@@ -88,7 +88,7 @@ export default function NavBarBottom ({
                             console.log('click')
                             setShowSearch(false)
                             setFollowingPresent(false)
-                            setFollowingPresent(false)
+                            setFollowersPresent(false)
                             navigate('/profile')
 
                           }}>

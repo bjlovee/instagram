@@ -20,13 +20,14 @@ export default function ProfilePage ({
   like,
   setLikesByPost,
   user,
-  getFollowing,
-  followingObjects,
+  // getFollowing,
+  // followingObjects,
   getFollowers,
   followerObjects,
+  setFollowersPresent,
   followersPresent,
   followingPresent,
-  setFollowersPresent,
+ 
   setFollowingPresent
 }) {
 
@@ -43,13 +44,14 @@ export default function ProfilePage ({
       <ProfileHeader 
         profileUser={profileUser}
         user={user}
-        getFollowing={getFollowing}
-        followingObjects={followingObjects}
+        // getFollowing={getFollowing}
+        // followingObjects={followingObjects}
         getFollowers={getFollowers}
         followerObjects={followerObjects}
+        setFollowersPresent={setFollowersPresent}
         followersPresent={followersPresent}
         followingPresent={followingPresent}
-        setFollowersPresent={setFollowersPresent}
+      
         setFollowingPresent={setFollowingPresent}
       />
       <ProfileSection
