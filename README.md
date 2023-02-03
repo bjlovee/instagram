@@ -448,7 +448,7 @@ Ok, so theres already enough information posted in here. But just a few more par
 
 Because state gets passed in from page coponents to modals, most API request are made from the parent then props `drilled` donwn to the necessary pages/components. To help giude this, a diagrammatic tree was made to guide the architecture, see below
 
-[Architecture](public/images/Architecture.png)
+![Architecture](public/images/Architecture.png)
 
 As part of our icebox, we plan on fixing some name conventions. Some single purpose components were reused after later in the development, but the naming stayed the same to save on time. An example was `SwitchProfile`. This was only supposed to be for the `HomePage` at the beginning, but after furhtering into the design, it was realised it could be used for a single comment component!.  
 
