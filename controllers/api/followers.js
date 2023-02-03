@@ -49,6 +49,7 @@ async create (req, res, next) {
         followers: follower
       }
     })
+    
     console.log(follower)
     res.locals.data.follower = follower
     next()

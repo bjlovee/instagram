@@ -281,7 +281,7 @@ function App () {
 
               post={post}
               setPost={setPost}
-
+              getPosts={getPosts}
               user={user}
               setUser={setUser}
               getUser={getUser}  

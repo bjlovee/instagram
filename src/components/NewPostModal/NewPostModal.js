@@ -8,6 +8,7 @@ export default function NewPostModal ({
   setShowModal,
   post,
   setPost,
+  getPosts,
   user,
   setUser,
   getUser,
@@ -98,7 +99,7 @@ export default function NewPostModal ({
   // UPDATE POST
   const updatePost = async () => {
     try {
-      const response = await fetch(`/api/users/${user._id}`, {
+      const response = await fetch(`/api/posts/${post._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -107,7 +108,8 @@ export default function NewPostModal ({
       })
       const data = await response.json()
       console.log(data)
-      setUser(data)
+      getPosts(user._id)
+      setPost(data)
 
     } catch (e) {
       console.error(e)
@@ -135,7 +137,7 @@ export default function NewPostModal ({
       })
       const data = await response.json()
       // console.log(data)
-      setUser(data)
+      // setUser(data)
       getUser(user._id)
     } catch (e) {
       console.error(e)
@@ -153,9 +155,6 @@ export default function NewPostModal ({
     setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value })
   }
 
-  // console.log(addImageForm)
-  // console.log(updateForm)
-// console.log(user.profilePic)
 
 useEffect(()=>{
   getUser(user._id)
@@ -201,7 +200,7 @@ useEffect(()=>{
                   <div className={styles.formContainer}>
                     <form autoComplete='off' onSubmit={handleSubmit}>
                         <input type='text' key={post._id + '1'} name='image' value={post.image} onChange={handleChange} placeholder='image' />
-                        <input type='text' key={post._id + '2'} name='location' value={post.location} onChange={handleChange} placeholder='location' required />
+                        <input type='text' key={post._id + '2'} name='location' value={post.location} onChange={handleChange} placeholder='location' />
                         <input type='text' key={post._id + '3'} name='music' value={post.music} onChange={handleChange} placeholder='music' />
                         <textarea className={styles.textArea} key={post._id} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required />
                         <div className={styles.buttonContainer}>
@@ -213,7 +212,10 @@ useEffect(()=>{
                 : updateForm && post && !addImageForm
                   ? <>
                     <div className={styles.formContainer}>
-                      <form autoComplete='off' onSubmit={(e) => { handleSubmitUpdate(e) }}>
+                      <form autoComplete='off' onSubmit={(e) => { 
+                           handleSubmitUpdate(e)
+                           updateForm(false)
+                         }}>
                           <input type='text' name='image' value={updatedPost.image} placeholder='image' onChange={(e) => { setUpdatedPost({ ...updatedPost, image: e.target.value }) }} />
                           <input type='text' name='location' value={updatedPost.location} placeholder='location' onChange={(e) => { setUpdatedPost({ ...updatedPost, location: e.target.value }) }} />
                           <input type='text' name='music' value={updatedPost.music} placeholder='music' onChange={(e) => { setUpdatedPost({ ...updatedPost, music: e.target.value }) }} />
