@@ -1,5 +1,26 @@
 .profileAvatar {
-    border: solid blue;
-    min-width: 20%;
-    padding: 1rem;
+    // border: solid blue;
+    // min-width: 20%;
+    // max-width: 5;
+    // padding: 1rem;
+    margin-right: 0.3rem;
+    max-height: 7rem;
+    // min-height: 7rem;
+    max-width: 6rem;
+    padding: 0 1rem 0 0 ;
+    // position: relative;
+    overflow: hidden;
+    justify-content: center;
+    border-radius: 50%;
+    // border: solid rgb(138, 136, 64);
+    justify-content: center;
+}
+
+.profileAvatar > img{
+    width: 120%;
+    height: auto;
+    // border-radius: 50%;
+    object-fit: cover;
+    // border: solid var(--outlines);
+    // position: absolute;
 }

@@ -1,16 +1,20 @@
 .profileHeader {
     font-family: sans-serif;
-    text-align: center;
+    // text-align: center;
+    
 }
 
 .profile {
-    border: solid orange;
+    // border: solid orange;
     display: flex;
     flex-direction: column;
+    margin: 1rem 1rem 0.5rem 1rem;
 }
 
 .profileHeaderTop {
     display: flex;
+    // justify-content: center;
+    align-items: center;
 }
 
 .profileHighlights {

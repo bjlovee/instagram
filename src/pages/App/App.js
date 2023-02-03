@@ -77,11 +77,13 @@ function App () {
 
   // Get the usets that are following you!
   const getFollowers = async (id) => {
-    console.log(id)
+    // console.log(id)
     try {
-      getFollowing(user._id)
+      // getFollowing(user._id)
       const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
+      console.log(data)
+      getFollowing(id)
       setFollowerObjects(data)
     //   getPosts()
     } catch (err) {
@@ -172,13 +174,13 @@ function App () {
     }
   }
 
-console.log(followersPresent)
-console.log(followingPresent)
+
 
   useEffect(() => {
     getUsers()
     if(user){
-      getFollowing(user._id)
+      // getFollowing(user._id)
+      console.log('here')
       getFollowers(user._id)
     }
   }, [])
@@ -190,12 +192,19 @@ console.log(followingPresent)
     }
   }, [])
 
-  // useEffect(()=>{
-  //   if(user){
-  //     getFollowers(user._id)
-  //   }
-  // }, [])
+  useEffect(()=>{
+    getUsers()
+  }, [])
 
+  // useEffect(() =>{
+  //   getPosts(profileUser._id)
+  // }, [])
+useEffect(() =>{
+  if(user){
+    getUser(user._id)
+  }
+  
+}, [])
 // console.log(followingObjects)
   return (
     <main className={styles.App}>
@@ -235,10 +244,13 @@ console.log(followingPresent)
 
                     getFollowing={getFollowing}
                     followingObjects={followingObjects}
+
                     getFollowers={getFollowers}
                     followerObjects={followerObjects}
+
                     setFollowersPresent={setFollowersPresent}
                     followersPresent={followersPresent}
+
                     setFollowingPresent={setFollowingPresent}
                     followingPresent={followingPresent}
                                            />}
@@ -249,6 +261,7 @@ console.log(followingPresent)
             <NavBarTop 
               allUsers={allUsers}
               setProfileUser={setProfileUser}
+              getUsers={getUsers}
               // posts={posts}
               getPosts={getPosts}
               profileUser={profileUser}
@@ -256,7 +269,7 @@ console.log(followingPresent)
               setFollowersPresent={setFollowersPresent}
               followersPresent={followersPresent} 
               setFollowingPresent={setFollowingPresent}
-              followingPresent={followingPresent} 
+              // followingPresent={followingPresent} 
             />
             <NavBarBottom
               setShowModal={setShowModal}
@@ -267,14 +280,17 @@ console.log(followingPresent)
               setAddImageForm={setAddImageForm}
               showLogOut={showLogOut}
               setShowLogOut={setShowLogOut}
+              getPosts={getPosts}
             />
             <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
-
+              
+              setProfileUser={setProfileUser}
+              profileUser={profileUser}
               post={post}
               setPost={setPost}
-
+              getPosts={getPosts}
               user={user}
               setUser={setUser}
               getUser={getUser}  
@@ -344,3 +360,35 @@ console.log(followingPresent)
 }
 
 export default App
+
+
+  // // Get the usets that are following you!
+  // const getFollowers = async (id) => {
+  //   console.log(id)
+  //   try {
+  //     // getFollowing(user._id)
+  //     const response = await fetch(`api/followers/follower/${id}`)
+  //     const data = await response.json()
+  //     setFollowerObjects(data)
+  //   //   getPosts()
+  //   } catch (err) {
+  //     console.log({msg:err.message})
+  //   }
+  // }
+
+  // //Get the users you are following!
+  // const getFollowing = async (id) => {
+  //   try{
+  //     const response = await fetch(`api/followers/following/${id}`)
+  //     const data = await response.json()
+  //     setFollowingObjects(data)
+  //   } catch (e) {
+  //     console.error({msg:e.message})
+  //   }
+  // }
+
+
+
+
+   // const [followersPresent, setFollowersPresent] = useState(false)
+  // const [followingPresent, setFollowingPresent] = useState(false)

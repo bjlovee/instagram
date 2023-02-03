@@ -8,6 +8,7 @@ export default function NewPostModal ({
   setShowModal,
   post,
   setPost,
+  getPosts,
   user,
   setUser,
   getUser,
@@ -16,7 +17,9 @@ export default function NewPostModal ({
   updateForm,
   setUpdateForm,
   addImageForm,
-  setAddImageForm
+  setAddImageForm,
+  setProfileUser,
+  profileUser
 
 }) {
   const [newPost, setNewPost] = useState({
@@ -98,7 +101,7 @@ export default function NewPostModal ({
   // UPDATE POST
   const updatePost = async () => {
     try {
-      const response = await fetch(`/api/users/${user._id}`, {
+      const response = await fetch(`/api/posts/${post._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -107,7 +110,8 @@ export default function NewPostModal ({
       })
       const data = await response.json()
       console.log(data)
-      setUser(data)
+      getPosts(user._id)
+      setPost(data)
 
     } catch (e) {
       console.error(e)
@@ -131,12 +135,13 @@ export default function NewPostModal ({
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(updatedProfile)
+        body: JSON.stringify({...updatedProfile})
       })
       const data = await response.json()
-      // console.log(data)
+     setProfileUser(data)
       setUser(data)
-      getUser(user._id)
+       getUser(user._id)
+      // setUpdatedProfile(null)
     } catch (e) {
       console.error(e)
     }
@@ -145,6 +150,8 @@ export default function NewPostModal ({
   const handleSubmitProfile = (e) => {
     e.preventDefault()
     updateProfile()
+    setUpdateForm(false)
+    // updateForm(false)
     setShowModal(false)
     setAddImageForm(false)
   }
@@ -153,9 +160,7 @@ export default function NewPostModal ({
     setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value })
   }
 
-  // console.log(addImageForm)
-  // console.log(updateForm)
-// console.log(user.profilePic)
+  // console.log(updatedProfile)
 
 useEffect(()=>{
   getUser(user._id)
@@ -199,11 +204,11 @@ useEffect(()=>{
               {!updateForm && !addImageForm
                 ? <>
                   <div className={styles.formContainer}>
-                    <form autoComplete='off' onSubmit={handleSubmit}>
-                        <input type='text' key={post._id + '1'} name='image' value={post.image} onChange={handleChange} placeholder='image' />
-                        <input type='text' key={post._id + '2'} name='location' value={post.location} onChange={handleChange} placeholder='location' required />
-                        <input type='text' key={post._id + '3'} name='music' value={post.music} onChange={handleChange} placeholder='music' />
-                        <textarea className={styles.textArea} key={post._id} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required />
+                    <form autoComplete='new-password' onSubmit={handleSubmit}>
+                        <input type='text' key={post._id + '1'} name='image' value={post.image} onChange={handleChange} placeholder='image' autocomplete='new-password' />
+                        <input type='text' key={post._id + '2'} name='location' value={post.location} onChange={handleChange} placeholder='location' autoComplete='off' />
+                        <input type='text' key={post._id + '3'} name='music' value={post.music} onChange={handleChange} placeholder='music' autoComplete='off' />
+                        <textarea className={styles.textArea} key={post._id} type='text' name='caption' value={post.caption} onChange={handleChange} placeholder='add your caption here...' required autoComplete='off' />
                         <div className={styles.buttonContainer}>
                           <button type='submit'>Submit</button>
                         </div>
@@ -213,7 +218,11 @@ useEffect(()=>{
                 : updateForm && post && !addImageForm
                   ? <>
                     <div className={styles.formContainer}>
-                      <form autoComplete='off' onSubmit={(e) => { handleSubmitUpdate(e) }}>
+                      <form autocomplete='off' onSubmit={(e) => { 
+                          //   e.preventDefault()
+                          // updateForm(false)
+                           handleSubmitUpdate(e)
+                         }}>
                           <input type='text' name='image' value={updatedPost.image} placeholder='image' onChange={(e) => { setUpdatedPost({ ...updatedPost, image: e.target.value }) }} />
                           <input type='text' name='location' value={updatedPost.location} placeholder='location' onChange={(e) => { setUpdatedPost({ ...updatedPost, location: e.target.value }) }} />
                           <input type='text' name='music' value={updatedPost.music} placeholder='music' onChange={(e) => { setUpdatedPost({ ...updatedPost, music: e.target.value }) }} />
