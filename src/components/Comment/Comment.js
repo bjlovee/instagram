@@ -64,13 +64,14 @@ export default function Comment ({
           </div>
         </div>
         <div class={styles.switchLink}>
+        <div className={styles.dateAndTime}>
+            <p>{new Date(commentDate).toLocaleDateString()}</p> &nbsp;
+            <p>{new Date(commentDate).toLocaleTimeString()}</p>
+        </div>          
           {/* only the owner of the post can edit or delete comment */}
           {user && user._id === poster
             ? <>
-              <div className={styles.dateAndTime}>
-                <p>{new Date(commentDate).toLocaleDateString()}</p> &nbsp;
-                <p>{new Date(commentDate).toLocaleTimeString()}</p>
-              </div>
+
               <div className={styles.buttonWrapper}>
                 <div onClick={(e) => {
                   e.preventDefault()

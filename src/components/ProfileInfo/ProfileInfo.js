@@ -19,7 +19,8 @@ export default function ProfileInfo({
 }) {
 
 
-console.log(followerObjects)
+  console.log(followerObjects)
+  console.log(followingObjects)
 
 
 
@@ -55,8 +56,8 @@ const createFollowBack = async () => {
       },
       body: JSON.stringify({
         // nesting the user id on creation
-        followerUser: profileUser._id,
-        userFollowed: user._id
+        followerUser: user._id,
+        userFollowed: profileUser._id
       })
     })
     const data = await response.json()
@@ -87,7 +88,7 @@ const createFollowBack = async () => {
 
 // console.log(numberOfPosts)
 
-console.log(profileUser)
+// console.log(profileUser)
 
 
 
