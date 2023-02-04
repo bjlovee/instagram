@@ -1,5 +1,5 @@
 
-
+$rochester: 'Rochester', cursive;
 .formContainer {
     border: .1vmin solid var(--outlines);
     width: 15rem;
@@ -44,4 +44,12 @@ button:hover{
 
 p{
     color: var(--info-text);
+}
+.formContainer > h1{
+  font-size: 3rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  overflow: revert;
+  color: black;
+  font-family: $rochester;
 }

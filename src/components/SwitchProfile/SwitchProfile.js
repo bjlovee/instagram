@@ -2,7 +2,7 @@ import styles from './SwitchProfile.module.scss'
 import IconButton from '@mui/material/IconButton'
 import Edit from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-
+import { useNavigate } from 'react-router-dom'
 export default function SwitchProfile ({
   image,
   handle,
@@ -21,9 +21,9 @@ export default function SwitchProfile ({
   // --- EVENT HANDLERS ---//
 
   // console.log(caption)
-
+// const 
   return (
-    <div className={styles.switchProfile}>
+    // <div className={styles.switchProfile}>
       <div class={styles.switchContainer}>
         <div class={styles.profileImg}>
           <img src={image} />
@@ -62,9 +62,9 @@ export default function SwitchProfile ({
             </>
             : posterInfo
               ? ''
-              : <h5>Edit</h5>}
+              : <h5>Profile</h5>}
         </div>
       </div>
-    </div>
+    // </div>
   )
 }

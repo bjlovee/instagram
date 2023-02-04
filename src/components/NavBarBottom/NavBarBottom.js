@@ -9,6 +9,7 @@ import styles from '../NavBarBottom/NavBarBottom.module.scss'
 // import { trusted } from 'mongoose';
 import { useNavigate, Link } from 'react-router-dom'
 import { useState } from 'react'
+import Avatar from "@mui/material/Avatar";
 
 import { logOut } from '../../utilities/users-service'
 
@@ -53,8 +54,17 @@ export default function NavBarBottom ({
             <div onClick={(e) => {
                   setShowLogOut(true)
                 }} className={styles.profile}>
-              <img src={user.profilePic} />
+              {user.profilePic 
+              
+                ?
+                  <img src={user.profilePic} />
+                :
+  
+                    <Avatar sx={{width: '100%', height: '100%'}}/>
+              }
+              
             </div>
+
       </div>
         {showLogOut
           ?

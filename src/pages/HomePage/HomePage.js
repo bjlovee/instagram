@@ -6,13 +6,17 @@ import Footer from '../../components/Footer/Footer'
 import SwitchProfile from '../../components/SwitchProfile/SwitchProfile'
 import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
+import { click } from '@testing-library/user-event/dist/click'
 
 export default function HomePage ({
   user,
   getFollowers,
-
+  allPosts,
   setFollowersEvents,
-  followersObjects
+  followersObjects,
+  getAllPosts,
+  setPost,
+  setPostModal
 }) {
 // console.log(user)
 
@@ -55,13 +59,16 @@ export default function HomePage ({
   },[followersPosts])
 
 
+// useEffect(() =>{
+//   getAllPosts()
+// },[])
 
 
+console.log(allPosts)
 
 
-  console.log(followersPosts)
-
-  console.log(followersObjects)
+  // console.log(followersPosts)// 
+  // console.log(followersObjects)
   return (
     <>
       <div className={styles.indexSection}>
@@ -70,17 +77,47 @@ export default function HomePage ({
             <section>
               <HomePageCarousel />
             </section>
-            <Post />
-            <Post />
-            <Post />
+
+            {allPosts 
+            ?
+             allPosts.map((post) =>{
+              return(
+                <div onClick={(e)=>{
+                  console.log('click')
+                  getAllPosts()
+                  e.preventDefault()
+                  setPost(post)
+                  setPostModal(true)
+                }}>
+                <Post 
+                  post={post}
+              />
+              </div>
+             )
+
+             })
+             :
+               ''
+            }
+      
+
+
+
+
+
+
+
+
+            {/* <Post /> */}
+            {/* <Post /> */}
+            {/* <div className={styles.postContainer} />
             <div className={styles.postContainer} />
             <div className={styles.postContainer} />
             <div className={styles.postContainer} />
             <div className={styles.postContainer} />
             <div className={styles.postContainer} />
             <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
+            <div className={styles.postContainer} /> */}
           </div>
         </section>
         <div className={styles.sectionWrapper}>

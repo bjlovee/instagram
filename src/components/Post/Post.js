@@ -15,9 +15,13 @@ import {FaRegBookmark} from "react-icons/fa"
 import "../Post/Post.css"
 import { borderBottomColor } from '@mui/system';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+// import Avatar from "@mui/material/Avatar";
 
+export default function ContainerResponsive({
+  post
 
-export default function ContainerResponsive() {
+}) {
+// console.log(allPosts[0].image)
   return (
     <div className='box'>
     <Box sx={{ minHeight: 350 }} className='box-container'>
@@ -51,6 +55,7 @@ export default function ContainerResponsive() {
         >
           <img
             src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2000"
+            // src={allPosts[0].image}
             loading="lazy"
             alt=""
           />
@@ -67,22 +72,28 @@ export default function ContainerResponsive() {
             <div>
               <Typography level="h2" sx={{ fontSize: 'md' }} mb={0.5}>
                 <Link
-                  
                   overlay
                   underline="none"
                   sx={{
                     color: 'text.primary',
                     '&.Mui-focusVisible:after': { outlineOffset: '-4px' },
                   }}
-                >
-                   <Avatar variant="soft" color="neutral">
-            <img width="40px"
-            src="https://media.licdn.com/dms/image/C5603AQFTBEZIH7qH0g/profile-displayphoto-shrink_200_200/0/1657882772501?e=1680134400&v=beta&t=Afh8i2xzFQdIf_NLGuFXg5xefMZxHIQuVLaEGr-KveA"
-            loading="lazy"
-            alt=""
-          />
+                >                   
+                <Avatar variant="soft" color="neutral">
+                  {post.posterPic
+                    ?
+                      <img width="40px"
+                      // src="https://media.licdn.com/dms/image/C5603AQFTBEZIH7qH0g/profile-displayphoto-shrink_200_200/0/1657882772501?e=1680134400&v=beta&t=Afh8i2xzFQdIf_NLGuFXg5xefMZxHIQuVLaEGr-KveA"
+                      src={post.posterPic}
+                      loading="lazy"
+                      alt=""
+                    />
+                    :
+                    <Avatar sx={{width: '100%', height: '100%'}}/>
+                  }
+
             </Avatar>
-            &nbsp; BJ Love &nbsp; 
+            &nbsp;{post.posterName} &nbsp; 
               <div className='button'> 
 
 
@@ -106,7 +117,7 @@ export default function ContainerResponsive() {
           >
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2262"
+              src={post.image}
               // style={{ height:"40rem"}}
             />
           </AspectRatio>
@@ -121,7 +132,7 @@ export default function ContainerResponsive() {
               <FaRegBookmark  size="1.5rem"/>
               </div>
               <br />
-              <Typography sx={{ fontSize:'.7rem', paddingTop:"0.7rem" }} level="body2">Liked by <b>CreamPanda</b>, <b>NatureGuy</b> and <b>35 others</b></Typography>
+              <Typography sx={{ fontSize:'.7rem', paddingTop:"0.7rem" }} level="body2"><b>{post.likes.length}</b> Like{post.likes.length === 1 ? '' : 's'} and, <b>{post.comments.length}</b> Comment{post.comments.length === 1 ? '' : 's'} </Typography>
               <Typography fontWeight="lg" level="body2">
                
               </Typography>

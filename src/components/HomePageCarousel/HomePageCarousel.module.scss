@@ -19,7 +19,7 @@
     width: 350px;
     height: 80px;
     background-color: #fff;
-    border: 1px solid #ddd;
+    // border: 1px solid #ddd;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -71,10 +71,11 @@
     transition: 0.5s all ease-out;
   }
 h1 {
-    width: 52px;
+    // width: 52px;
     margin: 2px 10px 0px 15px;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 10px;
     font-family: 'Roboto', sans-serif;
+    // font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: rgb(79, 79, 79);
 }
