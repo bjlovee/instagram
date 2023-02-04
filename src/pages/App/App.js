@@ -219,13 +219,7 @@ useEffect(() =>{
   
 }, [])
 
-
-// useEffect(() => {
-//   if(user){
-    
-//   }
-
-// }, [])
+console.log(allUsers)
 
 // console.log(allPosts)
 // console.log(followingObjects)
@@ -251,8 +245,15 @@ useEffect(() =>{
                     setPost={setPost}
                     post={post}
                     setPostModal={setPostModal}
-                    // setFollowersEvents={setFollowersEvents}
-                    // followersEvents={followersEvents}
+                    setProfileUser={setProfileUser}
+                    allUsers={allUsers}
+
+                    getComments={getComments}
+
+                    getLikesByPost={getLikesByPost}
+                    setLikesByPost={setLikesByPost}
+                    setLike={setLike}
+                    like={like}
                                     />}
                 />
 
@@ -301,7 +302,6 @@ useEffect(() =>{
               setFollowersPresent={setFollowersPresent}
               followersPresent={followersPresent} 
               setFollowingPresent={setFollowingPresent}
-              // followingPresent={followingPresent} 
             />
             <NavBarBottom
               setShowModal={setShowModal}
@@ -349,7 +349,7 @@ useEffect(() =>{
 
               user={user}
               setUser={setUser}
-                  
+              getAllPosts={getAllPosts}
 
               getPosterInfo={getPosterInfo}
               posterInfo={posterInfo}
@@ -392,35 +392,3 @@ useEffect(() =>{
 }
 
 export default App
-
-
-  // // Get the usets that are following you!
-  // const getFollowers = async (id) => {
-  //   console.log(id)
-  //   try {
-  //     // getFollowing(user._id)
-  //     const response = await fetch(`api/followers/follower/${id}`)
-  //     const data = await response.json()
-  //     setFollowerObjects(data)
-  //   //   getPosts()
-  //   } catch (err) {
-  //     console.log({msg:err.message})
-  //   }
-  // }
-
-  // //Get the users you are following!
-  // const getFollowing = async (id) => {
-  //   try{
-  //     const response = await fetch(`api/followers/following/${id}`)
-  //     const data = await response.json()
-  //     setFollowingObjects(data)
-  //   } catch (e) {
-  //     console.error({msg:e.message})
-  //   }
-  // }
-
-
-
-
-   // const [followersPresent, setFollowersPresent] = useState(false)
-  // const [followingPresent, setFollowingPresent] = useState(false)

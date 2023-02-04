@@ -16,7 +16,15 @@ export default function HomePage ({
   followersObjects,
   getAllPosts,
   setPost,
-  setPostModal
+  setPostModal,
+  setProfileUser,
+  allUsers,
+  getComments,
+  getLikesByPost,
+  setLikesByPost,
+  setLike,
+  like,
+  // post
 }) {
 // console.log(user)
 
@@ -58,17 +66,14 @@ export default function HomePage ({
     getPosts()
   },[followersPosts])
 
+  const handleSelectPost = (post) =>{
+    setPost(post)
+    setPostModal(true)
+    getComments(post._id)
+    getLikesByPost(post._id)
+  }
 
-// useEffect(() =>{
-//   getAllPosts()
-// },[])
-
-
-console.log(allPosts)
-
-
-  // console.log(followersPosts)// 
-  // console.log(followersObjects)
+  // console.log(allUsers)
   return (
     <>
       <div className={styles.indexSection}>
@@ -77,17 +82,13 @@ console.log(allPosts)
             <section>
               <HomePageCarousel />
             </section>
-
             {allPosts 
             ?
              allPosts.map((post) =>{
               return(
                 <div onClick={(e)=>{
-                  console.log('click')
-                  getAllPosts()
                   e.preventDefault()
-                  setPost(post)
-                  setPostModal(true)
+                  handleSelectPost(post)
                 }}>
                 <Post 
                   post={post}
@@ -99,25 +100,6 @@ console.log(allPosts)
              :
                ''
             }
-      
-
-
-
-
-
-
-
-
-            {/* <Post /> */}
-            {/* <Post /> */}
-            {/* <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} /> */}
           </div>
         </section>
         <div className={styles.sectionWrapper}>
@@ -126,8 +108,14 @@ console.log(allPosts)
               user={user}
               handle={user.handle}
               image={user.profilePic}
+              setProfileUser={setProfileUser}
             />
-            <SuggestedProfile />
+            <SuggestedProfile 
+              allUsers={allUsers}
+              user={user}
+              setProfileUser={setProfileUser}
+              
+            />
           </section>
         </div>
       </div>
@@ -136,119 +124,3 @@ console.log(allPosts)
   )
 }
 
-
-
-  // // settings posts data in loop
-  // const handleSetPosts = (data) => {
-  //   // adding to state via conditional to prevent infinite loop
-  //   if (followersPosts.length < followersObjects.length - 1) {
-  //     setFollowersPosts(followersPosts => [...followersPosts, data])
-  //   } else {
-
-  //   }
-  // }
-
-
-
-// const [followersEvents, setFollowersEvents] = useState([])
-// const [followersPosts, setFollowersPosts] = useState([])
-
-//   // Index Restaurants
-//   const getFollowers = async (id) => {
-//     try {
-//       const response = await fetch(`api/followers/follower/${id}`)
-//       const data = await response.json()
-//       setFollowersEvents(data)
-//       getFollowersLatestPost(followersEvents.followerUser)
-//     //   getPosts()
-//     } catch (err) {
-//       console.log(err)
-//     }
-//   }
-
-//   const getFollowersLatestPost = async (id) => {
-//     try{
-//       const response = await fetch(`api/posts/poster/${id}`)
-//       const data = await response.json()
-//       console.log(data)
-//     //   setFollowersPosts([...followersPosts, data])
-
-//     } catch (e) {
-
-//     }
-//   }
-
-// useEffect(() => {
-//     getFollowers(user._id)
-//   }, [])
-
-// //number of followers
-// console.log(followersEvents.length)
-
-// //showing each follower event
-// followersEvents.map(event => console.log(event))
-
-// //getting one followers latest post
-// followersEvents.map(event => {
-//     getFollowersLatestPost(event.followerUser)
-// })
-
-{ /* <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div> */ }
-
-// Get one post by follower
-
-//     followersEvents.map(event => {
-//         if (counter <= followersEvents.length){
-//             getFollowersLatestPost(event.followerUser)
-//         }
-//         counter ++
-//     })
-
-// console.log(followersPosts)
-
-// console.log(followersPosts)
-// followersEvents.map(event => {
-//     setFollowers(followers => [...followers, event])
-// })
-
-// Followers in jims profile
-// Followers
-// "63d16996f11057f2263c9ca5",
-// followerUser
-// "63d05696f24703987800a352" --> match to poster in post
-
-// Followers
-// "63d17a5e4500f61ebc60c114"
-// followerUser
-// "63d0563a41be762fc7220c7a" --> match to poster in post
-
-//

@@ -28,14 +28,14 @@ export default function ShowPostModal ({
   setLikesByPost,
   likesByPost,
   setLike,
-  like
+  like,
+  getAllPosts
 }) {
   const [newComment, setNewComment] = useState({
     comment: ''
   })
 
  
-
   const [comment, setComment] = useState({})
 
   const [updatedComment, setUpdatedComment] = useState({})
@@ -75,6 +75,7 @@ export default function ShowPostModal ({
   const handleSubmit = (e) => {
     e.preventDefault()
     createComment()
+    getAllPosts()
   // getComments(post._id)
   }
 
@@ -176,6 +177,7 @@ const handleFilterLike = () => {
               setPostModal(false)
               setLike({})
               setLikesByPost([])
+              getAllPosts()
             }}
           >&#x2715;
           </button>
@@ -185,7 +187,6 @@ const handleFilterLike = () => {
                 <div className={styles.formContainer}>
                   <img src={post.image} />
                 </div>
-
                 <div className={styles.commentsContainer}>
                   <div className={styles.profileInfo}>
                     <SwitchProfile
@@ -266,6 +267,7 @@ const handleFilterLike = () => {
                           <div onClick={(e) => {
                             e.preventDefault()
                             deleteLike()
+                            getAllPosts()
                           }}>
                             <FavoriteIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
                           </div>
@@ -273,6 +275,7 @@ const handleFilterLike = () => {
                         <div onClick={(e) =>{
                           e.preventDefault()
                           createLike()
+                          getAllPosts()
                         }}>
                           <FavoriteBorderOutlinedIcon style={{ width: "1.5rem", height: "1.5rem", color:"red" }} />
                         </div>

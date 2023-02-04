@@ -2,20 +2,6 @@ const Post = require('../../models/posts')
 
 const dataController = {
   // Index,
-  // index (req, res, next) {
-  //   Post.find({}.sort({ createdAt: 'desc' }), (err, foundPosts) => {
-  //     if (err) {
-  //       res.status(400).send({
-  //         msg: err.message
-  //       })
-  //     } else {
-  //       res.locals.data.posts = foundPosts
-  //       next()
-  //     }
-  //   })
-  // },
-
-
   async index (req, res, next) {
     try {
       // finds the post by the poster ID and then sorts by the latest

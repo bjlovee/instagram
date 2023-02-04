@@ -69,7 +69,7 @@ const dataController = {
   },
   async index (req, res, next) {
     try {
-      const users = await User.find({})
+      const users = await User.find({}).sort({ createdAt: 'desc' })
       // res.status(200).json(users)
       res.locals.data.users = users
       next()

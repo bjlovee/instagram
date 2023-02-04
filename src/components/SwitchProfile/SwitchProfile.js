@@ -15,16 +15,20 @@ export default function SwitchProfile ({
   setPostModal,
   deletePost,
   caption,
-  posterInfo
+  posterInfo,
+  setProfileUser
 }) {
-  // console.log(user._id)
+
   // --- EVENT HANDLERS ---//
 
-  // console.log(caption)
-// const 
+const navigate = useNavigate()
+
   return (
     // <div className={styles.switchProfile}>
-      <div class={styles.switchContainer}>
+      <div onClick={()=>{
+        setProfileUser(user)
+        navigate('/profile')
+      }}class={styles.switchContainer}>
         <div class={styles.profileImg}>
           <img src={image} />
           <div class={styles.username}>
