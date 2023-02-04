@@ -514,17 +514,23 @@ Aside from Git collaboration, the biggest challenge the team faced was trying to
 If we were to do this again, having Trello board premium would definitly be a welcome addition as it would hold the task owner accountable and boost productivity.
 
 # Unsolved Problems 
+* Follow back not working correctly
 * Form autofilling incorrectly
 * Image container styling is weak in places
 * Incorrect routing on signup
-* Post update form doesn't autofill with previous information
+* Post update form doesn't populate with previous information
+
 
 # Future Icebox
 * Unfollow button functionality
 * Move profile icon to the top
 * Multi Chat System
 * Make naming conventions consistent
-
+* Add like to homepage post index 
+* Add posts from followers only & only index the latest 2/3! 
+* Add notification 
+* Move options pop-up top top navbar
+* Profile caption 
 
 
 # Resources
