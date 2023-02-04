@@ -28,27 +28,23 @@ export default function ProfilePage ({
   setFollowersPresent,
   followersPresent,
   followingPresent,
- 
+
   setFollowingPresent
 }) {
-
+  
   useEffect(() => {
     if (profileUser) {
       getPosts(profileUser._id)
     }
-
   }, [])
 
-  useEffect(() =>{
+  useEffect(() => {
     getUser(user._id)
   }, [])
-// console.log(userPosts)
-// console.log(user)
 
-// console.log(userPosts)
   return (
     <div className={styles.profilePage}>
-      <ProfileHeader 
+      <ProfileHeader
         profileUser={profileUser}
         user={user}
         numberOfPosts={userPosts.length}

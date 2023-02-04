@@ -22,7 +22,7 @@ const userSchema = new Schema({
   handle: { type: String, required: true, unique: true },
   profilePic: { type: String },
   followers: [{ type: Schema.Types.ObjectId, ref: 'Follower' }],
-  following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  following: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 }, {
   timestamps: true,
   toJSON: {

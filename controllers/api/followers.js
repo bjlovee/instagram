@@ -93,10 +93,6 @@ const apiController = {
 
 module.exports = { dataController, apiController }
 
-
-
-
-
 // async create (req, res, next) {
 //   try {
 //     const follower = await Follower.create(req.body)
@@ -138,7 +134,6 @@ module.exports = { dataController, apiController }
 //   }
 // },
 
-
 // async createFollowBack (req, res, next) {
 //   try {
 //     const follower = await Follower.create(req.body)
@@ -156,13 +151,6 @@ module.exports = { dataController, apiController }
 //     res.status(400).json(e)
 //   }
 // },
-
-
-
-
-
-
-
 
 // async create (req, res, next){
 //   try{

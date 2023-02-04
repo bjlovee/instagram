@@ -5,8 +5,6 @@ import HomePageCarousel from '../../components/HomePageCarousel/HomePageCarousel
 import Footer from '../../components/Footer/Footer'
 import SwitchProfile from '../../components/SwitchProfile/SwitchProfile'
 import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile'
-import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
-import { click } from '@testing-library/user-event/dist/click'
 
 export default function HomePage ({
   user,
@@ -23,16 +21,15 @@ export default function HomePage ({
   getLikesByPost,
   setLikesByPost,
   setLike,
-  like,
-  // post
+  like
+
 }) {
-// console.log(user)
 
   const [followersPosts, setFollowersPosts] = useState([])
 
   // settings posts data in loop
   const handleSetPosts = (data) => {
-      setFollowersPosts(followersPosts => [...followersPosts, data])
+    setFollowersPosts(followersPosts => [...followersPosts, data])
   }
 
   // getting the users followers posts by the latest post
@@ -55,25 +52,23 @@ export default function HomePage ({
     }
   }
 
+  // get followers
+  useEffect(() => {
 
-  //get followers
-  useEffect(() =>{
-    
   })
 
   // gets posts on page load
   useEffect(() => {
     getPosts()
-  },[followersPosts])
+  }, [followersPosts])
 
-  const handleSelectPost = (post) =>{
+  const handleSelectPost = (post) => {
     setPost(post)
     setPostModal(true)
     getComments(post._id)
     getLikesByPost(post._id)
   }
 
-  // console.log(allUsers)
   return (
     <>
       <div className={styles.indexSection}>
@@ -82,24 +77,21 @@ export default function HomePage ({
             <section>
               <HomePageCarousel />
             </section>
-            {allPosts 
-            ?
-             allPosts.map((post) =>{
-              return(
-                <div onClick={(e)=>{
-                  e.preventDefault()
-                  handleSelectPost(post)
-                }}>
-                <Post 
-                  post={post}
-              />
-              </div>
-             )
-
-             })
-             :
-               ''
-            }
+            {allPosts
+              ? allPosts.map((post) => {
+                return (
+                  <div onClick={(e) => {
+                    e.preventDefault()
+                    handleSelectPost(post)
+                  }}
+                  >
+                    <Post
+                      post={post}
+                    />
+                  </div>
+                )
+              })
+              : ''}
           </div>
         </section>
         <div className={styles.sectionWrapper}>
@@ -110,11 +102,11 @@ export default function HomePage ({
               image={user.profilePic}
               setProfileUser={setProfileUser}
             />
-            <SuggestedProfile 
+            <SuggestedProfile
               allUsers={allUsers}
               user={user}
               setProfileUser={setProfileUser}
-              
+
             />
           </section>
         </div>
@@ -123,4 +115,3 @@ export default function HomePage ({
     </>
   )
 }
-
