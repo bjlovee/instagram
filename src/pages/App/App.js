@@ -27,6 +27,7 @@ function App () {
 
   const [post, setPost] = useState({})
   const [userPosts, setUserPosts] = useState([])
+  const [allPosts, setAllPosts] = useState([])
 
   const [updateForm, setUpdateForm] = useState(false)
   const [addImageForm, setAddImageForm] = useState(false)
@@ -137,6 +138,17 @@ function App () {
     }
   }
 
+//get all posts
+const getAllPosts = async () => {
+  try {
+    const response = await fetch('/api/posts')
+    const data = await response.json()
+    setAllPosts(data)
+  } catch (e) {
+    console.error({ msg: e.message })
+  }
+}
+
   // Delete Post
   const deletePost = async (id) => {
     try {
@@ -174,10 +186,13 @@ function App () {
     }
   }
 
-
+useEffect(()=>{
+  getAllPosts()
+},[])
 
   useEffect(() => {
     getUsers()
+    getAllPosts()
     if(user){
       // getFollowing(user._id)
       console.log('here')
@@ -196,15 +211,23 @@ function App () {
     getUsers()
   }, [])
 
-  // useEffect(() =>{
-  //   getPosts(profileUser._id)
-  // }, [])
+
 useEffect(() =>{
   if(user){
     getUser(user._id)
   }
   
 }, [])
+
+
+// useEffect(() => {
+//   if(user){
+    
+//   }
+
+// }, [])
+
+// console.log(allPosts)
 // console.log(followingObjects)
   return (
     <main className={styles.App}>
@@ -222,9 +245,12 @@ useEffect(() =>{
                 <Route
                   path='/' element={<HomePage
                     user={user}
-
+                    allPosts={allPosts}
                     getFollowers={getFollowers}
-
+                    getAllPosts={getAllPosts}
+                    setPost={setPost}
+                    post={post}
+                    setPostModal={setPostModal}
                     // setFollowersEvents={setFollowersEvents}
                     // followersEvents={followersEvents}
                                     />}

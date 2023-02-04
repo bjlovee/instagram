@@ -186,15 +186,8 @@ console.log(followersPresent)
       <div className={styles.profileBio}>
         <div className={styles.profileBioHeader}>
           <div className={styles.profileBioHeaderName}>{profileUser.name}</div>
-          {/* <div className={styles.profileBioHeaderPronouns}>she/her/hers</div> */}
         </div>
-        {/* <p>
-          I say stupid things and take random pictures. Messages from randos get
-          insta-blocked. Bless your hearts
-        </p> */}
-        {/* <div className={styles.profileBioFooter}>
-          Followed by coleortizmackes, claireshiell. janicemcintyre + 54 more
-        </div> */}
+
       </div>
     </div>
   );

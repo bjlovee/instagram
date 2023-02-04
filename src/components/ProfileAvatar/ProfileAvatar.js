@@ -5,7 +5,7 @@ export default function ProfileAvatar( profileUser ) {
     return (
         
         <div className={styles.profileAvatar}>
-            {profileUser.profileUser.profilePic ? <img src={profileUser.profileUser.profilePic}></img> : <Avatar position="absolute" />}
+            {profileUser.profileUser.profilePic ? <img src={profileUser.profileUser.profilePic}></img> : <Avatar position="absolute" height="100%" width="100%"/>}
         </div>
     );
 }

@@ -59,10 +59,8 @@ export default function NavBarBottom ({
                 ?
                   <img src={user.profilePic} />
                 :
-                  // <div className={styles.defaultAvatar}>
+  
                     <Avatar sx={{width: '100%', height: '100%'}}/>
-                  // </div>  
-
               }
               
             </div>

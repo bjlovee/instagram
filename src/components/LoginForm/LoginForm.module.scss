@@ -47,6 +47,11 @@ button:hover{
 p{
     color: var(--info-text);
 }
-h1{
+.formContainer > h1{
+  font-size: 3rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  overflow: revert;
   font-family: $rochester;
+  color: black;
 }
