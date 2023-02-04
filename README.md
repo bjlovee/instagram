@@ -443,6 +443,59 @@ components
    └─ SwitchProfile.module.scss      
 ```
 
+## RESTful Routes Table
+
+### RESTful Routes for Users
+
+| Number | Action      | URL             | HTTP Verb     | Mongoose Method               | Notes                              |
+| -------|:-----------:|:---------------:|:-------------:|:-----------------------------:|:----------------------------------:|
+| 1      | Index       |  /api/users     |  GET          |  User.find({})                |      |
+| 2      | Show        |  /api/users/:id |  GET          |  User.findById(req.params.id) |   |                     
+| 3      | Sign Up     |  /api/users     |  PUT          |  User.create(req.body)        |   |
+| 4      | Login       |  /api/users     |  POST         |  User.findOne(req.body.email) |  |
+| 7      | Check Token |  /goats/:id     |  DELETE       |  res.json(req.exp)            |   |
+
+### RESTful Routes for Posts
+
+| Number | Action      | URL             | HTTP Verb     | Mongoose Method                                                    |  
+| -------|:-----------:|:---------------:|:-------------:|:------------------------------------------------------------------:|   
+| 1      | Index       |  /api/posts     |  GET          |  Post.find({})                                                     |    
+| 2      | Users Posts |  /api/:id       |  GET          |  Post.find({ poster: req.params.id}).sort( { createdAt: 'desc'})   |      
+| 3      | User Posts  |  /api/posts/:id |  GET          |  User.findById(req.params.id)                                      |                       
+| 4      | Delete      |  /api/posts/:id |  DELETE       |  User.findByIdAndDelete(req.params.id)                             |   
+| 5      | Update      |  /api/posts/:id |  PUT          |  User.findByIdAndUpdate(req.params.id)                             |  
+| 6      | Create      |  /api/posts     |  POST         |  Post.create(req.body)                                             |   
+| 7      | Show        |  /api/posts/:id |  GET          |  User.findById(req.params.id)                                      |
+
+### RESTful Routes for Comments
+
+| Number | Action      | URL                | HTTP Verb     | Mongoose Method                                                     |  
+| -------|:-----------:|:------------------:|:-------------:|:-------------------------------------------------------------------:|   
+| 1      | Index       |  /api/comments/:id |  GET          |  Comment.find({})                                                   |    
+| 2      | Users Posts |  /api/:id          |  GET          |  Comment.find({ post: req.params.id}).sort( { createdAt: 'desc'})   |                    
+| 3      | Delete      |  /api/comments/:id |  DELETE       |  Comment.findByIdAndDelete(req.params.id)                           |   
+| 4      | Update      |  /api/comments/:id |  PUT          |  Comment.findByIdAndUpdate(req.params.id, req.body)                 |  
+| 5      | Create      |  /api/comments     |  POST         |  Comment.create(req.body), Post.findByIdAndUpdate(comment.post)     |   
+| 6      | Show        |  /api/comments/:id |  GET          |  Comment.findById(req.params.id)                                    |
+
+### RESTful Routes for Likes
+
+| Number | Action      | URL             | HTTP Verb     | Mongoose Method                                                  |  
+| -------|:-----------:|:---------------:|:-------------:|:----------------------------------------------------------------:|   
+| 1      | Index       |  /api/likes/    |  GET          |  Like.find({})                                                   |    
+| 2      | Post Likes  |  /api/likes/:id |  GET          |  Like.find({ post:req.params.id })                               |                    
+| 3      | Delete      |  /api/likes/:id |  DELETE       |  Like.findById(req.params.id), Like.deleteOne(like)              |   
+| 5      | Create      |  /api/likes     |  POST         |  Like.create(req.body), Post.findByIdAndUpdate(like.post)        |   
+
+### RESTful Routes for Followers
+
+| Number | Action      | URL                           | HTTP Verb     | Mongoose Method                                                                           |  
+| -------|:-----------:|:-----------------------------:|:-------------:|:-----------------------------------------------------------------------------------------:|   
+| 1      | Followers   |  /api/followers/follower/:id  |  GET          |  Follower.find({ userFollowed: req.params.id })                                           |    
+| 2      | Following   |  /api/followers/following/:id |  GET          |  Follower.find({ userFollower: req.params.id })                                           |                    
+| 3      | Delete      |  /api/followers/:id           |  DELETE       |  Follower.findByIdAndDelete(req.params.id), User.findByIdAndUpdate(follower.userFollowed) |   
+| 4      | Create      |  /api/followers               |  POST         | Follower.create(req.body), User.findByIdAndUpdate(follower.userFollowed)                  |  
+
 ## Pages
 Being the big copycats we are, the same setup as Instagram was followed for Instafake. We only had three pages that was made interactive via vaious popups and navigation bars
 
