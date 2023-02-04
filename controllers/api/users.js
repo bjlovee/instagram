@@ -2,7 +2,8 @@
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const { TbArrowAutofitContent } = require('react-icons/tb')
+// const { update } = require('../../models/user')
+// const { TbArrowAutofitContent } = require('react-icons/tb')
 
 const checkToken = (req, res) => {
   console.log('req.user', req.user)
@@ -11,6 +12,7 @@ const checkToken = (req, res) => {
 
 const dataController = {
   async create (req, res, next) {
+    console.log(req.body)
     try {
       const user = await User.create(req.body)
       console.log(req.body)
@@ -52,13 +54,13 @@ const dataController = {
   },
   async update (req, res, next) {
     try {
-      console.log(req.body.profilePic)
+      // console.log(req.body)
       const updatedUser = await User.findByIdAndUpdate(req.params.id, {
         profilePic: req.body.profilePic,
         handle: req.body.handle
       })
       // const updatedUser = await User.findById(req.params.id)
-
+      console.log(updatedUser)
       res.locals.data.user = updatedUser
       next()
     } catch (e) {
@@ -67,7 +69,7 @@ const dataController = {
   },
   async index (req, res, next) {
     try {
-      const users = await User.find({})
+      const users = await User.find({}).sort({ createdAt: 'desc' })
       // res.status(200).json(users)
       res.locals.data.users = users
       next()
@@ -98,8 +100,9 @@ module.exports = {
 // Helper Function //
 // help function so we dont have to write token information over and over
 function createJWT (user) {
+  // console.log(user)
   // accept a user and return a token
-  return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h' })
+  return jwt.sign({ user }, process.env.SECRET, { expiresIn: '48h', allowInsecureKeySizes: true })
 }
 
 // // /controllers/api/users.js

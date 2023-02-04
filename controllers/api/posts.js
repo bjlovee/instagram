@@ -2,17 +2,17 @@ const Post = require('../../models/posts')
 
 const dataController = {
   // Index,
-  index (req, res, next) {
-    Post.find({}, (err, foundPosts) => {
-      if (err) {
-        res.status(400).send({
-          msg: err.message
-        })
-      } else {
-        res.locals.data.posts = foundPosts
-        next()
-      }
-    })
+  async index (req, res, next) {
+    try {
+      // finds the post by the poster ID and then sorts by the latest
+      const posts = await Post.find({}).sort({ createdAt: 'desc' })
+      // const posts = await Post.find({})
+      // sending back only the latest post for the page index
+      res.locals.data.posts = posts
+      next()
+    } catch (e) {
+      res.status(400).json(e)
+    }
   },
 
   // Get post by user

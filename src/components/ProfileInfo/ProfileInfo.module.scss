@@ -1,0 +1,56 @@
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    // border: solid red;
+    // min-width: 70%;?
+    // width: fit-content;?
+    width: 20rem;
+    padding-left: 1rem;
+}
+
+.profileInfoTop {
+    // border: solid purple;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    // padding-bottom: 1rem;
+    
+}
+
+.profileStats {
+    // border: solid green;
+    display: flex;
+    justify-content: space-between;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+}
+
+.profileBio {
+    text-align: left;
+}
+
+.profileBioHeader {
+    display: flex;
+}
+
+.profileBioHeaderName {
+    // border: solid purple;
+    font-weight: 750;
+    // padding: .2rem;
+    color: gray;
+}
+
+.profileBioHeaderPronouns {
+    // border: solid purple;
+    color: gray;
+    font-weight: 100;
+    padding: .2rem;
+}
+
+span{
+    // color: black;
+    font-weight: bolder;
+}
+.posts{
+    font-weight: bolder;
+}

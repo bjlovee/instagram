@@ -1,7 +1,7 @@
-// .switchProfile{
-//     border-bottom: solid var(--outlines);
-//     border-width: 0.4px;
-// }
+.switchProfile{
+    border-bottom: solid var(--outlines);
+    border-width: 0.4px;
+}
 .switchContainer{
     border-width: 0.7px;
     display: flex;
@@ -11,15 +11,20 @@
     padding: 0.2rem 0 0.2rem 0.2rem;
     min-height: 3rem;
   }
+  .switchContainer:hover{
+    cursor: pointer;
+    opacity: 0.5;
+  }
   .profileImg{
-    padding: 0.2rem;
-    height: 3rem; 
-    width: 3rem; 
+    padding: 0.4rem;
+    height: 4rem; 
+    width: 4rem;
     display: flex;
+    // overflow: hidden;
   }
   
   .profileImg > img{
-     width: 100%;
+     width: 110%;
     height: 100%;
     border-radius: 55%;
     object-fit: cover;
@@ -27,7 +32,9 @@
   }
   
   .username{
-    padding: 0.7rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
   }
   h5{
     margin: 0 auto;
@@ -35,10 +42,11 @@
     text-align: center;
   }
   .switchLink{
-    margin-right: 1rem;
+    // margin-right: 1rem;
     display: flex;
     flex-direction: row;
     padding: 0;
+    padding: 1.8rem;
   }
   
   .switchLink > h5{

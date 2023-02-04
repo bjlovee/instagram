@@ -3,7 +3,6 @@ import LandingPage from '../LandingPage/LandingPage'
 import HomePage from '../HomePage/HomePage'
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage'
 import ProfilePage from '../ProfilePage/Profilepage'
-// import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route, Router } from 'react-router-dom'
 import styles from '../App/App.module.scss'
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
@@ -11,27 +10,39 @@ import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal'
 import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
-import { ImportExport } from '@mui/icons-material'
-import { ListItem } from '@mui/material'
+import { Helmet } from 'react-helmet'
 
 function App () {
   const [state, setState] = useState(null)
   const [user, setUser] = useState(null)
 
-  const [followersEvents, setFollowersEvents] = useState([])
+  const [followerObjects, setFollowerObjects] = useState([])
+  const [followingObjects, setFollowingObjects] = useState([])
+
   const [showModal, setShowModal] = useState(false)
   const [postModal, setPostModal] = useState(false)
   const [posterInfo, setPosterInfo] = useState({})
 
   const [post, setPost] = useState({})
   const [userPosts, setUserPosts] = useState([])
+  const [allPosts, setAllPosts] = useState([])
 
   const [updateForm, setUpdateForm] = useState(false)
+  const [addImageForm, setAddImageForm] = useState(false)
+
+  const [showLogOut, setShowLogOut] = useState(false)
 
   const [commentsByPost, setCommentsByPost] = useState([])
 
   const [likesByPost, setLikesByPost] = useState([])
   const [like, setLike] = useState({})
+
+  const [allUsers, setAllUsers] = useState([])
+
+  const [profileUser, setProfileUser] = useState()
+
+  const [followersPresent, setFollowersPresent] = useState(false)
+  const [followingPresent, setFollowingPresent] = useState(false)
 
   // Index Comments by post
   const getComments = async (id) => {
@@ -46,8 +57,7 @@ function App () {
     }
   }
 
-
-  //Get likes by post
+  // Get likes by post
   const getLikesByPost = async (id) => {
     try {
       const response = await fetch(`/api/likes/${id}`)
@@ -58,20 +68,29 @@ function App () {
     }
   }
 
-
-
-  // console.log(like)
-
-
-  // Followers
+ 
+  // Get the usets that are following you!
   const getFollowers = async (id) => {
     try {
       const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
-      setFollowersEvents(data)
+      console.log(data)
+      getFollowing(id)
+      setFollowerObjects(data)
     //   getPosts()
     } catch (err) {
-      console.log(err)
+      console.log({ msg: err.message })
+    }
+  }
+
+  // Get the users you are following!
+  const getFollowing = async (id) => {
+    try {
+      const response = await fetch(`api/followers/following/${id}`)
+      const data = await response.json()
+      setFollowingObjects(data)
+    } catch (e) {
+      console.error({ msg: e.message })
     }
   }
 
@@ -88,10 +107,8 @@ function App () {
   // Get User Info
   const getPosterInfo = async (id) => {
     try {
-    // console.log(id)
       const response = await fetch(`/api/users/${id}`)
       const data = await response.json()
-      // console.log(data)
       setPosterInfo(data)
     } catch (err) {
       console.log(err)
@@ -103,8 +120,18 @@ function App () {
     try {
       const response = await fetch(`/api/posts/${id}`)
       const data = await response.json()
-      // console.log(data)
       setUserPosts(data)
+    } catch (e) {
+      console.error({ msg: e.message })
+    }
+  }
+
+  // get all posts
+  const getAllPosts = async () => {
+    try {
+      const response = await fetch('/api/posts')
+      const data = await response.json()
+      setAllPosts(data)
     } catch (e) {
       console.error({ msg: e.message })
     }
@@ -126,17 +153,65 @@ function App () {
     }
   }
 
+  // getUser
+  const getUser = async (id) => {
+    try {
+      const response = await fetch(`api/users/${id}`)
+      const data = await response.json()
+      setUser(data)
+    } catch (e) {
+      console.error({ msg: e.message })
+    }
+  }
+
+  const getUsers = async () => {
+    try {
+      const response = await fetch('/api/users')
+      const data = await response.json()
+      setAllUsers(data)
+    } catch (e) {
+      console.error({ msg: e.message })
+    }
+  }
+
+  useEffect(() => {
+    getAllPosts()
+  }, [])
+
+  useEffect(() => {
+    getUsers()
+    getAllPosts()
+    if (user) {
+      console.log('here')
+      getFollowers(user._id)
+    }
+  }, [])
+
   useEffect(() => {
     if (post) {
       getPosterInfo(post.poster)
     }
-    // console.log(likesByPost)
-    // handleSetLike()
+  }, [])
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  useEffect(() => {
+    if (user) {
+      getUser(user._id)
+    }
   }, [])
 
 
   return (
     <main className={styles.App}>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Instafake</title>
+        <link rel='canonical' href='http://mysite.com/example' />
+        <meta name='description' content='Instagram SPA clone' />
+      </Helmet>
       {
         user
           ? <>
@@ -145,11 +220,21 @@ function App () {
                 <Route
                   path='/' element={<HomePage
                     user={user}
-
+                    allPosts={allPosts}
                     getFollowers={getFollowers}
+                    getAllPosts={getAllPosts}
+                    setPost={setPost}
+                    post={post}
+                    setPostModal={setPostModal}
+                    setProfileUser={setProfileUser}
+                    allUsers={allUsers}
 
-                    setFollowersEvents={setFollowersEvents}
-                    followersEvents={followersEvents}
+                    getComments={getComments}
+
+                    getLikesByPost={getLikesByPost}
+                    setLikesByPost={setLikesByPost}
+                    setLike={setLike}
+                    like={like}
                                     />}
                 />
 
@@ -159,6 +244,7 @@ function App () {
                     getPosts={getPosts}
                     getPosterInfo={getPosterInfo}
                     user={user}
+                    profileUser={profileUser}
                     setPostModal={setPostModal}
                     setPost={setPost}
                     post={post}
@@ -166,29 +252,59 @@ function App () {
 
                     getLikesByPost={getLikesByPost}
                     likesByPost={likesByPost}
-                    // handleSetLike={handleSetLike}
                     setLike={setLike}
                     like={like}
+
+                    getFollowing={getFollowing}
+                    followingObjects={followingObjects}
+
+                    getFollowers={getFollowers}
+                    followerObjects={followerObjects}
+
+                    setFollowersPresent={setFollowersPresent}
+                    followersPresent={followersPresent}
+
+                    setFollowingPresent={setFollowingPresent}
+                    followingPresent={followingPresent}
                                            />}
                 />
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>
             </Routes>
-            <NavBarTop />
+            <NavBarTop
+              allUsers={allUsers}
+              setProfileUser={setProfileUser}
+              getUsers={getUsers}
+              getPosts={getPosts}
+              profileUser={profileUser}
+
+              setFollowersPresent={setFollowersPresent}
+              followersPresent={followersPresent}
+              setFollowingPresent={setFollowingPresent}
+            />
             <NavBarBottom
               setShowModal={setShowModal}
               showModal={showModal}
               user={user}
+              setProfileUser={setProfileUser}
+              setUser={setUser}
+              setAddImageForm={setAddImageForm}
+              showLogOut={showLogOut}
+              setShowLogOut={setShowLogOut}
+              getPosts={getPosts}
             />
             <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
 
+              setProfileUser={setProfileUser}
+              profileUser={profileUser}
               post={post}
               setPost={setPost}
-
+              getPosts={getPosts}
               user={user}
               setUser={setUser}
+              getUser={getUser}
 
               setPostModal={setPostModal}
 
@@ -196,6 +312,9 @@ function App () {
 
               setUpdateForm={setUpdateForm}
               updateForm={updateForm}
+              addImageForm={addImageForm}
+              setAddImageForm={setAddImageForm}
+
             />
             <ShowPostModal
               setShowModal={setShowModal}
@@ -209,6 +328,8 @@ function App () {
 
               user={user}
               setUser={setUser}
+              getAllPosts={getAllPosts}
+
               getPosterInfo={getPosterInfo}
               posterInfo={posterInfo}
 
@@ -225,12 +346,8 @@ function App () {
               getLikesByPost={getLikesByPost}
               setLikesByPost={setLikesByPost}
               likesByPost={likesByPost}
-              // handleSetLike={handleSetLike}
-
-
-              
               setLike={setLike}
-             
+
               like={like}
             />
 
@@ -238,11 +355,7 @@ function App () {
           : <LandingPage
               setUser={setUser}
               user={user}
-
               getFollowers={getFollowers}
-
-              setFollowersEvents={setFollowersEvents}
-              followersEvents={followersEvents}
             />
       }
     </main>
@@ -250,98 +363,3 @@ function App () {
 }
 
 export default App
-
-{ /* <Routes>
-<Route path="/home" element={<HomePage
-  user={user}
-
-  getFollowers={getFollowers}
-
-  setFollowersEvents={setFollowersEvents}
-  followersEvents={followersEvents}
-/>} />
-
-<Route path='/profile' element={<ProfilePage/>}/>
-
-</Routes> */ }
-
-// return (
-//   <main className={styles.App}>
-//     {
-//       user ?
-//       <>
-//                 <NavBarBottom
-//               setShowModal={setShowModal}
-//               showModal={showModal}
-//               user={user}
-//           />
-//         <NavBarTop/>
-//           <Routes>
-//             <>
-//               <Route path="/home" element={<HomePage
-//                 user={user}
-
-//                 getFollowers={getFollowers}
-
-//                 setFollowersEvents={setFollowersEvents}
-//                 followersEvents={followersEvents}
-//               />} />
-
-//               <Route path='/profile' element={<ProfilePage/>}/>
-//             </>
-//         </Routes>
-
-//         <NewPostModal
-//             setShowModal={setShowModal}
-//             showModal={showModal}
-
-//             post={post}
-//             setPost={setPost}
-
-//             user={user}
-//             setUser={setUser}
-
-//             setPostModal={setPostModal}
-
-//             getPosterInfo={getPosterInfo}
-
-//             setUpdateForm={setUpdateForm}
-//             updateForm={updateForm}
-//         />
-//         <ShowPostModal
-//             setShowModal={setShowModal}
-//             showModal={showModal}
-
-//             setPostModal={setPostModal}
-//             postModal={postModal}
-
-//             post={post}
-//             setPost={setPost}
-
-//             user={user}
-//             setUser={setUser}
-//             getPosterInfo={getPosterInfo}
-//             posterInfo={posterInfo}
-
-//             setUpdateForm={setUpdateForm}
-
-//             setUserPosts={setUserPosts}
-//             userPosts={userPosts}
-
-//             deletePost={deletePost}
-//         />
-
-//       </>
-//        :
-//       <LandingPage
-//         setUser={setUser}
-//         user={user}
-
-//         getFollowers={getFollowers}
-
-//         setFollowersEvents={setFollowersEvents}
-//         followersEvents={followersEvents}
-//         />
-//     }
-//   </main>
-// );

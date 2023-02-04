@@ -6,6 +6,8 @@ const { dataController, apiController } = require('../../controllers/api/likes')
 router.get('/', dataController.index, apiController.index)
 // GET /api/likes
 router.get('/:id', dataController.indexLikesByPost, apiController.index)
+// // GET followers by user
+// router.get('/follower/:id', dataController.getUserFollowers, apiController.index)
 // DELETE /api/likes/:id
 router.delete('/:id', dataController.destroy, apiController.show)
 // CREATE /api/likes - adding the id of the blog to be updated

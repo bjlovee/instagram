@@ -13,5 +13,31 @@ justify-content: center;
 
 .button{
    display: flex;
-  padding-left: 6rem;
+  padding-left: 9rem;
+  justify-content: flex-end;
+}
+
+
+.image-container > div{
+  /* border: solid black; */
+  height: 10rem;
+  border-radius: 3px;
+  /* width: 5rem; */
+}
+
+
+
+.box-container > div{
+ /* border: solid black; */
+ padding:0;
+ padding-top: 1rem;
+ border-bottom: solid var(--outlines);
+ border-radius: 0;
+ border-width: 0.3px;
+}
+
+
+.text{
+  font-size: 0.5rem;
+  border-bottom: solid var(--outlines);
 }

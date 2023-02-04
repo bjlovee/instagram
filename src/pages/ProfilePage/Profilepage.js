@@ -3,11 +3,12 @@ import ProfileSection from '../../components/ProfileSection/ProfileSection'
 import Footer from '../../components/Footer/Footer'
 import styles from './ProfilePage.module.scss'
 import { useState, useEffect } from 'react'
+import { getUser } from '../../utilities/users-service'
 
 export default function ProfilePage ({
   userPosts,
   getPosts,
-  user,
+  profileUser,
   setPostModal,
   setPost,
   getPosterInfo,
@@ -18,32 +19,45 @@ export default function ProfilePage ({
   handleSetLike,
   setLike,
   like,
-  setLikesByPost
+  setLikesByPost,
+  user,
+  getFollowing,
+  followingObjects,
+  getFollowers,
+  followerObjects,
+  setFollowersPresent,
+  followersPresent,
+  followingPresent,
+
+  setFollowingPresent
 }) {
-  // console.log(user._id)
+  
   useEffect(() => {
-  // fetchState()
-    if (user) {
-      getPosts(user._id)
+    if (profileUser) {
+      getPosts(profileUser._id)
     }
-    //   if(post){
-    //   getPosterInfo(post.poster)
-    // }
   }, [])
 
-  // useEffect(() => {
-  //   fetchState()
-  //   // if a post exists, get the poster info
-  //   // console.log(post)
-  //     if(post){
-  //       getPosterInfo(post.poster)
-  //     }
-  //   // }
-  // }, [])
+  useEffect(() => {
+    getUser(user._id)
+  }, [])
 
   return (
     <div className={styles.profilePage}>
-      <ProfileHeader />
+      <ProfileHeader
+        profileUser={profileUser}
+        user={user}
+        numberOfPosts={userPosts.length}
+        getFollowing={getFollowing}
+        followingObjects={followingObjects}
+        getFollowers={getFollowers}
+        followerObjects={followerObjects}
+        setFollowersPresent={setFollowersPresent}
+        followersPresent={followersPresent}
+        followingPresent={followingPresent}
+        getUser={getUser}
+        setFollowingPresent={setFollowingPresent}
+      />
       <ProfileSection
         userPosts={userPosts}
         setPostModal={setPostModal}

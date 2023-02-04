@@ -5,27 +5,31 @@ import HomePageCarousel from '../../components/HomePageCarousel/HomePageCarousel
 import Footer from '../../components/Footer/Footer'
 import SwitchProfile from '../../components/SwitchProfile/SwitchProfile'
 import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile'
-import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
 
 export default function HomePage ({
   user,
   getFollowers,
-
+  allPosts,
   setFollowersEvents,
-  followersEvents
+  followersObjects,
+  getAllPosts,
+  setPost,
+  setPostModal,
+  setProfileUser,
+  allUsers,
+  getComments,
+  getLikesByPost,
+  setLikesByPost,
+  setLike,
+  like
+
 }) {
-// console.log(user)
 
   const [followersPosts, setFollowersPosts] = useState([])
 
   // settings posts data in loop
   const handleSetPosts = (data) => {
-    // adding to state via conditional to prevent infinite loop
-    if (followersPosts.length < followersEvents.length - 1) {
-      setFollowersPosts(followersPosts => [...followersPosts, data])
-    } else {
-
-    }
+    setFollowersPosts(followersPosts => [...followersPosts, data])
   }
 
   // getting the users followers posts by the latest post
@@ -41,19 +45,29 @@ export default function HomePage ({
 
   // mapping through the array of followers and
   const getPosts = () => {
-    if (followersEvents.length > 0) {
-      followersEvents.map(event => {
+    if (followersObjects) {
+      followersObjects.map(event => {
         getFollowersLatestPost(event.followerUser)
       })
     }
   }
 
+  // get followers
+  useEffect(() => {
+
+  })
+
   // gets posts on page load
   useEffect(() => {
     getPosts()
-  })
+  }, [followersPosts])
 
-  // console.log(followersPosts)
+  const handleSelectPost = (post) => {
+    setPost(post)
+    setPostModal(true)
+    getComments(post._id)
+    getLikesByPost(post._id)
+  }
 
   return (
     <>
@@ -63,18 +77,21 @@ export default function HomePage ({
             <section>
               <HomePageCarousel />
             </section>
-            <Post />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
-            <div className={styles.postContainer} />
+            {allPosts
+              ? allPosts.map((post) => {
+                return (
+                  <div onClick={(e) => {
+                    e.preventDefault()
+                    handleSelectPost(post)
+                  }}
+                  >
+                    <Post
+                      post={post}
+                    />
+                  </div>
+                )
+              })
+              : ''}
           </div>
         </section>
         <div className={styles.sectionWrapper}>
@@ -83,8 +100,14 @@ export default function HomePage ({
               user={user}
               handle={user.handle}
               image={user.profilePic}
+              setProfileUser={setProfileUser}
             />
-            <SuggestedProfile />
+            <SuggestedProfile
+              allUsers={allUsers}
+              user={user}
+              setProfileUser={setProfileUser}
+
+            />
           </section>
         </div>
       </div>
@@ -92,106 +115,3 @@ export default function HomePage ({
     </>
   )
 }
-
-// const [followersEvents, setFollowersEvents] = useState([])
-// const [followersPosts, setFollowersPosts] = useState([])
-
-//   // Index Restaurants
-//   const getFollowers = async (id) => {
-//     try {
-//       const response = await fetch(`api/followers/follower/${id}`)
-//       const data = await response.json()
-//       setFollowersEvents(data)
-//       getFollowersLatestPost(followersEvents.followerUser)
-//     //   getPosts()
-//     } catch (err) {
-//       console.log(err)
-//     }
-//   }
-
-//   const getFollowersLatestPost = async (id) => {
-//     try{
-//       const response = await fetch(`api/posts/poster/${id}`)
-//       const data = await response.json()
-//       console.log(data)
-//     //   setFollowersPosts([...followersPosts, data])
-
-//     } catch (e) {
-
-//     }
-//   }
-
-// useEffect(() => {
-//     getFollowers(user._id)
-//   }, [])
-
-// //number of followers
-// console.log(followersEvents.length)
-
-// //showing each follower event
-// followersEvents.map(event => console.log(event))
-
-// //getting one followers latest post
-// followersEvents.map(event => {
-//     getFollowersLatestPost(event.followerUser)
-// })
-
-{ /* <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div>
-                    <div className={styles.postContainer}>
-                        <div className={styles.post}></div>
-                    </div> */ }
-
-// Get one post by follower
-
-//     followersEvents.map(event => {
-//         if (counter <= followersEvents.length){
-//             getFollowersLatestPost(event.followerUser)
-//         }
-//         counter ++
-//     })
-
-// console.log(followersPosts)
-
-// console.log(followersPosts)
-// followersEvents.map(event => {
-//     setFollowers(followers => [...followers, event])
-// })
-
-// Followers in jims profile
-// Followers
-// "63d16996f11057f2263c9ca5",
-// followerUser
-// "63d05696f24703987800a352" --> match to poster in post
-
-// Followers
-// "63d17a5e4500f61ebc60c114"
-// followerUser
-// "63d0563a41be762fc7220c7a" --> match to poster in post
-
-//

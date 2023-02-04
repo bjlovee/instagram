@@ -25,3 +25,9 @@ module.exports = router
 // // SHOW /api/comments/:id
 // router.get('/:id', dataController.show, apiController.show)
 // // CREATE /api/comments - adding the id of the blog to be updated
+
+// // Create Follow
+// router.post('/follow', dataController.createFollow, apiController.show)
+
+// // Create Following
+// router.post('/following', dataController.createFollowBack, apiController.show)
