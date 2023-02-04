@@ -13,6 +13,7 @@ export default function ShowPostModal ({
   post,
   setPost,
   user,
+  getUser,
   postModal,
   setPostModal,
   posterInfo,
@@ -28,7 +29,8 @@ export default function ShowPostModal ({
   likesByPost,
   setLike,
   like,
-  getAllPosts
+  getAllPosts,
+  setProfileUser
 }) {
   const [newComment, setNewComment] = useState({
     comment: ''
@@ -187,6 +189,7 @@ export default function ShowPostModal ({
                       image={post.posterPic}
                       handle={post.posterName}
                       location={post.location}
+                      getUser={getUser}
                       user={user}
                       post={post}
                       caption={null}
@@ -196,6 +199,7 @@ export default function ShowPostModal ({
 
                       setPostModal={setPostModal}
                       deletePost={deletePost}
+                      setProfileUser={setProfileUser}
                     />
                   </div>
                   <div className={styles.caption}>
@@ -205,7 +209,7 @@ export default function ShowPostModal ({
                       // location={post.location}
                       caption={post.caption}
                       user={user}
-                      // post={post}
+                      post={post}
 
                       setUpdateForm={setUpdateForm}
                       showModal={showModal}

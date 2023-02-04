@@ -3,6 +3,7 @@ import IconButton from '@mui/material/IconButton'
 import Edit from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useNavigate } from 'react-router-dom'
+import { getUser } from '../../utilities/users-service'
 export default function SwitchProfile ({
   image,
   handle,
@@ -16,18 +17,22 @@ export default function SwitchProfile ({
   deletePost,
   caption,
   posterInfo,
-  setProfileUser
+  setProfileUser,
 }) {
   // --- EVENT HANDLERS ---//
 
   const navigate = useNavigate()
-
+// console.log(post)
   return (
   // <div className={styles.switchProfile}>
+
     <div
       onClick={() => {
-        setProfileUser(user)
-        navigate('/profile')
+        if(!post){
+          setProfileUser(user)
+          navigate('/profile')
+        } 
+
       }} class={styles.switchContainer}
     >
       <div class={styles.profileImg}>

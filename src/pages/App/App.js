@@ -235,6 +235,8 @@ function App () {
                     setLikesByPost={setLikesByPost}
                     setLike={setLike}
                     like={like}
+
+                    // getUser={user}
                                     />}
                 />
 
@@ -326,6 +328,7 @@ function App () {
               post={post}
               setPost={setPost}
 
+              getUser={getUser}
               user={user}
               setUser={setUser}
               getAllPosts={getAllPosts}
@@ -349,6 +352,10 @@ function App () {
               setLike={setLike}
 
               like={like}
+
+              setProfileUser={setProfileUser}
+              
+
             />
 
           </>
