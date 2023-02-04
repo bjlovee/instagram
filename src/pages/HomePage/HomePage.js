@@ -78,21 +78,27 @@ export default function HomePage ({
               <HomePageCarousel />
             </section>
             {allPosts
-              ? allPosts.map((post) => {
-                return (
-                  <div onClick={(e) => {
-                    e.preventDefault()
-                    handleSelectPost(post)
-                  }}
-                  >
-                    <Post
-                      post={post}
-                    />
-                  </div>
-                )
+              ? allPosts.map((post, i) => {
+                if (i < 15){
+                  return (
+                    <div onClick={(e) => {
+                      e.preventDefault()
+                      handleSelectPost(post)
+                    }}
+                    >
+                      <Post
+                        post={post}
+                      />
+                    </div>
+                  )
+                }
               })
-              : ''}
+              
+              : 'No Posts Yet'
+              }
           </div>
+          <br/>
+          <p>You are up to date</p>
         </section>
         <div className={styles.sectionWrapper}>
           <section className={styles.suggestedContainer}>

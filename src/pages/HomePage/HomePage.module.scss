@@ -47,7 +47,10 @@ body{
     justify-content: center;
 }
 
-
+section > p{
+    display: flex;
+    justify-content: center;
+}
 @media only screen and (max-width: 960px){
     .suggestedContainer{
         display: none;
