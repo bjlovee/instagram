@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import { useState } from 'react'
 import { StyledList } from '@mui/joy/List/List'
 
-
 export default function Comment ({
   handle,
   comment,
@@ -56,18 +55,21 @@ export default function Comment ({
                   }}
                 >
                   <input name='comment' value={updateComment.comment} onChange={handleChange} placeholder='edit your comment...(ESC to close)' required />
-                  <div className={styles.closeButton} onClick={()=>{
-                    showEditComment(false)
-                  }}>X</div>
+                  <div
+                    className={styles.closeButton} onClick={() => {
+                      showEditComment(false)
+                    }}
+                  >X
+                  </div>
                 </div>
               </>}
           </div>
         </div>
         <div class={styles.switchLink}>
-        <div className={styles.dateAndTime}>
+          <div className={styles.dateAndTime}>
             <p>{new Date(commentDate).toLocaleDateString()}</p> &nbsp;
             <p>{new Date(commentDate).toLocaleTimeString()}</p>
-        </div>          
+          </div>
           {/* only the owner of the post can edit or delete comment */}
           {user && user._id === poster
             ? <>

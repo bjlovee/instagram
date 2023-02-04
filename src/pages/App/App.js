@@ -3,7 +3,6 @@ import LandingPage from '../LandingPage/LandingPage'
 import HomePage from '../HomePage/HomePage'
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage'
 import ProfilePage from '../ProfilePage/Profilepage'
-// import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route, Router } from 'react-router-dom'
 import styles from '../App/App.module.scss'
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
@@ -11,9 +10,8 @@ import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal'
 import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
-import { ConstructionOutlined, ImportExport } from '@mui/icons-material'
-import { ListItem } from '@mui/material'
 import { Helmet } from 'react-helmet'
+
 function App () {
   const [state, setState] = useState(null)
   const [user, setUser] = useState(null)
@@ -59,8 +57,7 @@ function App () {
     }
   }
 
-
-  //Get likes by post
+  // Get likes by post
   const getLikesByPost = async (id) => {
     try {
       const response = await fetch(`/api/likes/${id}`)
@@ -71,16 +68,10 @@ function App () {
     }
   }
 
-
-// console.log(user)
-  // console.log(like)
-
-
+ 
   // Get the usets that are following you!
   const getFollowers = async (id) => {
-    // console.log(id)
     try {
-      // getFollowing(user._id)
       const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
       console.log(data)
@@ -88,18 +79,18 @@ function App () {
       setFollowerObjects(data)
     //   getPosts()
     } catch (err) {
-      console.log({msg:err.message})
+      console.log({ msg: err.message })
     }
   }
 
-  //Get the users you are following!
+  // Get the users you are following!
   const getFollowing = async (id) => {
-    try{
+    try {
       const response = await fetch(`api/followers/following/${id}`)
       const data = await response.json()
       setFollowingObjects(data)
     } catch (e) {
-      console.error({msg:e.message})
+      console.error({ msg: e.message })
     }
   }
 
@@ -116,10 +107,8 @@ function App () {
   // Get User Info
   const getPosterInfo = async (id) => {
     try {
-    // console.log(id)
       const response = await fetch(`/api/users/${id}`)
       const data = await response.json()
-      // console.log(data)
       setPosterInfo(data)
     } catch (err) {
       console.log(err)
@@ -131,23 +120,22 @@ function App () {
     try {
       const response = await fetch(`/api/posts/${id}`)
       const data = await response.json()
-      // console.log(data)
       setUserPosts(data)
     } catch (e) {
       console.error({ msg: e.message })
     }
   }
 
-//get all posts
-const getAllPosts = async () => {
-  try {
-    const response = await fetch('/api/posts')
-    const data = await response.json()
-    setAllPosts(data)
-  } catch (e) {
-    console.error({ msg: e.message })
+  // get all posts
+  const getAllPosts = async () => {
+    try {
+      const response = await fetch('/api/posts')
+      const data = await response.json()
+      setAllPosts(data)
+    } catch (e) {
+      console.error({ msg: e.message })
+    }
   }
-}
 
   // Delete Post
   const deletePost = async (id) => {
@@ -165,41 +153,39 @@ const getAllPosts = async () => {
     }
   }
 
-  //getUser
+  // getUser
   const getUser = async (id) => {
-    try{
+    try {
       const response = await fetch(`api/users/${id}`)
       const data = await response.json()
       setUser(data)
     } catch (e) {
       console.error({ msg: e.message })
     }
-  } 
+  }
 
   const getUsers = async () => {
-    try{
+    try {
       const response = await fetch('/api/users')
       const data = await response.json()
       setAllUsers(data)
     } catch (e) {
-      console.error({msg: e.message})
+      console.error({ msg: e.message })
     }
   }
 
-useEffect(()=>{
-  getAllPosts()
-},[])
+  useEffect(() => {
+    getAllPosts()
+  }, [])
 
   useEffect(() => {
     getUsers()
     getAllPosts()
-    if(user){
-      // getFollowing(user._id)
+    if (user) {
       console.log('here')
       getFollowers(user._id)
     }
   }, [])
-
 
   useEffect(() => {
     if (post) {
@@ -207,36 +193,25 @@ useEffect(()=>{
     }
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     getUsers()
   }, [])
 
-
-useEffect(() =>{
-  if(user){
-    getUser(user._id)
-  }
-  
-}, [])
+  useEffect(() => {
+    if (user) {
+      getUser(user._id)
+    }
+  }, [])
 
 
-// useEffect(() => {
-//   if(user){
-    
-//   }
-
-// }, [])
-
-// console.log(allPosts)
-// console.log(followingObjects)
   return (
     <main className={styles.App}>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Instafake</title>
-          <link rel="canonical" href="http://mysite.com/example" />
-          <meta name="description" content="Instagram SPA clone" />
-        </Helmet>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Instafake</title>
+        <link rel='canonical' href='http://mysite.com/example' />
+        <meta name='description' content='Instagram SPA clone' />
+      </Helmet>
       {
         user
           ? <>
@@ -251,8 +226,15 @@ useEffect(() =>{
                     setPost={setPost}
                     post={post}
                     setPostModal={setPostModal}
-                    // setFollowersEvents={setFollowersEvents}
-                    // followersEvents={followersEvents}
+                    setProfileUser={setProfileUser}
+                    allUsers={allUsers}
+
+                    getComments={getComments}
+
+                    getLikesByPost={getLikesByPost}
+                    setLikesByPost={setLikesByPost}
+                    setLike={setLike}
+                    like={like}
                                     />}
                 />
 
@@ -267,10 +249,9 @@ useEffect(() =>{
                     setPost={setPost}
                     post={post}
                     getComments={getComments}
-                   
+
                     getLikesByPost={getLikesByPost}
                     likesByPost={likesByPost}
-                    // handleSetLike={handleSetLike}
                     setLike={setLike}
                     like={like}
 
@@ -290,18 +271,16 @@ useEffect(() =>{
                 <Route path='/orders' element={<OrderHistoryPage />} />
               </>
             </Routes>
-            <NavBarTop 
+            <NavBarTop
               allUsers={allUsers}
               setProfileUser={setProfileUser}
               getUsers={getUsers}
-              // posts={posts}
               getPosts={getPosts}
               profileUser={profileUser}
-              
+
               setFollowersPresent={setFollowersPresent}
-              followersPresent={followersPresent} 
+              followersPresent={followersPresent}
               setFollowingPresent={setFollowingPresent}
-              // followingPresent={followingPresent} 
             />
             <NavBarBottom
               setShowModal={setShowModal}
@@ -317,7 +296,7 @@ useEffect(() =>{
             <NewPostModal
               setShowModal={setShowModal}
               showModal={showModal}
-              
+
               setProfileUser={setProfileUser}
               profileUser={profileUser}
               post={post}
@@ -325,7 +304,7 @@ useEffect(() =>{
               getPosts={getPosts}
               user={user}
               setUser={setUser}
-              getUser={getUser}  
+              getUser={getUser}
 
               setPostModal={setPostModal}
 
@@ -333,7 +312,7 @@ useEffect(() =>{
 
               setUpdateForm={setUpdateForm}
               updateForm={updateForm}
-              addImageForm={addImageForm} 
+              addImageForm={addImageForm}
               setAddImageForm={setAddImageForm}
 
             />
@@ -349,7 +328,7 @@ useEffect(() =>{
 
               user={user}
               setUser={setUser}
-                  
+              getAllPosts={getAllPosts}
 
               getPosterInfo={getPosterInfo}
               posterInfo={posterInfo}
@@ -367,12 +346,8 @@ useEffect(() =>{
               getLikesByPost={getLikesByPost}
               setLikesByPost={setLikesByPost}
               likesByPost={likesByPost}
-              // handleSetLike={handleSetLike}
-
-
-              
               setLike={setLike}
-             
+
               like={like}
             />
 
@@ -380,11 +355,7 @@ useEffect(() =>{
           : <LandingPage
               setUser={setUser}
               user={user}
-
               getFollowers={getFollowers}
-
-              // setFollowersEvents={setFollowersEvents}
-              // followersEvents={followersEvents}
             />
       }
     </main>
@@ -392,35 +363,3 @@ useEffect(() =>{
 }
 
 export default App
-
-
-  // // Get the usets that are following you!
-  // const getFollowers = async (id) => {
-  //   console.log(id)
-  //   try {
-  //     // getFollowing(user._id)
-  //     const response = await fetch(`api/followers/follower/${id}`)
-  //     const data = await response.json()
-  //     setFollowerObjects(data)
-  //   //   getPosts()
-  //   } catch (err) {
-  //     console.log({msg:err.message})
-  //   }
-  // }
-
-  // //Get the users you are following!
-  // const getFollowing = async (id) => {
-  //   try{
-  //     const response = await fetch(`api/followers/following/${id}`)
-  //     const data = await response.json()
-  //     setFollowingObjects(data)
-  //   } catch (e) {
-  //     console.error({msg:e.message})
-  //   }
-  // }
-
-
-
-
-   // const [followersPresent, setFollowersPresent] = useState(false)
-  // const [followingPresent, setFollowingPresent] = useState(false)

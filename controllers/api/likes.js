@@ -27,7 +27,7 @@ const dataController = {
   },
   async indexLikesByPost (req, res, next) {
     try {
-      const likes = await Like.find({ post:req.params.id })
+      const likes = await Like.find({ post: req.params.id })
       res.locals.data.likes = likes
       next()
     } catch (e) {
@@ -36,7 +36,7 @@ const dataController = {
   },
   async indexLikesByPost (req, res, next) {
     try {
-      const likes = await Like.find({ post:req.params.id })
+      const likes = await Like.find({ post: req.params.id })
       res.locals.data.likes = likes
       next()
     } catch (e) {
@@ -62,7 +62,7 @@ const dataController = {
       res.status(400).json(e)
     }
   },
-  
+
   async create (req, res, next) {
     try {
       const like = await Like.create(req.body)
