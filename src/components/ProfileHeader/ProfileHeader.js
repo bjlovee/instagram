@@ -1,7 +1,6 @@
 import ProfileAvatar from '../../components/ProfileAvatar/ProfileAvatar'
 import ProfileInfo from '../../components/ProfileInfo/ProfileInfo'
 import styles from './ProfileHeader.module.scss'
-import { useState, useEffect } from 'react'
 
 export default function ProfileHeader ({
   profileUser,
@@ -40,7 +39,6 @@ export default function ProfileHeader ({
               numberOfPosts={numberOfPosts}
             />
           </div>
-
         </div>
       </div>
     </div>

@@ -8,7 +8,6 @@ import styles from '../App/App.module.scss'
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
 import NewPostModal from '../../components/NewPostModal/NewPostModal'
-import NavBar from '../../components/NavBar/NavBar'
 import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
 import { Helmet } from 'react-helmet'
 
@@ -46,14 +45,12 @@ function App () {
 
   // Index Comments by post
   const getComments = async (id) => {
-    // console.log(id)
     try {
       const response = await fetch(`/api/comments/post/${id}`)
       const data = await response.json()
-      // console.log(data)
       setCommentsByPost(data)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -64,7 +61,7 @@ function App () {
       const data = await response.json()
       setLikesByPost(data)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -74,12 +71,10 @@ function App () {
     try {
       const response = await fetch(`api/followers/follower/${id}`)
       const data = await response.json()
-      console.log(data)
       getFollowing(id)
       setFollowerObjects(data)
-    //   getPosts()
     } catch (err) {
-      console.log({ msg: err.message })
+      console.error({ msg: err.message })
     }
   }
 
@@ -111,7 +106,7 @@ function App () {
       const data = await response.json()
       setPosterInfo(data)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -235,8 +230,6 @@ function App () {
                     setLikesByPost={setLikesByPost}
                     setLike={setLike}
                     like={like}
-
-                    // getUser={user}
                                     />}
                 />
 

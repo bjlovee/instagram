@@ -1,10 +1,8 @@
 .navBarBottom{
     display: flex;
     justify-content: space-around;
-    // border: solid purple;
     position: fixed;
     width: 100vw;
-    // margin-right: 5rem;
     bottom: 0;
     background-color: white;
     border-top: solid var(--outlines);
@@ -35,7 +33,6 @@
 .logout{
     border: solid var(--outlines);
     border-width: 0.2px;
-    // padding: 1rem;
     border-radius: 3px 3px 0 0 ;
     position: fixed;
     bottom: 2.5rem;
@@ -43,13 +40,10 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
-
 }
 
 .logoutClicker{
     border-bottom: solid var(--outlines) ;
-    // margin: 1rem;
     padding: 0.5rem;
     border-width: 0.1px;
 }
@@ -66,14 +60,11 @@
 }
 
 .closeContainer{
-    // border: solid black;
-    // padding: 0.5rem;
     display: flex;
     justify-content: flex-start;
 }
 
 .closeButton{
-    // border: solid blue;
     margin: 0.2rem;
     margin-left: 0.4rem;
 }

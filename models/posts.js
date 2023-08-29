@@ -7,7 +7,6 @@ const postSchema = new Schema({
   posterPic: { type: String },
   image: { type: String },
   // FIGURE OUT IMAGE UPLOADS IF THERES TIME
-  // image:{ data: Buffer, contentType: String },
   location: { type: String },
   caption: { type: String },
   music: { type: String },

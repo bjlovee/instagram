@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton'
 import Edit from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useNavigate } from 'react-router-dom'
-import { getUser } from '../../utilities/users-service'
+
 export default function SwitchProfile ({
   image,
   handle,
@@ -11,21 +11,16 @@ export default function SwitchProfile ({
   post,
   location,
   setUpdateForm,
-  showModal,
   setShowModal,
   setPostModal,
   deletePost,
-  caption,
   posterInfo,
   setProfileUser,
 }) {
-  // --- EVENT HANDLERS ---//
 
   const navigate = useNavigate()
-// console.log(post)
-  return (
-  // <div className={styles.switchProfile}>
 
+  return (
     <div
       onClick={() => {
         if(!post){
@@ -75,6 +70,5 @@ export default function SwitchProfile ({
             : <h5>Profile</h5>}
       </div>
     </div>
-  // </div>
   )
 }

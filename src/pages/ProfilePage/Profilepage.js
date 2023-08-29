@@ -2,7 +2,7 @@ import ProfileHeader from '../../components/ProfileHeader/ProfileHeader'
 import ProfileSection from '../../components/ProfileSection/ProfileSection'
 import Footer from '../../components/Footer/Footer'
 import styles from './ProfilePage.module.scss'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { getUser } from '../../utilities/users-service'
 
 export default function ProfilePage ({
@@ -11,12 +11,9 @@ export default function ProfilePage ({
   profileUser,
   setPostModal,
   setPost,
-  getPosterInfo,
   post,
   getComments,
   getLikesByPost,
-  likesByPost,
-  handleSetLike,
   setLike,
   like,
   setLikesByPost,

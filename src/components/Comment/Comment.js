@@ -1,11 +1,8 @@
-// import user from '../../../models/user'
 import styles from './Comment.module.scss'
 import IconButton from '@mui/material/IconButton'
 import Edit from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-// import {AiOutlineHeart} from "react-icons/ai"
 import { useState } from 'react'
-import { StyledList } from '@mui/joy/List/List'
 
 export default function Comment ({
   handle,
@@ -27,7 +24,7 @@ export default function Comment ({
       ...updatedComment, [e.target.name]: e.target.value
     })
   }
-  // console.log(Date.now())
+
   return (
     <div className={styles.commentContainer}>
       <div class={styles.switchContainer}>

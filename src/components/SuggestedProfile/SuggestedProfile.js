@@ -7,7 +7,6 @@ export default function SuggestedProfile ({
   user,
   setProfileUser
 }) {
-  // console.log(allUsers)
   const navigate = useNavigate()
   return (
     <div className={styles.suggestedProfile}>

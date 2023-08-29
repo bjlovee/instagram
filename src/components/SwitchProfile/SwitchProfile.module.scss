@@ -20,7 +20,6 @@
     height: 4rem; 
     width: 4rem;
     display: flex;
-    // overflow: hidden;
   }
   
   .profileImg > img{
@@ -28,7 +27,6 @@
     height: 100%;
     border-radius: 55%;
     object-fit: cover;
-    // overflow: hidden;
   }
   
   .username{
@@ -38,11 +36,9 @@
   }
   h5{
     margin: 0 auto;
-    // margin-bottom: .7rem;
     text-align: center;
   }
   .switchLink{
-    // margin-right: 1rem;
     display: flex;
     flex-direction: row;
     padding: 0;
@@ -63,17 +59,3 @@ p{
   margin: 0 auto;
   font-size: 0.8rem;
 }
-
-
-  // /formContainer{
-  //   margin: 1rem 0 1rem 0;
-  //   display: block;
-  //   height: -moz-fit-content;
-  //   height: fit-content;
-  //   /* width: 50%;
-
-
-  // .commentsContainer{
-  //   /* width: 50%; */
-  //   background-color: rgb(255, 255, 255);
-  //   border-radius: 0 0.5rem 0.5rem 0;

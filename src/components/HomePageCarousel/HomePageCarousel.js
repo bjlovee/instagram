@@ -6,37 +6,21 @@ export default function homePageCarousel () {
 
   const sCont = document.querySelector('.storysContainer')
   const hScroll = document.querySelector('.horizontalScroll')
-  // const btnScrollLeft = document.querySelector("#btnScrollLeft");
-  // const btnScrollRight = document.querySelector("#btnScrollRight")
-
-  // btnScrollLeft.style.opacity = "0";
-
   const maxScroll = -sCont + hScroll
 
   const scrollHorizontally = (val) => {
-    // console.log(val)
     currentScrollPosition += (val * scrollAmount)
-    // console.log(currentScrollPosition)
     if (currentScrollPosition >= 0) {
       currentScrollPosition = 0
-      // console.log(maxScroll)
-      // console.log(currentScrollPosition)
-      // btnScrollLeft.style.opacity = "0";
     } else {
-      // btnScrollLeft.style.opacity = "1";
+
     }
 
     if (currentScrollPosition <= maxScroll) {
       currentScrollPosition = maxScroll
-    // console.log(currentScrollPosition)
-    // btnScrollRight.style.opacity = "0";
     } else {
-      // btnScrollRight.style.opacity = "1";
     }
-
-  // sCont.style.left = currentScrollPosition + "px";
   }
-  console.log(maxScroll)
   return (
     <div className={styles.homePageCarousel}>
 

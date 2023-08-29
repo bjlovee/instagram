@@ -2,20 +2,6 @@ const Like = require('../../models/likes')
 const Post = require('../../models/posts')
 
 const dataController = {
-//   // Index,
-//   index (req, res, next) {
-//     Comment.find({}, (err, foundComments) => {
-//       if (err) {
-//         res.status(400).send({
-//           msg: err.message
-//         })
-//       } else {
-//         console.log(foundComments)
-//         res.locals.data.comments = foundComments
-//         next()
-//       }
-//     })
-//   },
   async index (req, res, next) {
     try {
       const likes = await Like.find({})

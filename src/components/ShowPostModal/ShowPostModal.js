@@ -1,17 +1,12 @@
 import styles from './ShowPostModal.module.scss'
 import { useState, useEffect } from 'react'
 import SwitchProfile from '../SwitchProfile/SwitchProfile'
-import { Switch } from '@mui/material'
 import Comment from '../Comment/Comment'
-// import { create } from '../../../models/comments'
-// import {AiOutlineHeart} from 'react-icons/ai'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { Message } from '@mui/icons-material'
 
 export default function ShowPostModal ({
   post,
-  setPost,
   user,
   getUser,
   postModal,
@@ -76,7 +71,6 @@ export default function ShowPostModal ({
     e.preventDefault()
     createComment()
     getAllPosts()
-  // getComments(post._id)
   }
 
   // Delete Comment
@@ -206,7 +200,6 @@ export default function ShowPostModal ({
                     <SwitchProfile
                       image={post.posterPic}
                       handle={post.posterName}
-                      // location={post.location}
                       caption={post.caption}
                       user={user}
                       post={post}
@@ -220,7 +213,6 @@ export default function ShowPostModal ({
                       posterInfo={posterInfo}
                     />
                     <div className={styles.captionContainer}>
-                      {/* <div></div> */}
                       <p>{post.caption}</p>
                     </div>
                   </div>
@@ -290,25 +282,3 @@ export default function ShowPostModal ({
     </>
   )
 }
-
-// {commentsByPost.map((comment)=>{
-//   return(
-//     <div>
-//       <h6>{comment.handle}</h6>
-//       <p>{comment.comment}</p>
-//     </div>
-//   )
-// })}
-
-// if(post){
-//   likesByPost.filter(like => like.liker === user._id).map((like, i) =>{
-//     // console.log(like)
-//     if(i == 0){
-//       return setLike(like)
-//     }
-//     else return
-//     //
-//     // console.log(like)
-//     // setLike(like)
-//   })
-// }

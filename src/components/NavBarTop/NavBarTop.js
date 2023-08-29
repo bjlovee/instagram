@@ -4,28 +4,22 @@ import SearchOutlined from '@mui/icons-material/SearchOutlined'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import styles from '../NavBarTop/NavBarTop.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { StyledInputEndDecorator } from '@mui/joy/Input/Input'
 import Avatar from '@mui/material/Avatar'
 
 export default function NavBarBottom ({
   allUsers,
   setProfileUser,
-  profileUser,
   getPosts,
 
   setFollowingPresent,
-  followingPresent,
 
   getUsers,
   setFollowersPresent,
-  followersPresent
 
 }) {
-  // console.log(allUsers)
   const navigate = useNavigate()
 
   const [showSearch, setShowSearch] = useState(false)
-  // const [currentIconState, setCurrentIconState] = useState(false)
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -40,7 +34,7 @@ export default function NavBarBottom ({
           onClick={() => {
             navigate('/')
           }}
-                                     >Instafake
+          >Instafake
         </h3>
         </div>
         {showSearch
