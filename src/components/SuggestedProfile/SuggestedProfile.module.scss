@@ -1,13 +1,10 @@
 .suggestedProfile{
-    // border: solid orange;
-    // max-width: 12rem;
     height: 20rem;
     padding: 0 1.5rem 0 1rem;
 }
 .suggestedProfile > h4{
     margin: 0 auto;
     color: var(--outlines);
-    // font-size: 1rem;
 }
 .switchProfile{
     border-bottom: solid var(--outlines);
@@ -19,8 +16,6 @@
     background-color: white;
     justify-content: space-between;
     border-radius: 2px;
-    // padding: 0.2rem 0 0.2rem 0.2rem;
-    // min-height: 3rem;
   }
   .switchContainer:hover{
     cursor: pointer;
@@ -31,7 +26,6 @@
     height: 2.5rem; 
     width: 2.5rem;
     display: flex;
-    // overflow: hidden;
   }
   
   .profileImg > img{
@@ -39,7 +33,6 @@
     height: 100%;
     border-radius: 55%;
     object-fit: cover;
-    // overflow: hidden;
   }
   
   .username{
@@ -49,16 +42,13 @@
   }
   h5{
     margin: 0 auto;
-    // margin-bottom: .7rem;
     text-align: center;
   }
   .switchLink{
-    // margin-right: 1rem;
     display: flex;
     flex-direction: row;
     padding: 0;
     align-items: center;
-    // padding: 1.8rem;
   }
   
   .switchLink > h5{

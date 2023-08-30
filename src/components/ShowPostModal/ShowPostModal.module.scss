@@ -8,26 +8,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // padding: 5rem;
 }
 
 .postCreation{
-    // border: solid black;
-    // max-height: 40rem;
     position: absolute;
-    // padding: 5rem;
-    // width: ;
-    // min-width: 23rem;
-    // min-height: 28rem;
-    // max-width:40rem;
-    // max-height: 50rem;
     background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
     background-color: black;
-    // display: flex;
-    // flex-direction: column;
-    // display: grid;
-    // grid-template-rows: 0.05fr 1fr;
 }
 .closeButton{
     position: fixed;
@@ -58,25 +45,19 @@
 }
 
 .modalContainer{
-    // border: solid red;
     border-bottom: solid var(--outlines);
     border-width: 0.5px;
 }
 
 .formContainer{
-    // border: solid purple;
     margin: 1rem 0 1rem 0;
-    // width: 100%;
     display: block;
     height: fit-content;
     width: 70%;
-    // background-color: black;
 }
 
 .commentsContainer{
-    // border: solid red;
     width: 50%;
-    // max-height: 30rem;
     background-color: rgb(255, 255, 255);
     border-radius: 0 0.5rem 0.5rem 0;
     display: flex;
@@ -86,7 +67,6 @@
 
 .formContainer > img{
     width: 100%;
-    // height: 110%;
     object-fit: cover;
     overflow: hidden;
 }
@@ -110,25 +90,15 @@
     margin: 0 auto;
 }
 .commentsIndex{
-    // border: solid blue;
     overflow-x: hidden;
     overflow-y: scroll;
     max-height: 20rem;
-    // display: flex;
-    // flex-direction: column;
 }
 
 .addComment{
-    // border: solid purple;
     bottom: 0;
-    // position: absolute;
-    // display: flex;
-    // width: inherit;
-    // padding: 1rem;
     background-color: white;
     justify-content: center;
-    // width: -webkit-fill-available;
-    // width: 88%;
 }
 
 .addComment > input{
@@ -140,7 +110,6 @@
 }
 
 .likeButton{
-    // border: solid blue;
     padding-top: 0.5rem;
     padding-left: 0.5rem;
     margin: 0;
@@ -156,7 +125,6 @@
     position: absolute;
     bottom: 0;
     justify-content: space-around;
-    // border: solid black;
     width: 40%;
     padding: 0.2rem;
     background-color: white;

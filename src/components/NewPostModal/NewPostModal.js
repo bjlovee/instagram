@@ -1,7 +1,5 @@
 import styles from '../NewPostModal/NewPostModal.module.scss'
-import NavBarBottom from '../NavBarBottom/NavBarBottom'
 import { useEffect, useState } from 'react'
-// import { getUser } from '../../utilities/users-service'
 
 export default function NewPostModal ({
   showModal,
@@ -13,14 +11,11 @@ export default function NewPostModal ({
   setUser,
   getUser,
   setPostModal,
-  getPosterInfo,
   updateForm,
   setUpdateForm,
   addImageForm,
   setAddImageForm,
   setProfileUser,
-  profileUser
-
 }) {
   const [newPost, setNewPost] = useState({
     image: '',
@@ -61,17 +56,8 @@ export default function NewPostModal ({
         })
       })
       const data = await response.json()
-      console.log(data)
-      // setNewPost(data)
       setPost(data)
-      // getPost(user._id)
-
-      // getPost()
-
       setNewPost({
-      // poster: user._id,
-      // posterName: user.handle,
-      // posterPic: user.profilePic,
         image: '',
         location: '',
         caption: '',
@@ -86,10 +72,8 @@ export default function NewPostModal ({
     e.preventDefault()
     createPost()
     setShowModal(false)
-    // navigate('/post')
     console.log(post.poster)
     setPostModal(true)
-  // getPosterInfo(newPost.poster)
   }
 
   const handleChange = (evt) => {
@@ -122,8 +106,6 @@ export default function NewPostModal ({
     setPostModal(true)
   }
 
-  // console.log(user.profilePic)
-
   // UPDATE PROFILE
   const updateProfile = async () => {
     try {
@@ -138,7 +120,6 @@ export default function NewPostModal ({
       setProfileUser(data)
       setUser(data)
       getUser(user._id)
-      // setUpdatedProfile(null)
     } catch (e) {
       console.error(e)
     }
@@ -148,7 +129,6 @@ export default function NewPostModal ({
     e.preventDefault()
     updateProfile()
     setUpdateForm(false)
-    // updateForm(false)
     setShowModal(false)
     setAddImageForm(false)
   }
@@ -157,7 +137,6 @@ export default function NewPostModal ({
     setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value })
   }
 
-  // console.log(updatedProfile)
 
   useEffect(() => {
     getUser(user._id)
@@ -212,8 +191,6 @@ export default function NewPostModal ({
                     <div className={styles.formContainer}>
                       <form
                         autocomplete='off' onSubmit={(e) => {
-                          //   e.preventDefault()
-                          // updateForm(false)
                           handleSubmitUpdate(e)
                         }}
                       >

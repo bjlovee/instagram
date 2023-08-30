@@ -1,6 +1,4 @@
-
 .commentContainer{
-    // border: solid black;
     border-width: 0.7px;
     display: flex;
     flex-direction: column;
@@ -12,7 +10,6 @@
     margin: 0.3rem
   }
   .profileImg{
-    // border: solid blue;
     padding: 0.2rem;
     height: 2rem; 
     width: 2rem; 
@@ -24,18 +21,13 @@
     height: 100%;
     border-radius: 55%;
     object-fit: cover;
-    // overflow: hidden;
   }
   .commentWrapper{
-    // border: solid purple;
-    // display: flex;
     display: grid;
     grid-template-columns: 0.3fr 1fr;
   }
   
   .username{
-    // border: solid green;
-    // padding-right: 6rem;
     justify-content: left;
     text-align: left;
     display: flex;
@@ -43,14 +35,10 @@
   }
   h6{
     margin: 0;
-    // margin-bottom: .7rem;
-    // text-align: center;
   }
   .switchLink{
-    // margin-right: 1rem;
     display: flex;
     flex-direction: row;
-    // padding: 0;
     justify-content: space-between;
   }
   
@@ -69,12 +57,8 @@ p{
 }
 
 .updateComment{
-    // border: solid purple;
-    // bottom: 0;
     position: absolute;
-    // display: flex;
     width: inherit;
-    // padding: 1rem;
     background-color: white;
     justify-content: center;
 }
@@ -95,8 +79,6 @@ p{
     flex-direction: row;
 }
 .closeButton{
-  // border: solid black;
-  // border: solid black;
   width: fit-content;
   border-radius: 50%;
   padding: 0 0.3rem 0 0.3rem;

@@ -1,4 +1,3 @@
-const { requirePropFactory } = require('@mui/material')
 const Comment = require('../../models/comments')
 const Post = require('../../models/posts')
 
@@ -11,25 +10,11 @@ const dataController = {
           msg: err.message
         })
       } else {
-        console.log(foundComments)
         res.locals.data.comments = foundComments
         next()
       }
     })
   },
-  // Destroy
-  // destroy (req, res, next) {
-  //   Comment.findByIdAndDelete(req.params.id, (err, deletedComment) => {
-  //     if (err) {
-  //       res.status(400).send({
-  //         msg: err.message
-  //       })
-  //     } else {
-  //       res.locals.data.comment = deletedComment
-  //       next()
-  //     }
-  //   })
-  // },
   async getCommentsByPost (req, res, next) {
     try {
       const postComments = await Comment.find({ post: req.params.id }).sort({ createdAt: 'desc' })
@@ -73,19 +58,6 @@ const dataController = {
     })
   },
   // Create
-  // create (req, res, next) {
-
-  //   Comment.create(req.body, (err, createdComment) => {
-  //     if (err) {
-  //       res.status(400).send({
-  //         msg: err.message
-  //       })
-  //     } else {
-  //       res.locals.data.comment = createdComment
-  //       next()
-  //     }
-  //   })
-  // },
   async create (req, res, next) {
     try {
       const comment = await Comment.create(req.body)

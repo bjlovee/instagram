@@ -2,7 +2,6 @@ $monte-carlo: 'MonteCarlo', cursive;
 $rochester: 'Rochester', cursive;
 
 .navBar{
-    // border: solid red ;
     position: fixed;
     top: 0;
     display: flex;
@@ -11,7 +10,6 @@ $rochester: 'Rochester', cursive;
     background-color: white;
     border-bottom: solid var(--outlines);
     border-width: 0.7px;
-    // padding: 0.3rem 0 0.3rem 0;
     font-family: $rochester;
     font-size: 1.2rem;
     z-index: +1;
@@ -48,14 +46,12 @@ $rochester: 'Rochester', cursive;
 }
 
 .closeButtonWrapper{
-    // border: solid blue;
     border-top: solid var(--outlines);
     border-width: 0.2px;
     display: flex;
 }
 
 .closeButton{
-    // border: solid blue;
     padding: 0.1rem;
 }
 
@@ -64,7 +60,6 @@ $rochester: 'Rochester', cursive;
     cursor: pointer;
 }
 .user{
-    // border: solid blue;
     display: flex;
     padding-left: 0.5rem ;
 }
@@ -74,7 +69,6 @@ $rochester: 'Rochester', cursive;
 }
 
 .profileImg{
-    // border: solid red;
     padding: 0.2rem;
     height: 2rem; 
     width: 2rem; 
@@ -113,8 +107,3 @@ $rochester: 'Rochester', cursive;
     font-size: 1rem;
     margin-left: 1rem;
   }
-
-// .defaultAvatar{
-//   border: solid black;
-// }
-  // .navBar > input

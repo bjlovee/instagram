@@ -1,6 +1,4 @@
-
 import styles from './ProfileSection.module.scss'
-import { useEffect } from 'react'
 
 export default function ProfileSection ({
   userPosts,
@@ -42,7 +40,6 @@ export default function ProfileSection ({
 
             : <h4>'No posts yet!'</h4>
         }
-
       </div>
     </>
   )

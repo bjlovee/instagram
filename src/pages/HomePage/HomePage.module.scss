@@ -4,7 +4,6 @@
 }
 
 .postsIndex{
-    // border: solid blue;
     min-width: 20rem;
     justify-content: center;
     display: flex;
@@ -24,14 +23,10 @@ body{
 
 .sectionWrapper{
     position: relative;
-    // border: solid yellow;
-    // max-width: 25rem;
-    // min-width: 15rem;
 }
 
 
 .suggestedContainer{
-    // border: solid black;
     display: grid;
     grid-template-rows: 0.3fr 1fr;
     min-width: 20rem;
@@ -41,9 +36,7 @@ body{
 }
 
 .indexSection{
-    // border: solid purple;
     display: flex;
-    // align-items: center;
     justify-content: center;
 }
 

@@ -8,21 +8,14 @@ import SuggestedProfile from '../../components/SuggestedProfile/SuggestedProfile
 
 export default function HomePage ({
   user,
-  getFollowers,
   allPosts,
-  setFollowersEvents,
   followersObjects,
-  getAllPosts,
   setPost,
   setPostModal,
   setProfileUser,
   allUsers,
   getComments,
   getLikesByPost,
-  setLikesByPost,
-  setLike,
-  like
-
 }) {
 
   const [followersPosts, setFollowersPosts] = useState([])
@@ -77,6 +70,7 @@ export default function HomePage ({
             <section>
               <HomePageCarousel />
             </section>
+            {/* Only indexing the latest 15 posts  */}
             {allPosts
               ? allPosts.map((post, i) => {
                 if (i < 15){

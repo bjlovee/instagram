@@ -1,9 +1,6 @@
-// /controllers/api/users.js
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-// const { update } = require('../../models/user')
-// const { TbArrowAutofitContent } = require('react-icons/tb')
 
 const checkToken = (req, res) => {
   console.log('req.user', req.user)

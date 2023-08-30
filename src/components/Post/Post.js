@@ -3,25 +3,18 @@ import AspectRatio from '@mui/joy/AspectRatio'
 import Avatar from '@mui/joy/Avatar'
 import Box from '@mui/joy/Box'
 import Card from '@mui/joy/Card'
-import IconButton from '@mui/joy/IconButton'
 import { Typography } from '@mui/material'
 import Link from '@mui/joy/Link'
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded'
-import SmsIcon from '@mui/icons-material/Sms'
 import { SlPaperPlane } from 'react-icons/sl'
 import { TbMessageCircle2 } from 'react-icons/tb'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { FaRegBookmark } from 'react-icons/fa'
 import '../Post/Post.css'
-import { borderBottomColor } from '@mui/system'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
-// import Avatar from "@mui/material/Avatar";
 
 export default function ContainerResponsive ({
   post
-
 }) {
-// console.log(allPosts[0].image)
   return (
     <div className='box'>
       <Box sx={{ minHeight: 350 }} className='box-container'>
@@ -32,7 +25,6 @@ export default function ContainerResponsive ({
             gridColumn: 'span 2',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            // resize: 'horizontal',
             overflow: 'hidden',
             gap: 'clamp(0px, (100% - 360px + 32px) * 999, 16px)',
             transition: 'transform 0.3s, border 0.3s',
@@ -55,7 +47,6 @@ export default function ContainerResponsive ({
           >
             <img
               src='https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2000'
-            // src={allPosts[0].image}
               loading='lazy'
               alt=''
             />
@@ -83,7 +74,6 @@ export default function ContainerResponsive ({
                       {post.posterPic
                         ? <img
                           width='40px'
-                      // src="https://media.licdn.com/dms/image/C5603AQFTBEZIH7qH0g/profile-displayphoto-shrink_200_200/0/1657882772501?e=1680134400&v=beta&t=Afh8i2xzFQdIf_NLGuFXg5xefMZxHIQuVLaEGr-KveA"
                           src={post.posterPic}
                           loading='lazy'
                           alt=''
@@ -96,7 +86,6 @@ export default function ContainerResponsive ({
                     <MoreHorizIcon />
                   </Link>
                 </Typography>
-                {/* <Typography level="body2">California, USA</Typography> */}
               </div>
 
             </Box>
@@ -108,7 +97,6 @@ export default function ContainerResponsive ({
                 '--AspectRatio-paddingBottom':
                 'clamp(0px, (100% - 200px) * 999, 200px)',
                 pointerEvents: 'none'
-              // height: "8rem"
               }}
             >
               <img

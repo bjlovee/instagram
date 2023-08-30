@@ -3,17 +3,14 @@ import IconButton from '@mui/material/IconButton'
 import HomeIcon from '@mui/icons-material/Home'
 import ExploreIcon from '@mui/icons-material/Explore'
 import MovieIcon from '@mui/icons-material/Movie'
-import SendIcon from '@mui/icons-material/Send'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import styles from '../NavBarBottom/NavBarBottom.module.scss'
-// import { trusted } from 'mongoose';
 import { useNavigate, Link } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 
 import { logOut } from '../../utilities/users-service'
 
 export default function NavBarBottom ({
-  showModal,
   setShowModal,
   user,
   setUser,
