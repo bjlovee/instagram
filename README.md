@@ -83,20 +83,6 @@ Similar to edit post, you can edit a comment in place by clicking the smaill &#9
 
 ![Profile Mobile](public/images/profile-mobile.png)
 
-## Search
-*Desktop*
-![Search Desktop](public/images/search-drop-desktop.png)
-
-*Mobile*
-![Search Mobile](public/images/search-drop-mobile.png)
-
-## View Post
-*Desktop*
-![Post Desktop](public/images/view-post-desktop.png)
-
-*Mobile*
-
-![Post Mobile](public/images/view-post-mobile.png)
 
 # Breakdown of Application
 Using MERN stack setup, the application has full CRUD capability. The front end is organized into `components` and `pages` to allow for better functional component development.
@@ -349,7 +335,6 @@ One of the issues encountered when first trying to filter results was the users 
                       return (
                           <div className={styles.user} onClick={()=>{
                             setProfileUser(filteredUser)
-                            console.log('click')
                             setShowSearch(false)
                             getPosts(filteredUser._id)
                             setFollowingPresent(false)
