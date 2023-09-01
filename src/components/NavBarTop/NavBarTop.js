@@ -14,7 +14,7 @@ export default function NavBarBottom ({
   setFollowingPresent,
 
   getUsers,
-  setFollowersPresent,
+  setFollowersPresent
 
 }) {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ export default function NavBarBottom ({
           onClick={() => {
             navigate('/')
           }}
-          >Instafake
+                                     >Instafake
         </h3>
         </div>
         {showSearch

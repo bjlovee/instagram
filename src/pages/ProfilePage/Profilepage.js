@@ -28,7 +28,6 @@ export default function ProfilePage ({
 
   setFollowingPresent
 }) {
-  
   useEffect(() => {
     if (profileUser) {
       getPosts(profileUser._id)

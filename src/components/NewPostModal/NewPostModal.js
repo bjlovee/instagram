@@ -15,7 +15,7 @@ export default function NewPostModal ({
   setUpdateForm,
   addImageForm,
   setAddImageForm,
-  setProfileUser,
+  setProfileUser
 }) {
   const [newPost, setNewPost] = useState({
     image: '',
@@ -136,7 +136,6 @@ export default function NewPostModal ({
   const handleChangeProfile = (e) => {
     setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value })
   }
-
 
   useEffect(() => {
     getUser(user._id)
