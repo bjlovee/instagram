@@ -56,7 +56,7 @@ export default function SwitchProfile ({
             <div onClick={() => {
               setUpdateForm(true)
               setShowModal(true)
-              console.log('click')
+              //'click')
             }}
             >
               <IconButton><Edit sx={{ fontSize: 18 }} />

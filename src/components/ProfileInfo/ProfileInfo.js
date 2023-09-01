@@ -27,7 +27,6 @@ export default function ProfileInfo ({
         })
       })
       const data = await response.json()
-      console.log(data)
       getFollowers(user._id)
     } catch (error) {
       console.error(error)
@@ -48,7 +47,6 @@ export default function ProfileInfo ({
         })
       })
       const data = await response.json()
-      console.log(data)
       getFollowers(user._id)
     } catch (error) {
       console.error(error)

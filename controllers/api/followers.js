@@ -23,7 +23,6 @@ const dataController = {
   },
   async getUserFollowing (req, res, next) {
     try {
-      console.log(req)
       const userFollowing = await Follower.find({ followerUser: req.params.id })
       res.locals.data.followers = userFollowing
       next()
@@ -47,7 +46,7 @@ const dataController = {
           following: follower
         }
       })
-      console.log(userFollowed)
+      //userFollowed)
       res.locals.data.follower = follower
       next()
     } catch (e) {

@@ -27,18 +27,6 @@ export default function NewPostModal ({
 
   const [updatedProfile, setUpdatedProfile] = useState({})
 
-  // Get post
-  const getPost = async () => {
-    try {
-      const response = await fetch(`api/posts/poster/${user._id}`)
-      const data = await response.json()
-      console.log(data)
-      setPost(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   // CREATE POST
   const createPost = async () => {
     try {
@@ -72,7 +60,6 @@ export default function NewPostModal ({
     e.preventDefault()
     createPost()
     setShowModal(false)
-    console.log(post.poster)
     setPostModal(true)
   }
 
@@ -91,7 +78,6 @@ export default function NewPostModal ({
         body: JSON.stringify(updatedPost)
       })
       const data = await response.json()
-      console.log(data)
       getPosts(user._id)
       setPost(data)
     } catch (e) {

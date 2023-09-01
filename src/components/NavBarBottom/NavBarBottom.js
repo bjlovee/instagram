@@ -65,7 +65,6 @@ export default function NavBarBottom ({
           <div className={styles.closeContainer}>
             <div
               onClick={(e) => {
-                console.log('click')
                 e.preventDefault()
                 setShowLogOut(false)
               }} className={styles.closeButton}

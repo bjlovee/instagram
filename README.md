@@ -14,7 +14,7 @@ This is an Instagram MERN stack developed clone where a visitor can come sociali
 * Express
 
 # Getting Started
-Follow the link to the live page [here]()
+Follow the link to the live page [here](https://instafake.herokuapp.com/)
 
 You will be taken to the landing page where you can signup. Once signed up, the main home page will have latest post indexed, but as a new user, you will need to first add followers to your list.
 

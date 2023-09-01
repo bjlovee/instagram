@@ -42,7 +42,6 @@ export default function NavBarBottom ({
             <input
               autofocus type='search' placeholder='click to search user' onKeyDown={(e) => {
                 if (e.key == 'Enter') {
-                  console.log('search')
                 } else if (e.key == 'Escape') {
                   setShowSearch(false)
                 }
@@ -72,7 +71,6 @@ export default function NavBarBottom ({
                           <div
                             className={styles.user} onClick={() => {
                               setProfileUser(filteredUser)
-                              console.log('click')
                               setShowSearch(false)
                               getPosts(filteredUser._id)
                               setFollowingPresent(false)
