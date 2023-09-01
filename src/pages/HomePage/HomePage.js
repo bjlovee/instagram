@@ -15,9 +15,8 @@ export default function HomePage ({
   setProfileUser,
   allUsers,
   getComments,
-  getLikesByPost,
+  getLikesByPost
 }) {
-
   const [followersPosts, setFollowersPosts] = useState([])
 
   // settings posts data in loop
@@ -73,7 +72,7 @@ export default function HomePage ({
             {/* Only indexing the latest 15 posts  */}
             {allPosts
               ? allPosts.map((post, i) => {
-                if (i < 15){
+                if (i < 15) {
                   return (
                     <div onClick={(e) => {
                       e.preventDefault()
@@ -87,11 +86,10 @@ export default function HomePage ({
                   )
                 }
               })
-              
-              : 'No Posts Yet'
-              }
+
+              : 'No Posts Yet'}
           </div>
-          <br/>
+          <br />
           <p>You are up to date</p>
         </section>
         <div className={styles.sectionWrapper}>

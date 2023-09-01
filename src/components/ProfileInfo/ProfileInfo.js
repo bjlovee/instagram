@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 export default function ProfileInfo ({
   profileUser,
   user,
-  getFollowing,
   followingObjects,
   getFollowers,
   followerObjects,
@@ -14,9 +13,6 @@ export default function ProfileInfo ({
   setFollowingPresent,
   numberOfPosts
 }) {
-  console.log(followerObjects)
-  console.log(followingObjects)
-
   const createFollow = async () => {
     try {
       const response = await fetch('/api/followers', {
@@ -74,7 +70,6 @@ export default function ProfileInfo ({
     }
   }
 
-
   const checkFollowing = () => {
     followingObjects.filter(object => setFollowingPresent((object.userFollowed === profileUser._id)))
   }
@@ -102,12 +97,6 @@ export default function ProfileInfo ({
   useEffect(() => {
     getFollowers(user._id)
   }, [])
-
-  console.log(profileUser._id)
-  console.log(user._id)
-
-  console.log(followingPresent)
-  console.log(followersPresent)
 
   return (
     <div className={styles.profileInfo}>

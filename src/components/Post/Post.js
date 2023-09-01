@@ -73,11 +73,11 @@ export default function ContainerResponsive ({
                     <Avatar variant='soft' color='neutral'>
                       {post.posterPic
                         ? <img
-                          width='40px'
-                          src={post.posterPic}
-                          loading='lazy'
-                          alt=''
-                        />
+                            width='40px'
+                            src={post.posterPic}
+                            loading='lazy'
+                            alt=''
+                          />
                         : <Avatar sx={{ width: '100%', height: '100%' }} />}
 
                     </Avatar>

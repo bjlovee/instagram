@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import LandingPage from '../LandingPage/LandingPage'
 import HomePage from '../HomePage/HomePage'
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage'
 import ProfilePage from '../ProfilePage/Profilepage'
-import { Routes, Route, Router } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import styles from '../App/App.module.scss'
 import NavBarBottom from '../../components/NavBarBottom/NavBarBottom'
 import NavBarTop from '../../components/NavBarTop/NavBarTop'
@@ -12,7 +11,6 @@ import ShowPostModal from '../../components/ShowPostModal/ShowPostModal'
 import { Helmet } from 'react-helmet'
 
 function App () {
-  const [state, setState] = useState(null)
   const [user, setUser] = useState(null)
 
   const [followerObjects, setFollowerObjects] = useState([])
@@ -65,7 +63,6 @@ function App () {
     }
   }
 
- 
   // Get the usets that are following you!
   const getFollowers = async (id) => {
     try {
@@ -86,16 +83,6 @@ function App () {
       setFollowingObjects(data)
     } catch (e) {
       console.error({ msg: e.message })
-    }
-  }
-
-  const fetchState = async () => {
-    try {
-      const response = await fetch('/api/test')
-      const data = await response.json()
-      setState(data)
-    } catch (error) {
-      console.error(error)
     }
   }
 
@@ -198,7 +185,6 @@ function App () {
     }
   }, [])
 
-
   return (
     <main className={styles.App}>
       <Helmet>
@@ -263,7 +249,6 @@ function App () {
                     followingPresent={followingPresent}
                                            />}
                 />
-                <Route path='/orders' element={<OrderHistoryPage />} />
               </>
             </Routes>
             <NavBarTop
@@ -347,7 +332,6 @@ function App () {
               like={like}
 
               setProfileUser={setProfileUser}
-              
 
             />
 

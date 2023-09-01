@@ -1,4 +1,4 @@
-// /server.js
+
 require('dotenv').config()
 require('./config/database')
 const express = require('express')

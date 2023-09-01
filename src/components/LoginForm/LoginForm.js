@@ -42,6 +42,8 @@ export default function LoginForm ({
         </form>
         <h3 className={styles.errorMessage}>&nbsp;{error}</h3>
         <div>Dont have an account?<Link to='/signup'>signup</Link></div>
+        <br />
+        <div><strong>Test account</strong><p> Email: george@george.com <br />Password: 123abc</p></div>
       </div>
     </div>
   )

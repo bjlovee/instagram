@@ -27,7 +27,6 @@ export function getToken () {
   // getItem will return null if no key
   if (!token) return null
 
-  console.log(token)
   // original
   const payload = JSON.parse(window.atob(token.split('.')[1]))
 

@@ -29,8 +29,8 @@ export default function SuggestedProfile ({
                   <div class={styles.username}>
                     <div>
                       {currentUser.handle
-                          ? <h5>{currentUser.handle}</h5>
-                          : <h5>{currentUser.handle}</h5>}
+                        ? <h5>{currentUser.handle}</h5>
+                        : <h5>{currentUser.handle}</h5>}
                     </div>
                   </div>
                 </div>
