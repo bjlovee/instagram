@@ -81,7 +81,6 @@ export default function Comment ({
                   </IconButton>
                 </div>
                 <div onClick={() => {
-                  console.log('true')
                   showEditComment(true)
                 }}
                 >

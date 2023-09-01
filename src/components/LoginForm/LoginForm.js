@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import * as userService from '../../utilities/users-service'
 import styles from '../LoginForm/LoginForm.module.scss'
-// import { useNavigate } from 'react-router-dom'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function LoginForm ({
   setUser,
-  user,
   getFollowers
 }) {
   const [credentials, setCredentials] = useState({

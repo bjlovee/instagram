@@ -32,7 +32,6 @@ export default function homePageCarousel () {
           <button
             className={styles.btnScroll} id={styles.btnScrollLeft}
             onClick={() => {
-              console.log('click')
               scrollHorizontally(1)
             }}
           ><i className='fas fa-chevron-left' />
@@ -40,7 +39,6 @@ export default function homePageCarousel () {
           <button
             className={styles.btnScroll} id={styles.btnScrollRight}
             onClick={() => {
-              console.log('click')
               scrollHorizontally(-1)
             }}
           ><i className='fas fa-chevron-right' />

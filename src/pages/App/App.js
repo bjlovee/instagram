@@ -164,7 +164,7 @@ function App () {
     getUsers()
     getAllPosts()
     if (user) {
-      console.log('here')
+      //'here')
       getFollowers(user._id)
     }
   }, [])
